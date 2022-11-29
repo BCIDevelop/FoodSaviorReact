@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Cambiar icon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Savior</title>
+  </head>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        window.fbAsyncInit = function() {
+         FB.init({
+         appId      : '838106910556522',
+        cookie     : true,                    
+        xfbml      : true,                    
+        version    : 'v15.0'          
+        });
+    }
+</script>   
+    <script >
+  
+        window.onload = function () {
+            
+                  window.google.accounts.id.initialize({
+                    client_id: "867773923360-1o9vafk85bmvsnh2oeebjg7v7ks73us9.apps.googleusercontent.com",
+                    
+                  });
+                  
+                }
+        
+        
+        </script>  
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script src="//unpkg.com/jwt-js-decode@1.5.1/dist/jwt-js-decode.pkg.min.js"></script>
+  </body>
+</html>
