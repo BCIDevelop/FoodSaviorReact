@@ -9,4 +9,4 @@ const Category = () => {
 }
 
 export default Category
-    Category
+   

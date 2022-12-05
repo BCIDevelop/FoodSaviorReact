@@ -1,20 +1,10 @@
+  @import url(/src/variables.css);
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    height: 100%;
-    width: 100vw;
-  }
-  body{
+  .body{
     display: flex;
     justify-content: center;
-  }
-  button{
-    cursor: pointer;
+    height: 100vh;
+    width: 100vw;
   }
   /* Contenedor Principal */
   .container {
@@ -34,16 +24,16 @@
     left: 30%;
     top: 84%;
     border-radius: 50%;
-    background: linear-gradient(-45deg,#31401A,#556f2d);
+    background: linear-gradient(-45deg,var(--secondary-color),#556f2d);
     transform: translateX(-50%);
   }
   /* Layout grid */
-  .layout-container{
+  .layoutContainer{
     display: grid;
     grid-template-rows: 1fr auto;
   }
   /* Form contenedor principal en el layout principal*/
-  .form-wrapper{
+  .formWrapper{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,24 +54,7 @@
     margin: 0px 10px;
     /* transform: translateY(-50%); */
 }
- /* Social buttons */ 
- .social-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 328px;
- }
- .social-element{
-    cursor: pointer;
- }
-  .social-element img{
-    height: 36px;
-    width: 40px;
-    border-radius: 50%;
-   
-  
-}
+ 
 /* panel container */
 .panel{
     position: absolute;
@@ -91,7 +64,7 @@
     left: 5%;
     align-items: center;
 }
-.text-container{
+.textContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,7 +72,7 @@
     text-align: center;
     width: 200px;
 }
-.text-container a{
+.textContainer a{
     text-decoration: none;
     color: rgb(255, 255, 255,0.8);
     font-size: 1rem;
@@ -107,7 +80,7 @@
    
 }
 
-.panel-image{
+.panelImage{
     width: 90px;
     height: 90px;
 }
@@ -120,7 +93,7 @@
         width: 2000px;
         height: 2000px;
     }
-    .text-container a{
+    .textContainer a{
         font-size: 1.4rem;
         line-height: 19px;
     }
@@ -128,21 +101,21 @@
     .panel{
         bottom: -2%;
     }
-    .panel-image{
+    .panelImage{
         width: 120;
         height: 120px;
     }
   
 }
 @media only screen and (min-width:700px) and (max-width:1900px){
-    .layout-container{
+    .layoutContainer{
     grid-template-rows: none;
     grid-template-columns: 50vw 50vw;
     grid-template-rows: 100vh;
     align-items: center;
     justify-items: center;
     }
-    .panel-layout{
+    .panelLayout{
      position: relative;
      width: 100%;
      height: 100%;
@@ -154,15 +127,15 @@
         top: -10%;
         transform: translateY(-50%);
     }
-    .text-container h3{
+    .textContainer h3{
         font-size: 2.6rem;
         margin-bottom: 10px;
     }
-    .text-container a{
+    .textContainer a{
         font-size: 1.4rem;
         line-height: 19px;
     }
-    .text-container{
+    .textContainer{
         width: 250px;
     }
     .panel{
@@ -173,85 +146,8 @@
          align-items: center;
          flex-direction: column-reverse;
     }
-    .panel-image{
+    .panelImage{
         width: 400px;
         height: 400px;
     }
-}
-/* Error Toast */
-
-.wrapper {
-    width: 380px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 10%;
-    right: -180px;
-    z-index: 3;
-    display: none;
-  }
-  
-  .toast {
-    width: 100%;
-    height: 80px;
-    padding: 0 5px 0 15px;
-    background-color: #ffffff;
-    border-radius: 7px;
-    display: grid;
-    grid-template-columns: 1.3fr 6fr 0.5fr;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-  }
-  
-  .success {
-    border-left: 8px solid #47D764;
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-  
-  }
-  
-  .toast:not(:last-child) {
-    margin-bottom: 50px;
-  }
-  
-  .success i {
-    color: #47D764;
-  }
-  
-  .toast button {
-    align-self: flex-start;
-    background-color: transparent;
-    font-size: 25px;
-    color: #656565;
-    line-height: 0;
-    border: none;
-    padding-top: 15px;
-  }
-  
-  .error {
-    border-left: 8px solid #ff355b;
-  }
-  
-  .error i {
-    color: #ff355b;
-  }
-  .container-1,
-.container-2 {
-  align-self: center;
-}
-
-.container-1 i {
-  font-size: 35px;
-}
-
-.container-2 p:first-child {
-  color: #101020;
-  font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 2px;
-}
-
-.container-2 p:last-child {
-  font-size: 14px;
-  font-weight: 400;
-  color: #656565;
-  margin-top: 0px;
 }

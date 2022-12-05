@@ -5,7 +5,7 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  height: 332px;
+ 
   justify-content: space-between;
   width: 328px;
 }

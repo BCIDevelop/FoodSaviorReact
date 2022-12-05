@@ -1,0 +1,103 @@
+@import url(/src/variables.css);
+#container__category{
+    position: absolute;
+    top: 0;
+    left: -258px;
+    height: 100%;
+    z-index: 2;
+    margin: 0 auto;
+    transition: all 0.6s;
+    width: 258px;
+  
+}
+.sidebar{
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon_x{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+.salida{
+    padding-bottom: 20px;
+    margin-top: auto;
+}
+.fa-xmark{
+    font-size: 2rem;
+}
+.img-perfil{
+    margin: 5px auto;
+    width: 15vw;
+    height: 15vh;
+    border-radius: 50%;
+    max-width: 50px;
+    min-height: 30px;
+    max-height: 80px;
+}
+
+.datos__personales{
+    height: 25%; 
+    min-height: 100px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+}
+.datos__personales h1{
+    padding: 5px 0px;
+    font-size: 100%;
+}
+.datos__personales p{
+    font-size: 1rem;
+}
+
+.lista_menu{
+    background-color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 15px;
+    
+
+}
+
+.list_container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1%;
+
+}
+
+.list{
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.lista-icon{
+    padding: 5px;
+}
+
+.list li{
+    padding: 5px 5px 5px 5px;
+    list-style: none;
+}
+/* Transform Sidebar */
+.navbar-on{
+    transform:translateX(258px);
+   
+}
+@media only screen and (min-width:900px) {
+    #container__category{
+        display: none;
+    }
+}

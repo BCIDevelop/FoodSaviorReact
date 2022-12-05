@@ -1,0 +1,115 @@
+/* Error Toast */
+
+.wrapper {
+    width: 380px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 10%;
+    right: -180px;
+    z-index: 3;
+    display: block;
+   
+  }
+  
+  .toastError {
+    width: 100%;
+    height: 80px;
+    padding: 0 5px 0 15px;
+    background-color: #ffffff;
+    border-radius: 7px;
+    display: grid;
+    grid-template-columns: 1.3fr 6fr 0.5fr;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    border-left: 8px solid #ff355b;
+  }
+  .toastSuccess {
+    width: 100%;
+    height: 80px;
+    padding: 0 5px 0 15px;
+    background-color: #ffffff;
+    border-radius: 7px;
+    display: grid;
+    grid-template-columns: 1.3fr 6fr 0.5fr;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    border-left: 8px solid #47D764;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .toastError button,
+  .toastSuccess button {
+    align-self: flex-start;
+    background-color: transparent;
+    font-size: 25px;
+    color: #656565;
+    line-height: 0;
+    border: none;
+    padding-top: 15px;
+  }
+  
+  .toastError i {
+    color: #ff355b;
+  }
+.container1,
+.container2 {
+  align-self: center;
+}
+
+.container1 i {
+  font-size: 35px;
+}
+
+.container2 p:first-child {
+  color: #101020;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.container2 p:last-child {
+  font-size: 14px;
+  font-weight: 400;
+  color: #656565;
+  margin-top: 0px;
+}
+/* Line */
+.animatedLineSuccess{
+  width: 100%;
+  height: 3px;
+  background-color: #47D764;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  animation-name:line-animation;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+.animatedLineError{
+  width: 100%;
+  height: 3px;
+  background-color: #ff355b;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  animation-name:line-animation;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+@keyframes line-animation {
+  0%{
+      transform: scaleX(100%);
+      transform-origin: left;
+  }
+ 
+  100%{
+    transform: scaleX(0%);
+    transform-origin: left;
+
+  
+  }
+
+}

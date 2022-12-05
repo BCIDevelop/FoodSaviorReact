@@ -3,8 +3,8 @@ import React from 'react'
 const Footer = () => {
  
   return (
-    <div>
-       <h2>Footer</h2>
+    <div style={{height:'56px'}}>
+       Footer
     </div>
   )
 }

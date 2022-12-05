@@ -1,0 +1,61 @@
+@import url(/src/variables.css);
+.cabecera-menu{
+    background-color: var(--secondary-color);
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    /* border: 2px solid yellow; */
+    display: flex;
+    justify-content: space-between;
+    height: var(--header-height);
+    align-items: center;
+}
+.icon_inside{
+    padding: 10px 20px; 
+}
+
+.menu-options{
+    display: flex;
+    justify-content: flex-end;
+}
+.icon_menu_options{
+    padding: 10px 20px;
+}
+.navbar ul a{
+    text-decoration: none;
+    color: #fff;
+}
+.navbar ul li{
+    padding: 0 10px;
+    list-style: none;
+}
+
+.navbar{
+    display: none;
+}
+@media only screen and (min-width:900px) {
+    .cabecera-menu{
+        flex-direction: row-reverse;
+    }
+    .menu-options{
+        display: none !important;
+    }
+    .icon-pastel{
+        display: none;
+    }
+    .navbar{
+        display: block;
+    }
+    .navbar ul{
+        display: flex;
+
+    }
+    .navbar ul li{
+        padding: 0 10px;
+        list-style: none;
+    }
+    .navbar ul a{
+        text-decoration: none;
+        color: #fff;
+    }
+}
