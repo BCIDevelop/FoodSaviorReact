@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './notFound.module.css'
 import refrigerator from '../../assets/refrigerator.png'
+import { Link } from 'react-router-dom'
 const NotFound = () => {
   return (
     <div className={styles.container}>
@@ -10,7 +11,7 @@ const NotFound = () => {
      <div className={styles.secondSection}>
         <h2 className={styles.notFound}>404</h2>
         <h3 className={styles.textTitle}>Not what you're looking for</h3>
-        <p className={styles.paragraph}>Go Home or contact us at <strong>developer1916@gmail.com</strong></p>
+        <p className={styles.paragraph}>Go <Link to='/home'>Home</Link> or contact us at <strong>developer1916@gmail.com</strong></p>
      </div >
   
     </div>

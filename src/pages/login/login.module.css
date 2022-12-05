@@ -6,6 +6,17 @@
     height: 100vh;
     width: 100vw;
   }
+  /* Logo image */
+  .logo{
+    position: absolute;
+    z-index: 3;
+    top:5%;
+    left: 5%;
+    width: 50px;
+    cursor: pointer;
+    
+  }
+
   /* Contenedor Principal */
   .container {
     display: flex;
