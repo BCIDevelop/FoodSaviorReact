@@ -8,20 +8,22 @@ import SideBar from './components/sideBar/SideBar'
 const Layout = ({ children }) => {
    
     const location=useLocation()
+    console.log(location.pathname)
     const willRender = IsLandingPage(location.pathname)
     const [sidebarVisibility,setSideBar]=useState(false)
     return (
         
        <>
           {location.pathname!=='/login' &&location.pathname!=='/register' &&<Header setSideBar={setSideBar}/>}
-          <div style={{position:'relative',height:'calc(100vh - 112px)',width:'100vw'}}>
+          <div style={{position:'relative',height:'calc(100vh - 56px)',width:'100vw'}}>
 
           {children}
          
            {sidebarVisibility &&<SideBar setSideBar={setSideBar} sidebar={sidebarVisibility}></SideBar>} 
+           {willRender && <Footer/>} 
+
           </div>
       
-           {willRender && <Footer/>} 
        </>
     )
   }
