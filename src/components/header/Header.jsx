@@ -27,7 +27,7 @@ const Header = ({setSideBar}) => {
           {
            navbarElements.map((element)=>(
 
-             <li><NavLink to={`/${element.toLowerCase()}`} style={({isActive})=> isActive ? activeStyle : undefined}>{element}</NavLink></li>
+             <li key={element} ><NavLink to={`/${element.toLowerCase()}`} style={({isActive})=> isActive ? activeStyle : undefined}>{element}</NavLink></li>
            ))
           }
          

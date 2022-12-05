@@ -28,7 +28,10 @@ const SideBar = ({setSideBar}) => {
       const timerId=setTimeout(()=>{
         document.getElementById('container__category').classList.add('navbar-on')
       },100) 
-      return ()=> clearInterval(timerId)
+      return ()=> {
+        clearInterval(timerId)
+        console.log('termino')
+      }
     },[])
 
 
@@ -61,7 +64,7 @@ const SideBar = ({setSideBar}) => {
             <div className="lista-icon">
               <i className="fa-solid fa-bell"></i>
             </div>
-            <li><NavLink to={`/${element.toLowerCase()}`} style={({isActive})=> isActive ? activeStyle : undefined}>{element}</NavLink></li>
+            <li onClick={ ()=>{ setSideBar(false)}}><NavLink to={`/${element.toLowerCase()}`} style={({isActive})=> isActive ? activeStyle : undefined}>{element}</NavLink></li>
           </div>
          
             ))
