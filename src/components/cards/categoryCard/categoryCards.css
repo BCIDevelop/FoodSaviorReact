@@ -1,0 +1,99 @@
+.contenedor-productos{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: solid 1px gray;
+    border-top: solid 1px gray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.img-product{
+    height: 80px;
+    border-radius: 50%;
+    padding: 10px 10px 0px 10px;
+}
+
+/* ----------------------------------------------MENU HAMBURGUESA--------------------------------------------------- */
+.hamburger__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 12px;
+    width: 18px;
+    gap: 3px;
+    }
+    .hamburger{
+        background-color: rgba(0, 0, 0, 0.87);
+        height: 2px;
+        width: 100%;
+    }
+    
+    .hamburger_container_top{
+        animation: hamburger-animation-top;
+        animation-iteration-count: 1;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+
+    }
+    .hamburger_container_mid{
+        animation: hamburger-animation-middle;
+        animation-iteration-count: 1;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+
+    }
+    .hamburger_container_bottom{
+        animation: hamburger-animation-bottom;
+        animation-iteration-count: 1;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+    }
+    @keyframes hamburger-animation-top {
+        0%{
+            transform: translateY(1px);
+        }
+        50%{
+            transform: translateY(5px);
+        }
+           
+        100%{
+            
+            transform: translateY(5px) rotate(45deg);
+        
+        }
+    }
+    
+    @keyframes hamburger-animation-middle {
+      
+        0%{
+            transform: translateY(0px);
+        }
+        50%{
+            transform: translateY(0px);
+        }
+       
+        
+        100%{
+            
+            transform: rotate(45deg);
+        
+        }
+    }
+    
+    
+    @keyframes hamburger-animation-bottom {
+        0%{
+            transform: translateY(-1px);
+        }
+        50%{
+            transform: translateY(-5px);
+        }
+      
+        100%{
+          
+            
+            transform: translateY(-5px) rotate(-45deg);
+        }
+    }

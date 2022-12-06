@@ -1,0 +1,31 @@
+.contenedor-alerta{
+    border-bottom: 1px solid gray;
+
+    /* border: 1px solid green; */
+}
+.alerta-detalle{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.img-product{
+    height: 80px;
+    border-radius: 50%;
+    padding: 10px 10px 0px 10px;
+}
+.alerta-mensaje{
+    color: gray;
+    font-size: var(--font-size);
+}
+.alerta-acciones{
+    display: flex;
+    justify-content: flex-end;
+}
+.accion-boton{
+    padding: 5px 20px 10px 10px;
+    font-size: var(--font-size);
+    font-weight: 500;
+    background-color: white;
+    color: rgb(166, 10, 228);
+    border: none;
+}
