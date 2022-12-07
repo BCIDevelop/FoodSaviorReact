@@ -26,7 +26,7 @@ const Product = () => {
             </a>
           </li>
           <li  className={style.ItemCategory}>
-            <a href=".">
+            <a href="./product/probando">
               <span><i class="fa-solid fa-list"></i></span>
               <span>Congelado</span>
               <span><i class="fa-solid fa-arrow-right"></i></span>
