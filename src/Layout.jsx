@@ -8,7 +8,6 @@ import SideBar from './components/sideBar/SideBar'
 const Layout = ({ children }) => {
    
     const location=useLocation()
-    console.log(location.pathname)
     const willRender = IsLandingPage(location.pathname)
     const [sidebarVisibility,setSideBar]=useState(false)
     return (

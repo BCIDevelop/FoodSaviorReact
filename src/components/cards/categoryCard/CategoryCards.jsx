@@ -4,18 +4,17 @@ import FrutasyVerduras from '../../../assets/FrutasyVerduras.svg'
 import './categoryCards.css'
 const CategoryCards = () => {
    const [elementVisibility,setElementVisibility]=useState(false)
-   function showElementsDetail(){
-     setElementVisibility(true)
-   }
+   
    function hamburgerClicked(){
      const hambElement=document.querySelectorAll('.hamburger')
      const parts =['top','mid','bottom']
       hambElement.forEach((element,index)=>{
          element.classList.toggle(`hamburger_container_${parts[index]}`)
       })
+      setElementVisibility(prev=> !prev)
    }
   return (
-    <div>
+    <div className='container-category'>
 
     <ul className="contenedor-productos">
     <div className="icon-pacman">

@@ -1,17 +1,22 @@
 .contenedor-alerta{
     border-bottom: 1px solid gray;
-
+    height: 120px;
     /* border: 1px solid green; */
+    padding:16px 8px 22px 16px  ;
 }
 .alerta-detalle{
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 16px;
+ 
 }
-.img-product{
-    height: 80px;
+.img-product-alert{
+    width: 40px;
+    aspect-ratio: 1/1;
     border-radius: 50%;
-    padding: 10px 10px 0px 10px;
+    margin-right: 16px;
+   
 }
 .alerta-mensaje{
     color: gray;
@@ -21,6 +26,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
 .accion-boton{
     padding: 5px 20px 10px 10px;
     font-size: var(--font-size);
@@ -28,4 +34,25 @@
     background-color: white;
     color: rgb(166, 10, 228);
     border: none;
+}
+.accion-boton:nth-child(2){
+    color: #A61414;
+}
+/* Animation */
+.dismissed{
+    animation-name: dismiss;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+}
+@keyframes dismiss {
+    0%{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100%{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    
 }
