@@ -1,6 +1,7 @@
 html, body {
     height: 100vh;
     width: 100vw;
+    
   }
 
   * {
@@ -11,10 +12,12 @@ html, body {
   
   button{
     cursor: pointer;
+    background-color: transparent;
   }
   a{
     text-decoration: none;
   }
   ul li{
     list-style: nones;
+    display: block;
   }

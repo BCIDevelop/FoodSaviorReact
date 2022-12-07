@@ -1,17 +1,31 @@
+.container-category{
+    position: relative;
+    
+    z-index: 2;
+}
 .contenedor-productos{
     display: flex;
     justify-content: flex-start;
     align-items: center;
     border-bottom: solid 1px gray;
     border-top: solid 1px gray;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 8px var(--main-padding) ;
+    height: 72px;
+    background-color: #fff;
+   
+}
+.producto-detalle{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 24px;
 }
 
+
 .img-product{
-    height: 80px;
-    border-radius: 50%;
-    padding: 10px 10px 0px 10px;
+    height: 56px;
+    width: 76px;
 }
 
 /* ----------------------------------------------MENU HAMBURGUESA--------------------------------------------------- */

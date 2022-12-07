@@ -73,11 +73,11 @@ main{
     letter-spacing: 0.25px;
 }
 .ver-todo{
-    color: rgb(166, 10, 228);
+    color: var(--secondary-color);
     font-weight: 600;
     line-height: 1rem;
     letter-spacing: 1.25px;
-    padding: 0px 20px;
+    padding: 0px 8px;
 }
 
 .menu-options{
@@ -103,12 +103,6 @@ main{
     width: 100%;
 }
 
-.producto-detalle{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .product-opciones{
     padding-left: 0.5%;

@@ -1,8 +1,21 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import './home.css'
 import Alerta from '../../components/alertas/Alerta'
 import CategoryCards from '../../components/cards/categoryCard/CategoryCards'
+import { ProductModel } from '../../model/ProductModel'
+import { sortByDate } from '../../utils/handlerDate'
 const Home = () => {
+
+  const [alerta,setAlerta]=useState([])
+  function dismissedAlert(alertElement){
+    console.log(alertElement)
+    console.log(alerta.splice(alertElement))
+    setAlerta(prev=> prev.filter(element=> element.internalId!== alertElement))
+  }
+  useEffect(()=>{
+    const productos= sortByDate(ProductModel())
+    setAlerta(productos.slice(0,2))
+  },[])
   return (
     <section className="container__productos">
    
@@ -16,7 +29,9 @@ const Home = () => {
         <div className="ver-todo icon_inside_alert">VER TODO</div>
       </div>
       
-        <Alerta></Alerta>
+        {alerta.length>0 && alerta.map((element,index)=>(
+            <Alerta key={`alert${index}`} index={index} producto={element} dismissedAlert={dismissedAlert}></Alerta>
+        ))}
     </div>
 
     <div className="contenedor-infe-products">
