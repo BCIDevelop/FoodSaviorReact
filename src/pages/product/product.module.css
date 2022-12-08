@@ -1,0 +1,43 @@
+@import url(/src/variables.css);
+
+.titleh3{
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    text-align: center;
+    padding-top: var( --padding-title-top );
+    padding-bottom: var( --padding-title-bottom );
+    font-family: var(--font-family-title);
+}
+.contentBanner{
+    background: var(--secondary-color);
+}
+.contentBanner .bannerImage{
+    background:gray;
+    margin: auto;
+    min-width: 100%;
+}
+.contentCategory{
+    /* background: red; */
+}
+.contentCategory ul li a{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+.ItemCategory{
+    background: rgb(0 0 0 / 1%);
+    transition: ease-out 0.4s;
+}
+.ItemCategory:hover{
+    background: rgb(0 0 0 / 14%);
+}
+.ItemCategory a{
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+.ItemCategory a span{
+    /* color: white; */
+}
+.ItemCategory span:nth-child(1),
+.ItemCategory span:nth-child(3){
+    text-align: center;
+}
