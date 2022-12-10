@@ -15,19 +15,15 @@ const Home = () => {
   useEffect(()=>{
     products.current =sortByDate(ProductModel())
     const productos=products.current.slice(0,2)
-    setAlerta(productos)
+    setAlerta(productos)  
     products.current.splice(0,2)
-   
-   
-
   },[])
   useEffect(()=>{
+    
     if (alerta.length < 2 && alerta.length!==0) {
       products.current.shift()
       if(products.current.length!==0){
-       
       setAlerta(prev=> [...prev, products.current[0]])
-     
      }
     }
   },[alerta])
@@ -46,7 +42,7 @@ const Home = () => {
       
         {alerta.length>0 ? (alerta.map((element,index)=>(
             <Alerta key={`alert${index}`} index={index} producto={element} dismissedAlert={dismissedAlert}></Alerta>
-        ))) : <h2>No se se registran mas productos</h2>}
+        ))) : <h2>No se registran mas productos</h2>}
     </div>
 
     <div className="contenedor-infe-products">

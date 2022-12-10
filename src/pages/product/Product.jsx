@@ -13,23 +13,23 @@ const Product = () => {
         <ul>
           <li  className={style.ItemCategory}>
             <a href=".">
-              <span><i class="fa-solid fa-list"></i></span>
+              <span><i className="fa-solid fa-list"></i></span>
               <span>Abarrotes</span>
-              <span><i class="fa-solid fa-arrow-right"></i></span>
+              <span><i className="fa-solid fa-arrow-right"></i></span>
             </a>
           </li>
           <li  className={style.ItemCategory}>
             <a href=".">
-              <span><i class="fa-solid fa-list"></i></span>
+              <span><i className="fa-solid fa-list"></i></span>
               <span>Frutas y Verduras</span>
-              <span><i class="fa-solid fa-arrow-right"></i></span>
+              <span><i className="fa-solid fa-arrow-right"></i></span>
             </a>
           </li>
           <li  className={style.ItemCategory}>
             <a href="./product/probando">
-              <span><i class="fa-solid fa-list"></i></span>
+              <span><i className="fa-solid fa-list"></i></span>
               <span>Congelado</span>
-              <span><i class="fa-solid fa-arrow-right"></i></span>
+              <span><i className="fa-solid fa-arrow-right"></i></span>
             </a>
           </li>
         </ul>
