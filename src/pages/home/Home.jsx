@@ -13,7 +13,7 @@ const Home = () => {
     setAlerta(prev=> prev.filter(element=> element.internalId!== alertElement))
   }
   useEffect(()=>{
-    const productsDB=JSON.parse(localStorage.getItem('products'))
+    const productsDB=JSON.parse(localStorage.getItem('products')) ? JSON.parse(localStorage.getItem('products')) : []
     products.current =sortByDate(productsDB)
     const productos=products.current.slice(0,2)
     setAlerta(productos)  
