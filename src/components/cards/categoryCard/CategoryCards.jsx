@@ -41,7 +41,7 @@ const CategoryCards = ({index,categoryName}) => {
     </div>
   
   </ul>
-  {elementVisibility && <ElementCard functionElement={getCategoryElement} index={index}></ElementCard> }
+  {elementVisibility && <ElementCard  index={index} categoryName={categoryName}></ElementCard> }
    
   </div>
 

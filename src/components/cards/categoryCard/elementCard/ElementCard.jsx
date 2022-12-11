@@ -2,16 +2,21 @@ import React,{useEffect} from 'react'
 import './elementCard.css'
 import defaultImage from '../../../../assets/defaultImage.png'
 import { remainingDate } from '../../../../utils/handlerDate'
-const ElementCard = ({functionElement,index}) => {
-  console.log(functionElement())
+import { useRef } from 'react'
+const ElementCard = ({index,categoryName}) => {
+    const elementProduct=useRef(JSON.parse(localStorage.getItem('products')).filter((element)=>{
+      return element.category=== categoryName
+   }))
   useEffect(()=>{
     document.querySelector(`.element${index}`).classList.add('element-mounted')
+    
+    
   },[])
 
   return (
     <ul className={`element-category-container element${index}`}>
   
-    {functionElement().length>0 ? functionElement().map((element , index)=>(
+    {elementProduct.current.length>0 ? elementProduct.current.map((element , index)=>(
        
         <li key={`element${index}`} className="products-detalle">
         <img className="img-product-alerta" src={defaultImage} alt=""/>

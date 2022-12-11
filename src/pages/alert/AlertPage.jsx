@@ -4,8 +4,9 @@ import Alerta from '../../components/alertas/Alerta'
 import { ProductModel } from '../../model/ProductModel'
 
 const AlertPage = () => {
-    const [alerta,setAlerta]=useState(sortByDate(ProductModel()))
+    const [alerta,setAlerta]=useState(sortByDate(JSON.parse(localStorage.getItem('products')) ? JSON.parse(localStorage.getItem('products')) : []))
     function dismissedAlert(alertElement){
+        localStorage.setItem('products',JSON.stringify(JSON.parse(localStorage.getItem('products')).filter(element=> element.internalId!== alertElement)) )
         setAlerta(prev=> prev.filter(element=> element.internalId!== alertElement))
       }
   return (
