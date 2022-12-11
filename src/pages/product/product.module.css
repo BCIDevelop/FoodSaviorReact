@@ -41,3 +41,30 @@
 .ItemCategory span:nth-child(3){
     text-align: center;
 }
+
+/* FORMULARIO PARA CREACION DE PRODUCTOPS */
+.contentFormProduct{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 1em;
+    width: 90%;
+}
+.contentFormProduct form{
+    width: 100%;
+}
+.contentFormProduct form input,
+.contentFormProduct form button{
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 1em;
+    width: 100%;
+}
+.contentFormProduct form button{
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    transition: all ease-out 0.5s;
+}
+.contentFormProduct form button:hover{
+    background: var(--secondary-color-hover);
+}

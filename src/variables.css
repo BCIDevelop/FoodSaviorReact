@@ -1,6 +1,7 @@
 :root{
     --primary-color:#C7D9D7;
     --secondary-color:#31401A;
+    --secondary-color-hover:#56722c;
     --main-padding:16px;
     --header-height:56px;
     --footer-height:56px;

@@ -15,14 +15,16 @@ function Router(){
             <Route path="/" element={<FoodSavior/>}>  </Route>         
             <Route path="/login/" element={<Login/>}></Route>
             <Route path="/register" element={<Register/>}></Route>
-            </Route>
-            {/* Rutas privadas */}          
-            <Route element={<Private></Private>}>
+          </Route>
+          {/* Rutas privadas */}          
+          <Route element={<Private></Private>}>
             <Route path="/home" element={<Home/>}></Route>
             <Route path="/category" element={<Category/>}></Route>
             <Route path="/product" element={<Product/>}></Route>
+            <Route path="/product/:action" element={<Product/>}></Route>
+            <Route path="/product/:action/:id" element={<Product/>}></Route>
             <Route path="/dashboard" element={<DashboardTest/>}></Route>
-            </Route>
+          </Route>
 
             <Route path="*" element={<NotFound/>}></Route>
 
