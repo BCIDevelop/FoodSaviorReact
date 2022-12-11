@@ -17,8 +17,9 @@ const Login = () => {
   }
   return (
     <div className={styles.body}>
-      <img onClick={returnApp} className={styles.logo} src={logo} alt="logo" />
     <div className={styles.container}>
+    <img onClick={returnApp} className={styles.logo} src={logo} alt="logo" />
+
     <div className={styles.layoutContainer}>
     <div className={styles.formWrapper}>
              <ConnectedForm location='login'></ConnectedForm>

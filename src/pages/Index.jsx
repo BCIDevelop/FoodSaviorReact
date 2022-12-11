@@ -6,6 +6,7 @@ import Product from "./product/Product";
 import Category from "./category/Category";
 import FoodSavior from "./app/FoodSavior";
 import DashboardTest from "./dashboardTest/Dashboard";
-export {Login,Register,Product,Home,NotFound,Category,FoodSavior,DashboardTest}
+import AlertPage from "./alert/AlertPage";
+export {Login,Register,Product,Home,NotFound,Category,FoodSavior,DashboardTest,AlertPage}
 export const indexPagesPrivate=['Home','DashBoard','Category','Product']
 export const indexPagesPublic =['Login']

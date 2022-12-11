@@ -1,6 +1,5 @@
 export function sortByDate(productos){
     productos.sort((a,b)=>a.spoilDate.getTime()-b.spoilDate.getTime());
-  
     return productos
 }
 export function remainingDate(date){

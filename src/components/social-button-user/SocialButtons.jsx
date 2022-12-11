@@ -2,6 +2,7 @@ import React from 'react'
 import { facebookClicked,loginGmail } from '../../utils/socialButtons'
 import faceLogo from '../../assets/facebook-svgrepo-com.svg'
 import styles from './social.module.css'
+import { useEffect } from 'react'
 const SocialButtons = () => {
     window.onload = function () {
         google.accounts.id.initialize({
@@ -9,12 +10,14 @@ const SocialButtons = () => {
           callback: loginGmail
         });
        
-        google.accounts.id.renderButton(
-          document.getElementById("gmail-button"),
-          { theme: "filled_blue", size: "large",type:"icon",shape:"circle" }  // customization attributes
-        );
       }
-    
+   useEffect(()=>{
+    google.accounts.id.renderButton(
+      document.getElementById("gmail-button"),
+      { theme: "filled_blue", size: "large",type:"icon",shape:"circle" }  // customization attributes
+    );
+   },[]) 
+
   return (
     <div className={styles.socialContainer}>
                 <div className={styles.socialElement}>

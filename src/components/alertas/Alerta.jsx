@@ -26,7 +26,7 @@ const Alerta = ({producto,dismissedAlert,index}) => {
           </p>
         </li>
         <div className="alerta-acciones">
-          <button className="accion-boton">CONSUMIDO</button>
+          <button onClick={dismissAlert} className="accion-boton">CONSUMIDO</button>
           <button onClick={dismissAlert} className="accion-boton">ELIMINAR</button>
         </div>
       </ul>

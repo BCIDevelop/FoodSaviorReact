@@ -6,7 +6,7 @@ export function ProductModel() {
             src : "https://plazavea.vteximg.com.br/arquivos/ids/646256-450-450/772631.jpg",
             alt: "no disponible",
             spoilDate:new Date("2022-12-18 GMT-0500"),
-            category:'FrutasyVerduras'
+            category:'Frutas y Verduras'
         },
         {
             internalId : 2,
@@ -14,7 +14,7 @@ export function ProductModel() {
             src : "https://plazavea.vteximg.com.br/arquivos/ids/177229-450-450/manzana-roja-kg.jpg",
             alt: "no disponible",
             spoilDate:new Date("2022-12-25 GMT-0500"),
-            category:'FrutasyVerduras'
+            category:'Frutas y Verduras'
         },
         {
             internalId : 3,
@@ -30,7 +30,7 @@ export function ProductModel() {
             src : "https://plazavea.vteximg.com.br/arquivos/ids/177229-450-450/manzana-roja-kg.jpg",
             alt: "no disponible",
             spoilDate:new Date("2022-12-19 GMT-0500"),
-            category:'Congelados'
+            category:'Congelado'
         },
         {
             internalId : 5,

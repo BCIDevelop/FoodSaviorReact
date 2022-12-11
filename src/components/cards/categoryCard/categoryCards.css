@@ -1,9 +1,10 @@
 .container-category{
-    position: relative;
+  
     
     z-index: 2;
 }
 .contenedor-productos{
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -47,21 +48,21 @@
     .hamburger_container_top{
         animation: hamburger-animation-top;
         animation-iteration-count: 1;
-        animation-duration: 2s;
+        animation-duration: 0.5s;
         animation-fill-mode: forwards;
 
     }
     .hamburger_container_mid{
         animation: hamburger-animation-middle;
         animation-iteration-count: 1;
-        animation-duration: 2s;
+        animation-duration: 0.5s;
         animation-fill-mode: forwards;
 
     }
     .hamburger_container_bottom{
         animation: hamburger-animation-bottom;
         animation-iteration-count: 1;
-        animation-duration: 2s;
+        animation-duration: 0.5s;
         animation-fill-mode: forwards;
     }
     @keyframes hamburger-animation-top {
