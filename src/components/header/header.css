@@ -33,12 +33,31 @@
 .navbar{
     display: none;
 }
+.menu-container{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rotate-animation{
+    animation-name: rotate;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+}
+@keyframes rotate {
+   100%{
+     transform: rotate(360deg);
+   }
+    
+}
 @media only screen and (min-width:900px) {
     .cabecera-menu{
         flex-direction: row-reverse;
     }
-    .menu-options{
-        display: none !important;
+    .menu-container{
+       width: 30%;
+       justify-content: normal;
     }
     .icon-pastel{
         display: none;

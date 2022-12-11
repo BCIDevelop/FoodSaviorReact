@@ -95,7 +95,7 @@ main{
 
 .alerta-derecha{
     display: flex;
-    width: 70%;
+    
 }
 
 .alerta img{
@@ -128,31 +128,3 @@ main{
 /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* esta seccion son los productos dentro de cada categoria*/
 
-
-
-@media only screen and (min-width:900px) {
-    .cabecera-menu{
-        flex-direction: row-reverse;
-    }
-    .menu-options{
-        display: none !important;
-    }
-    .icon-pastel{
-        display: none;
-    }
-    .navbar{
-        display: block;
-    }
-    .navbar ul{
-        display: flex;
-
-    }
-    .navbar ul li{
-        padding: 0 10px;
-        list-style: none;
-    }
-    .navbar ul a{
-        text-decoration: none;
-        color: #fff;
-    }
-}

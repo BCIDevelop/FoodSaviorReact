@@ -2,6 +2,7 @@ import React,{useContext,useState} from 'react'
 import { UserContext } from '../../context/UserContext'
 import { NavLink } from 'react-router-dom'
 import { indexPagesPrivate,indexPagesPublic } from '../../pages/Index'
+import { ProductModel } from '../../model/ProductModel'
 import './header.css'
 const Header = ({setSideBar}) => {
   const {removeUser,user}=useContext(UserContext) 
@@ -10,9 +11,9 @@ const Header = ({setSideBar}) => {
     textDecoration: "underline",
   };
   /* App Header */
-  function logOut(){
-    sessionStorage.clear()
-    removeUser()
+  function refreshProducts(){
+    document.querySelector('#rotate').classList.add('rotate-animation')
+      localStorage.setItem('products',JSON.stringify(ProductModel()))
   }
   function showSideBar(){
     setSideBar(true)
@@ -33,13 +34,15 @@ const Header = ({setSideBar}) => {
          
         </ul>
       </nav>
+      <div className='menu-container'>
 
       <div className="menu-titulo icon_inside">FOOD SAVIOR</div>
 
       <div className="menu-options">
         <div className="icon_menu_options">
-          <i className="fa-solid fa-bell"></i>
+        <i id='rotate' onClick={refreshProducts} className="fa-solid fa-arrows-rotate"></i>
         </div>
+      </div>
       </div>
     </header>
   )

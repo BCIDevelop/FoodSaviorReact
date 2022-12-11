@@ -7,6 +7,7 @@ import CRUDItem from './CRUDItem'
 const CRUDProduct = ( {data} ) => {
   let { action } = useParams();
   let { id } = useParams();
+  const [ form, newForm ] = useState( varifierId );
   if (action === "update") {
     let varifierId = data.find( function (d) { return d.id === parseInt(id); });
     if ( varifierId === undefined ) {
@@ -19,7 +20,7 @@ const CRUDProduct = ( {data} ) => {
         </div>
       )
     }else{
-      const [ form, newForm ] = useState( varifierId );
+     
 
       const handleChange = (e) =>{
         newForm({

@@ -13,7 +13,8 @@ const Home = () => {
     setAlerta(prev=> prev.filter(element=> element.internalId!== alertElement))
   }
   useEffect(()=>{
-    products.current =sortByDate(ProductModel())
+    const productsDB=JSON.parse(localStorage.getItem('products'))
+    products.current =sortByDate(productsDB)
     const productos=products.current.slice(0,2)
     setAlerta(productos)  
     products.current.splice(0,2)
@@ -37,6 +38,7 @@ const Home = () => {
           <p className="icon_inside_alert text-alertas">Alertas</p>
           <i className="icon_inside_alert icon-campana fa-solid fa-bell"></i>
         </div>
+      
         <div > <Link className="ver-todo icon_inside_alert" to='/alertas'> VER TODOS</Link> </div>
       </div>
       
