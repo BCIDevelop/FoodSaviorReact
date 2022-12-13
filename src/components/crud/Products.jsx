@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import style from './product.module.css'
 
-const CRUDItem = ( {item} ) => {
-  let [href_product, asd ] = useState("./update/" + item.id )
+const Products = ( {item} ) => {
+  const [href_product, asd ] = useState("./update/" + item.id )
   return (
     <div className={style.contentCategory}>
       <ul>
@@ -20,4 +20,4 @@ const CRUDItem = ( {item} ) => {
   )
 }
 
-export default CRUDItem
+export default Products
