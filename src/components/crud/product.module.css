@@ -53,6 +53,13 @@
 .contentFormProduct form{
     width: 100%;
 }
+.contentFormProduct form .prevImage{
+    text-align: center;
+}
+.contentFormProduct form .prevImage img{
+    width: 100px;
+    margin: auto;
+}
 .contentFormProduct form input,
 .contentFormProduct form button{
     font-size: 20px;

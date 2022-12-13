@@ -34,6 +34,9 @@ const UpdateProduct = ( {data, id} ) => {
             <h3 className={style.titleh3}>Actualizar Producto</h3>
             <div className={style.contentFormProduct}>
                 <form onSubmit={handleSubmit}>
+                    <div className={style.prevImage}>
+                        <img src={form.src} alt={form.alt} />
+                    </div>
                     <input name="name" type="text" onChange={handleChange} value={form.name} />
                     <input name="qty" type="number" onChange={handleChange} value={form.qty} />
                     <input name="unit" type="text" onChange={handleChange} value={form.unit} />
