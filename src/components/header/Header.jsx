@@ -13,7 +13,7 @@ const Header = ({setSideBar}) => {
   /* App Header */
   function refreshProducts(){
     document.querySelector('#rotate').classList.add('rotate-animation')
-      localStorage.setItem('products',JSON.stringify(ProductModel()))
+      localStorage.setItem('product',JSON.stringify(ProductModel()))
   }
   function showSideBar(){
     setSideBar(true)
