@@ -1,5 +1,5 @@
 import { BrowserRouter,Route,Routes } from "react-router-dom"
-import { Login,Register,FoodSavior,Category,Product,NotFound,Home ,DashboardTest,AlertPage} from "./pages/Index"
+import { Login,Register,FoodSavior,Category,Product,NotFound,Home ,DashboardTest,AlertPage,Favorites} from "./pages/Index"
 import Layout from "./Layout"
 import Private from "./guard/Private"
 import Public from "./guard/Public"
@@ -26,6 +26,7 @@ function Router(){
             <Route path="/product/:action/:id" element={<Product/>}></Route>
             <Route path="/dashboard" element={<DashboardTest/>}></Route>
             <Route path="/alertas" element={<AlertPage/>}></Route>
+            <Route path="/favorites" element={<Favorites/>}></Route>
           </Route>
 
             <Route path="*" element={<NotFound/>}></Route>

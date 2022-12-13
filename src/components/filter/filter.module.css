@@ -1,0 +1,40 @@
+
+
+.filtrosContainer{
+    width: 100vw;
+    padding: 11px 0px 15px 16px;
+    overflow-x: scroll;
+}
+.textContainer{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.subtitle{
+    line-height: 16px;
+    letter-spacing: 1.5px;
+    font-size: 10px;
+    color: var(--secondary-color);
+}
+.chipsContainer{
+    height: 32px;
+   display: flex;
+   gap: 24px;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   width: 170%;
+}
+.chipsContainer div:nth-child(n){
+   
+    height: 32px;
+    background: rgba(33, 33, 33, 0.08);
+    border-radius: 16px;
+    letter-spacing: 0.25px;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 10px;
+}
