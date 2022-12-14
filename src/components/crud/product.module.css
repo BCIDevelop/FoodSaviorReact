@@ -43,7 +43,7 @@
 }
 
 /* FORMULARIO PARA CREACION DE PRODUCTOPS */
-.contentFormProduct{
+.contentFormProduct {
     display: flex;
     justify-content: center;
     margin: auto;
@@ -54,10 +54,11 @@
     width: 100%;
 }
 .contentFormProduct form .prevImage{
+    margin-top: 10px;
     text-align: center;
 }
 .contentFormProduct form .prevImage img{
-    width: 100px;
+    width: 200px;
     margin: auto;
 }
 .contentFormProduct form input,
@@ -88,4 +89,15 @@
     color: var(--primary-color);
     border-radius: 20px;
     padding: 14px;
+}
+
+.contentLink{
+    margin-bottom: 16px;
+    margin-top: 10px;
+}
+.contentLink .returnA{
+    border: solid var(--secondary-color) 1px;
+    color: var(--secondary-color);
+    font-weight: bolder;
+    padding: 1em;
 }

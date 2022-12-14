@@ -36,9 +36,11 @@ const CreateProduct = ( {data} ) => {
             <h3 className={style.titleh3}>Crear Producto</h3>
             <div className={style.contentFormProduct}>
                 <form onSubmit={handleSubmit}>
-                    <Link to="../product">
-                        regresar
-                    </Link>
+                    <div className={style.contentLink}>
+                        <Link to="../product" className={style.returnA}>
+                            <i className="fa-solid fa-arrow-left"></i> Regresar
+                        </Link>
+                    </div>
                     <input name="name" type="text" onChange={handleChange} value={form.name} />
                     <input name="alt" type="text" onChange={handleChange} value={form.alt} />
                     <input name="unit" type="text" onChange={handleChange} value={form.unit} />

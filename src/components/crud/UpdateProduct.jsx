@@ -35,9 +35,11 @@ const UpdateProduct = ( {data, navigate, id} ) => {
             <h3 className={style.titleh3}>Actualizar Producto</h3>
             <div className={style.contentFormProduct}>
                 <form onSubmit={handleSubmit}>
-                    <Link to="../product">
-                        regresar
-                    </Link>
+                    <div className={style.contentLink}>
+                        <Link to="../product" className={style.returnA}>
+                            <i className="fa-solid fa-arrow-left"></i> Regresar
+                        </Link>
+                    </div>
                     <div className={style.prevImage}>
                         <img src={form.src} alt={form.alt} />
                     </div>
