@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import {useNavigate} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 import style from './product.module.css'
 import { AlertContext } from '../../context/AlertContext'
 
@@ -36,10 +36,13 @@ const CreateProduct = ( {data} ) => {
             <h3 className={style.titleh3}>Crear Producto</h3>
             <div className={style.contentFormProduct}>
                 <form onSubmit={handleSubmit}>
+                    <Link to="../product">
+                        regresar
+                    </Link>
                     <input name="name" type="text" onChange={handleChange} value={form.name} />
-                    <input name="qty" type="number" onChange={handleChange} value={form.qty} />
+                    <input name="alt" type="text" onChange={handleChange} value={form.alt} />
                     <input name="unit" type="text" onChange={handleChange} value={form.unit} />
-                    <input name="duedate" type="date" onChange={handleChange} value={form.duedate} />
+                    <input name="spoilDate" type="date" onChange={handleChange} value={form.spoilDate} />
                     <button type="submit" >Crear</button>
                 </form>
             </div>

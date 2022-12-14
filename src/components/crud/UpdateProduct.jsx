@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
 import style from './product.module.css'
 import { AlertContext } from '../../context/AlertContext'
 
-const UpdateProduct = ( {data, id} ) => {
+const UpdateProduct = ( {data, navigate, id} ) => {
     const {showToast}= useContext(AlertContext)
     const [form, instForm] = useState( data.find( function (d) { return d.id === parseInt(id || 0); }) ) ;
 
@@ -34,13 +35,16 @@ const UpdateProduct = ( {data, id} ) => {
             <h3 className={style.titleh3}>Actualizar Producto</h3>
             <div className={style.contentFormProduct}>
                 <form onSubmit={handleSubmit}>
+                    <Link to="../product">
+                        regresar
+                    </Link>
                     <div className={style.prevImage}>
                         <img src={form.src} alt={form.alt} />
                     </div>
                     <input name="name" type="text" onChange={handleChange} value={form.name} />
-                    <input name="qty" type="number" onChange={handleChange} value={form.qty} />
+                    <input name="alt" type="text" onChange={handleChange} value={form.alt} />
                     <input name="unit" type="text" onChange={handleChange} value={form.unit} />
-                    <input name="duedate" type="date" onChange={handleChange} value={form.duedate} />
+                    <input name="spoilDate" type="date" onChange={handleChange} value={form.spoilDate} />
                     <button type="submit" >Actualizar</button>
                 </form>
             </div>

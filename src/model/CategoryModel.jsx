@@ -1,23 +1,23 @@
 export function CategoryModel() {
     return [
         {
-            internalId : 1,
+            id : 1,
             name : "Abarrotes",
         },
         {
-            internalId : 2,
+            id : 2,
             name : "Frutas y Verduras",
         },
         {
-            internalId : 3,
+            id : 3,
             name : "Congelado",
         },
         {
-            internalId : 4,
+            id : 4,
             name : "No Perecibles",
         },
         {
-            internalId : 5,
+            id : 5,
             name : "Por Definir",
         },
     ]

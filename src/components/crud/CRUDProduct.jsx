@@ -10,6 +10,7 @@ import CreateProduct from './CreateProduct'
 const CRUDProduct = () => {
   const { action } = useParams();
   const { id } = useParams();
+  
   if( localStorage.getItem('product') === null){ localStorage.setItem( 'product', JSON.stringify(ProductModel()) );}
   const data = JSON.parse(localStorage.getItem('product'));
   let component = null;
@@ -19,9 +20,10 @@ const CRUDProduct = () => {
     const newForm = {
       id : null,
       name : "",
-      qty : 0,
-      unit : 0,
-      duedate : "",
+      src : "",
+      alt : "",
+      spoilDate : new Date("2022-12-18 GMT-0500"),
+      category : 0,
     };
     component = <CreateProduct data={newForm} />
   }else{
