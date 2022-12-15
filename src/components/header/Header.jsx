@@ -1,8 +1,9 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext} from 'react'
 import { UserContext } from '../../context/UserContext'
 import { NavLink } from 'react-router-dom'
 import { indexPagesPrivate,indexPagesPublic } from '../../pages/Index'
 import { ProductModel } from '../../model/ProductModel'
+import { FavoriteModel } from '../../model/FavoriteModel'
 import './header.css'
 const Header = ({setSideBar}) => {
   const {removeUser,user}=useContext(UserContext) 
@@ -14,6 +15,7 @@ const Header = ({setSideBar}) => {
   function refreshProducts(){
     document.querySelector('#rotate').classList.add('rotate-animation')
       localStorage.setItem('products',JSON.stringify(ProductModel()))
+      localStorage.setItem('favorites',JSON.stringify(FavoriteModel()))
   }
   function showSideBar(){
     setSideBar(true)

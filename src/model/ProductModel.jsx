@@ -48,5 +48,21 @@ export function ProductModel() {
             spoilDate:new Date("2022-12-5 GMT-0500"),
             category:'Abarrotes'
         },
+        {
+            internalId : 7,
+            name : "Palta",
+            src : "https://plazavea.vteximg.com.br/arquivos/ids/177229-450-450/manzana-roja-kg.jpg",
+            alt: "no disponible",
+            spoilDate:new Date("2022-12-15 GMT-0500"),
+            category:'Frutas y Verduras'
+        },
+        {
+            internalId : 8,
+            name : "Huevos La Calera",
+            src : "https://plazavea.vteximg.com.br/arquivos/ids/177229-450-450/manzana-roja-kg.jpg",
+            alt: "no disponible",
+            spoilDate:new Date("2022-12-6 GMT-0500"),
+            category:'Abarrotes'
+        },
     ]
 };

@@ -1,0 +1,33 @@
+.container{
+    width: 100%;
+    height: 100%;
+}
+.container form {
+    padding:0 var(--main-padding);
+    width: 100vw;
+    height: calc(100% - 98px);
+}
+.favoriteContainer{
+   padding-top: 32px;
+   height: 75%;
+   margin-bottom: 36px;
+   overflow-y: scroll;
+}
+.buttonSubmitContainer{
+    display: flex;
+    justify-content: end;
+}
+.buttonSubmit{
+    background-color: var(--secondary-color);
+    width: 92px;
+    height: 36px;
+    color: #fff;
+    letter-spacing: 1.25px;
+    line-height: 16px;
+    font-weight: 500;
+}
+@media only screen and (min-width:900px){
+    .favoriteContainer{
+        overflow-y: auto;
+    }
+}

@@ -1,0 +1,34 @@
+.cardContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+    width: 100%;
+    /* border-bottom: 0.2px solid gray; */
+    border-bottom-style:ridge ;
+}
+.cardContent{
+    width: 60%;
+}
+.cardContent p{
+    font-size: var(--font-size-subtitle);
+    color: gray;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+}
+.cardActions{
+
+}
+.cardActions input{
+    width: 24px;
+    height: 24px;
+}
+.subtitle{
+    font-size: 1rem;
+    letter-spacing: 0.15px;
+    line-height: 24px;
+}
+/* Texto vencido */
+.spoiledProduct{
+    color: var(--third-color)
+ }
