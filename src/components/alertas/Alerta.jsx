@@ -8,7 +8,7 @@ const Alerta = ({producto,dismissedAlert,index}) => {
   function dismissAlert(){
     document.querySelector(`.alerta${index}`).classList.add('dismissed')
     timerID =setTimeout(()=>{
-        dismissedAlert(producto.internalId)
+        dismissedAlert(producto.id)
     },1000)
    
   }

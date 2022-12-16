@@ -2,7 +2,7 @@ import React,{useState,useEffect,useContext} from 'react'
 import styles from './favorites.module.css'
 import Filter from '../../components/filter/Filter'
 import FavoriteCard from '../../components/cards/favoriteCard/FavoriteCard'
-import { handlerByUser,joinTableProduct } from '../../utils/handlerAssets'
+import { handlerByUser,joinTableProduct ,getCategoryId} from '../../utils/handlerAssets'
 import { UserContext } from '../../context/UserContext'
 import { AlertContext } from '../../context/AlertContext'
 import { useRef } from 'react'
@@ -20,9 +20,9 @@ const Favorites = () => {
   function chipSelected(chipName,state,mode){
     if(state===true) {
       if(mode==='reset'){ 
-          setFavorites(prev=> favoritos.current.filter(element=>element.category===chipName))
+          setFavorites(prev=> favoritos.current.filter(element=>element.category===getCategoryId(chipName)))
       }
-      else setFavorites(prev=> prev.filter(element=>element.category===chipName))
+      else setFavorites(prev=> prev.filter(element=>element.category===getCategoryId(chipName)))
     }
     else setFavorites(favoritos.current)
 
@@ -37,9 +37,9 @@ const Favorites = () => {
      console.log(chekedElements)
 
      if(chekedElements.length>0){
-      favoritos.current=favoritos.current.filter(element=>  !chekedElements.some(item=>item.internalId===element.internalId))
-      setFavorites(prev=>prev.filter(element=> !chekedElements.some(item=> item.internalId === element.internalId)))
-      localStorage.setItem('favorites',JSON.stringify(JSON.parse(localStorage.getItem('favorites')).filter(element=>!chekedElements.some(item=> item.internalId===element.productId))))
+      favoritos.current=favoritos.current.filter(element=>  !chekedElements.some(item=>item.id===element.id))
+      setFavorites(prev=>prev.filter(element=> !chekedElements.some(item=> item.id === element.id)))
+      localStorage.setItem('favorites',JSON.stringify(JSON.parse(localStorage.getItem('favorites')).filter(element=>!chekedElements.some(item=> item.id===element.productId))))
      }
      else showToast('Por favor, selecciona un elemento','Error')
       

@@ -1,16 +1,10 @@
 import React,{useState} from 'react'
 import ElementCard from './elementCard/ElementCard'
 import FrutasyVerduras from '../../../assets/FrutasyVerduras.svg'
-import { ProductModel } from '../../../model/ProductModel'
+
 import './categoryCards.css'
 const CategoryCards = ({index,categoryName}) => {
    const [elementVisibility,setElementVisibility]=useState(false)
-   function getCategoryElement(){
-        return ProductModel().filter((element)=>{
-           return element.category=== categoryName
-        })
-        
-   }
    function hamburgerClicked(){
      const hambElement=document.querySelectorAll(`.hamburger${index}`)
      const parts =['top','mid','bottom']

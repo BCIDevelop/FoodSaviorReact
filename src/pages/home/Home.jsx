@@ -1,21 +1,25 @@
-import React,{useState,useEffect,useRef} from 'react'
+import React,{useState,useEffect,useRef,useContext} from 'react'
 import './home.css'
 import Alerta from '../../components/alertas/Alerta'
 import CategoryCards from '../../components/cards/categoryCard/CategoryCards'
 import {CategoryModel} from '../../model/CategoryModel'
 import { sortByDate } from '../../utils/handlerDate'
 import { Link } from 'react-router-dom'
+import { handlerByUser } from '../../utils/handlerAssets'
+import {UserContext} from '../../context/UserContext'
 const Home = () => {
   const products=useRef([])
+  const {user}=useContext(UserContext)
   const [alerta,setAlerta]=useState([])
   function dismissedAlert(alertElement){
-  localStorage.setItem('products',JSON.stringify(JSON.parse(localStorage.getItem('products')).filter(element=> element.internalId!== alertElement)) )
+  localStorage.setItem('products',JSON.stringify(JSON.parse(localStorage.getItem('products')).filter(element=> element.id!== alertElement)) )
+  localStorage.setItem('favorites',JSON.stringify(JSON.parse(localStorage.getItem('favorites')).filter(element=> element.productId!==alertElement )) )
 
-    setAlerta(prev=> prev.filter(element=> element.internalId!== alertElement))
+    setAlerta(prev=> prev.filter(element=> element.id!== alertElement))
   }
   useEffect(()=>{
     const productsDB=JSON.parse(localStorage.getItem('products')) ? JSON.parse(localStorage.getItem('products')) : []
-    products.current =sortByDate(productsDB)
+    products.current =sortByDate(handlerByUser(productsDB,user.mail))
     const productos=products.current.slice(0,2)
     setAlerta(productos)  
     products.current.splice(0,1)

@@ -20,7 +20,7 @@ export function SessionInit(location){
 })
 }
 
-export function invalidEffect(index){
+export function invalidEffect(index,textError="Please check your data"){
     const errorIcon=document.querySelectorAll('.material-symbols-outlined')
     const label=document.querySelectorAll('label')  
     const errorText=document.querySelectorAll('.text-error')
@@ -30,5 +30,6 @@ export function invalidEffect(index){
         label[index].classList.add('invalid')
     } else label[index].classList.add('invalid')
     errorIcon[index].style.display='block'
+    errorText[index].textContent=textError
     errorText[index].style.display='flex'
 }

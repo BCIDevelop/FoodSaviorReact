@@ -8,6 +8,7 @@ export function ProductModel() {
             spoilDate:new Date("2022-12-18 GMT-0500"),
             unit : "UNI",
             category: 2,
+            userId:'luis@gmail.com'
         },
         {
             id : 2,
@@ -17,6 +18,7 @@ export function ProductModel() {
             spoilDate:new Date("2022-12-25 GMT-0500"),
             unit : "UNI",
             category: 2,
+            userId:'admin@gmail.com'
         },
         {
             id : 3,
@@ -26,6 +28,7 @@ export function ProductModel() {
             spoilDate:new Date("2023-12-21 GMT-0500"),
             unit : "UNI",
             category: 1,
+            userId:'luis@gmail.com'
         },
         {
             id : 4,
@@ -35,6 +38,7 @@ export function ProductModel() {
             spoilDate:new Date("2022-12-19 GMT-0500"),
             unit : "UNI",
             category: 3,
+            userId:'luis@gmail.com'
         },
         {
             id : 5,
@@ -44,6 +48,7 @@ export function ProductModel() {
             spoilDate:new Date("2022-12-28 GMT-0500"),
             unit : "UNI",
             category: 1,
+            userId:'admin@gmail.com'
         },
         {
             id : 6,
@@ -53,22 +58,25 @@ export function ProductModel() {
             spoilDate:new Date("2022-12-5 GMT-0500"),
             unit : "UNI",
             category: 1,
+            userId:'luis@gmail.com'
         },
         {
-            internalId : 7,
+            id : 7,
             name : "Palta",
             src : "https://plazavea.vteximg.com.br/arquivos/ids/177229-450-450/manzana-roja-kg.jpg",
             alt: "no disponible",
             spoilDate:new Date("2022-12-15 GMT-0500"),
-            category:'Frutas y Verduras'
+            category:2,
+            userId:'luis@gmail.com'
         },
         {
-            internalId : 8,
+            id : 8,
             name : "Huevos La Calera",
             src : "https://plazavea.vteximg.com.br/arquivos/ids/177229-450-450/manzana-roja-kg.jpg",
             alt: "no disponible",
             spoilDate:new Date("2022-12-6 GMT-0500"),
-            category:'Abarrotes'
+            category:1,
+            userId:'admin@gmail.com'
         },
     ]
 };

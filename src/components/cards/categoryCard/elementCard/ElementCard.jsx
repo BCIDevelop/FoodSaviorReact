@@ -1,11 +1,13 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useRef,useContext} from 'react'
 import './elementCard.css'
 import defaultImage from '../../../../assets/defaultImage.png'
 import { remainingDate } from '../../../../utils/handlerDate'
-import { useRef } from 'react'
+import { UserContext } from '../../../../context/UserContext'
+import { getCategoryId } from '../../../../utils/handlerAssets'
 const ElementCard = ({index,categoryName}) => {
+    const {user} = useContext(UserContext)
     const elementProduct=useRef(JSON.parse(localStorage.getItem('products')).filter((element)=>{
-      return element.category=== categoryName
+      return element.category=== getCategoryId(categoryName) && element.userId === user.mail 
    }))
   useEffect(()=>{
     document.querySelector(`.element${index}`).classList.add('element-mounted')
