@@ -1,9 +1,8 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import './appCard.css'
+import { useNavigate} from 'react-router-dom'
 const AppCard = ({element}) => {
-  useEffect(()=>{
-      
-  },[])
+    const history=useNavigate()
   return (
     <div className='pricingCard'>
        <h3>{element.plan}</h3>
@@ -13,7 +12,7 @@ const AppCard = ({element}) => {
           <div className='perTime'>{`/${element.period}`}</div>
 
        </div>
-       <button className='btnChoose'>ELEGIR</button>
+       <button className='btnChoose' onClick={()=>history('/login')}>ELEGIR</button>
        <h4 className='footerCard'>{element.footerTitle}</h4>
        <h4 >Gestion de inventarios</h4>
        <h4  >Control de inventarios</h4>

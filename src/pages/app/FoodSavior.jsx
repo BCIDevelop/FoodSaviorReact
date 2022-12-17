@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import './foodSavior.css'
 import AppCard from '../../components/cards/appCard/AppCard'
+
 const FoodSavior = () => {
   const monthly=[
     {
@@ -214,10 +215,8 @@ const FoodSavior = () => {
             </div>
             </div>
             <div className='cardCollapse collapse'>
-              <p>Food Savior es un sistema de ventas y gestion en el celular
-                tablet,computadora.Food Savior tiene herramientas especiales para que ofrezca
-                la mejor experiencia de compra a sus clientes.Combina eficiencia y modernidad
-                con una interfaz intuitiva y facil de usar.
+              <p>Food Savior regala un periodo de prueba de 2 meses, el cual puedes cancelar en cualquier momento, sin ningun
+                cargo en tu tarjeta. Para más informacion comunicate por nuestro canal de ayuda.
               </p>
             </div>
         </div>

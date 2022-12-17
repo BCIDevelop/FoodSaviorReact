@@ -75,12 +75,15 @@
     letter-spacing: -1px;
     text-align: center;
     margin-top: 60px;
+    margin-bottom: 30px;
 }
 .tableContainer{
     padding: 20px 20px 0 20px;
 }
 .plansContainer{/*  */
     padding-top: 60px;
+    box-shadow:rgba(0, 0, 0, 0.1) 0px 10px 25px 3px ;
+    padding-left: 10px;
 }
 .headerTable{
     color: #25bf97;
@@ -276,6 +279,7 @@ td:first-child{
     }
     .plansContainer{
         margin-top: 20px;
+       
     }
     .plansContainer tr th:nth-child(n) {
         font-size: 12px;
