@@ -14,7 +14,7 @@ const ConnectedForm = ({location}) => {
         return {isValid:true,message:''}
     }
     function serverValidation(){
-        return JSON.parse(localStorage.getItem('users')).some((element)=>element.mail===document.querySelector('#email-input').value)     
+        return JSON.parse(localStorage.getItem('users')  || "[]" ).some((element)=>element.mail===document.querySelector('#email-input').value)     
     }
     const history = useNavigate()
     const {showToast}= useContext(AlertContext)

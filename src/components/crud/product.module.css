@@ -16,11 +16,17 @@
     margin: auto;
     min-width: 100%;
 }
-.contentCategory{
+.bodyProduct{
     /* background: red; */
 }
-.contentCategory ul li a{
+.bodyProduct ul{
+    width: 80%;
+}
+.bodyProduct ul li a{
+    color:var(--secondary-color);
     display: grid;
+    font-weight: bolder;
+    text-decoration: none;
     grid-template-columns: 25% 50% 25%;
 }
 .ItemCategory{
@@ -50,30 +56,37 @@
     margin-top: 1em;
     width: 90%;
 }
-.contentFormProduct form{
+.contentFormProduct form .contentField:nth-child(1){
+    padding-top: 2em;
+}
+.contentFormProduct form .contentField{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     width: 100%;
 }
 .contentFormProduct form .prevImage{
-    margin-top: 10px;
     text-align: center;
 }
 .contentFormProduct form .prevImage img{
     width: 200px;
     margin: auto;
 }
-.contentFormProduct form input,
-.contentFormProduct form button{
+.contentFormProduct form .contentField span{
+    font-weight: bolder;
+}
+.contentFormProduct form .contentField input,
+.contentFormProduct form .contentField button{
     font-size: 20px;
     margin-top: 10px;
     padding: 1em;
     width: 100%;
 }
-.contentFormProduct form button{
+.contentFormProduct form .contentField button{
     background: var(--secondary-color);
     color: var(--primary-color);
     transition: all ease-out 0.5s;
 }
-.contentFormProduct form button:hover{
+.contentFormProduct form .contentField button:hover{
     background: var(--secondary-color-hover);
 }
 
@@ -92,7 +105,7 @@
 }
 
 .contentLink{
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     margin-top: 10px;
 }
 .contentLink .returnA{

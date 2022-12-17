@@ -1,7 +1,5 @@
 export function FavoriteModel() {
-    return [
-       
-       
+    return [       
         {
             userId : 'luis@gmail.com',
             productId: 3,
