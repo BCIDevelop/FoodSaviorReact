@@ -1,17 +1,20 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import './appCard.css'
-const AppCard = () => {
+const AppCard = ({element}) => {
+  useEffect(()=>{
+      
+  },[])
   return (
     <div className='pricingCard'>
-       <h3>PRO</h3>
-       <p>Funcionalidades esencial para profesionalizar su negocio</p>
+       <h3>{element.plan}</h3>
+       <p>{element.planText}</p>
        <div className='pricingBox'>
-          <h2 className='priceTitle'>US$5.99</h2>
-          <div className='perTime'>/mes</div>
+          <h2 className='priceTitle'>{element.price}</h2>
+          <div className='perTime'>{`/${element.period}`}</div>
 
        </div>
        <button className='btnChoose'>ELEGIR</button>
-       <h4 className='footerCard'>Control de inventarios</h4>
+       <h4 className='footerCard'>{element.footerTitle}</h4>
        <h4 >Gestion de inventarios</h4>
        <h4  >Control de inventarios</h4>
     </div>

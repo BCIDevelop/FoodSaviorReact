@@ -36,7 +36,7 @@
     letter-spacing: -1px;
     text-align: center;
     margin: 10px;
-    width: 131px;
+    
     height: 43px;
 
 }
@@ -44,6 +44,7 @@
     font-size: 14px;
     letter-spacing: normal;
     line-height: 24px;
+   
 }
 .btnChoose{
     background-color: #2dd1ac;

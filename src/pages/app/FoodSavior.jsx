@@ -2,9 +2,31 @@ import React,{useState} from 'react'
 import './foodSavior.css'
 import AppCard from '../../components/cards/appCard/AppCard'
 const FoodSavior = () => {
-  const [cardPricing,setCardPricing]=useState([{},{},{}])
+  const monthly=[
+    {
+      plan:'PRO',planText:'Funcionalidades esencial para profesionalizar su negocio',price:'US$5.99',period:'mes',footerTitle:'Control de inventario'
+    },
+    {
+      plan:'GROW',planText:'Soluciones para empresas en crecimiento que buscan agilidad',price:'US$8.99',period:'mes',footerTitle:'Version para computadora'
+    },
+    {
+      plan:'PRIME',planText:'Para los que buscan personalizacion y un servicio de primera',price:'US$19.99',period:'mes',footerTitle:'Sitio web personalizado'
+    } 
+  ]
+  const anually=[
+    {
+      plan:'PRO',planText:'Funcionalidades esencial para profesionalizar su negocio',price:'US$55.99',period:'año',footerTitle:'Control de inventario',discount:'-16%'
+    },
+    {
+      plan:'GROW',planText:'Soluciones para empresas en crecimiento que buscan agilidad',price:'US$88.99',period:'año',footerTitle:'Version para computadora',discount:'-45%'
+    },
+    {
+      plan:'PRIME',planText:'Para los que buscan personalizacion y un servicio de primera',price:'US$189.99',period:'año',footerTitle:'Sitio web personalizado',discount:'-48%'
+    } 
+  ]
+  const [cardPricing,setCardPricing]=useState(monthly)
   function collapseAnswer(index){
-    const collapse=document.querySelectorAll('.cardCollapse')
+    const collapse=document.querySelectorAll('.cardCollapse') 
    const dropDown=document.querySelectorAll('.dropDownCard')
 
     collapse[index].classList.toggle(`collapse`)
@@ -20,7 +42,29 @@ const FoodSavior = () => {
   }
   function togglePrices(){
       const circle=document.querySelector('.circle')
+      const cards=document.querySelectorAll('.pricingCard')
       circle.classList.toggle('toggled')
+      let period
+      if (circle.classList.contains('toggled')) {
+          period=anually
+          cards.forEach((element)=>{
+            element.classList.add('togglePrice')
+            element.classList.remove('togglePriceRight')
+            
+          })
+      }
+      else {
+        period=monthly
+        cards.forEach((element)=>{
+          element.classList.add('togglePriceRight')
+          element.classList.remove('togglePrice')
+          
+        })
+      }
+      
+      setTimeout(()=>{
+        setCardPricing(period)
+      },500)
   }
   return (
     <div className='containerApp'>
@@ -39,7 +83,7 @@ const FoodSavior = () => {
                  
                   <div className='cardPricingContainer'>
                   {cardPricing.map((element,index)=>(
-                        <AppCard key={`appCard${index}`}></AppCard>
+                        <AppCard key={`appCard${index}`}  element={element}></AppCard>
                         ) )}
                   </div>
           </div>

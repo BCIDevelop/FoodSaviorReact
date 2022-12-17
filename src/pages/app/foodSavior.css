@@ -186,6 +186,42 @@ td:first-child{
         height: 124px;
     }
 }
+.togglePrice{
+    animation-name: togglePrice;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+}
+@keyframes togglePrice {
+    0%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+}
+
+.togglePriceRight{
+    animation-name: togglePriceRight;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+}
+@keyframes togglePriceRight {
+    0%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+}
+
+
+
 /* Toggle */
 .toggled{
     animation-name: toggle;
