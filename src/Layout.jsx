@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
         
        <>
           {location.pathname!=='/login' &&location.pathname!=='/register' &&<Header setSideBar={setSideBar}/>}
-          <div style={{position:'relative',height:'calc(100vh - 56px)',width:'100vw'}}>
+          <div style={{position:'relative',height:'calc(100vh - 56px)'}}>
 
           {children}
          

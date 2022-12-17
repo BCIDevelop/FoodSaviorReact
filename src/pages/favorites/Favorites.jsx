@@ -13,7 +13,7 @@ const Favorites = () => {
     const {showToast}=useContext(AlertContext)
    const [favorites,setFavorites]=useState([])
   useEffect(()=>{
-    const favoritesByUser=joinTableProduct(JSON.parse(localStorage.getItem('products')),handlerByUser(JSON.parse(localStorage.getItem('favorites')),user.mail))
+    const favoritesByUser=joinTableProduct(JSON.parse(localStorage.getItem('products') || "[]"),handlerByUser(JSON.parse(localStorage.getItem('favorites')),user.mail))
     favoritos.current=favoritesByUser
     setFavorites(favoritesByUser)
   },[])
