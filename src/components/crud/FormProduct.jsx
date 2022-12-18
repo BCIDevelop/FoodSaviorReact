@@ -6,12 +6,14 @@ import notImage from './../../img/productoSinImagen.png'
 import { UserContext } from '../../context/UserContext'
 
 const FormProduct = ( {data, activity_action} ) => {
+    const categoriesDB = JSON.parse(localStorage.getItem('categories'));
     const {user,removeUser}=useContext(UserContext)
     const {showToast}= useContext(AlertContext)
     const [form, instForm] = useState( data ) ;
     const navigateTo = useNavigate();
 
     const handleChange = (e) =>{
+        console.log(e.target.value);
         instForm({
             ...form,
             [ e.target.name ] : e.target.value
@@ -82,6 +84,21 @@ const FormProduct = ( {data, activity_action} ) => {
                 <input name="src" type="text" onChange={handleChange} value={form.src} />
                 <input name="alt" type="text" onChange={handleChange} value={form.alt} />
                 <p><i>(*) Este contenido se mostrar solo si no tiene una imagen referenciada</i></p>
+            </div>
+            <div className={style.contentField}>
+                <span>Categoria:</span>
+                <select name="category" onChange={handleChange}>
+                    <option>SELECCIONAR</option>
+                    {
+                        categoriesDB.map( el => 
+                            <option 
+                                value={el.id} 
+                                key={el.id} 
+                                selected={el.id == form.category ? "SELECTED" : ""}
+                                >{el.name}</option>
+                            )
+                    }
+                </select>
             </div>
             <div className={style.contentField}>
                 <span>Codigo Barra:</span>
