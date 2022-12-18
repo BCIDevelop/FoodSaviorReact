@@ -1,5 +1,4 @@
 import React,{useContext} from 'react'
-import { facebookClicked } from '../../utils/socialButtons'
 import faceLogo from '../../assets/facebook-svgrepo-com.svg'
 import styles from './social.module.css'
 import { useEffect } from 'react'
@@ -10,11 +9,45 @@ const SocialButtons = () => {
   
   const {storeUser}=useContext(UserContext)
   const history = useNavigate()
+  function facebookClicked(){
+    FB.login(function(response) {
+        console.log(response)
+        if (response.status === 'connected') {
+          // Logged into your webpage and Facebook.
+           getFacebook()
+           const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
+          console.log(users.some((element)=>{element.mail===socialUser.username}))
+          if(users.some((element)=>{element.mail===socialUser.username})) 
+          {
+            storeUser(socialUser)
+          }
+           else {
+          users.push(socialUser)
+          localStorage.setItem('users',JSON.stringify(users))
+          storeUser(socialUser)
+      }
+          history('/home')
+
+        } else {
+          // The person is not logged into your webpage or we are unable to tell. 
+        }
+      },{scope: 'public_profile,email'});
+    }
+
+      function getFacebook(){
+        FB.api('/me?fields=picture,name,email', function(response) {
+            console.log(response)
+            const socialUser= {name:response.name,mail:response.email,picture:response.picture.data.url}
+            return socialUser
+        })
+    }    
+ 
   function loginGmail(response){
     console.log(response)
       const decoded_jwt=jwtJsDecode.jwtDecode(response.credential)
-      const socialUser={name:decoded_jwt.payload.name,username:decoded_jwt.payload.email,picture:decoded_jwt.payload.picture}
+      const socialUser={name:decoded_jwt.payload.name,mail:decoded_jwt.payload.email,picture:decoded_jwt.payload.picture}
       const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
+      console.log(users.some((element)=>{element.mail===socialUser.username}))
       if(users.some((element)=>{element.mail===socialUser.username})) 
       {
             storeUser(socialUser)

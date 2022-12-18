@@ -3,7 +3,8 @@
         console.log(response)
         if (response.status === 'connected') {
           // Logged into your webpage and Facebook.
-          getFacebook()
+           getFacebook()
+
         } else {
           // The person is not logged into your webpage or we are unable to tell. 
         }
@@ -13,7 +14,7 @@
       function getFacebook(){
         FB.api('/me?fields=picture,name,email', function(response) {
             console.log(response)
-            const socialUser= {name:response.name,username:response.email,picture:response.picture.data.url}
+            const socialUser= {name:response.name,mail:response.email,picture:response.picture.data.url}
             return socialUser
         })
     }    
