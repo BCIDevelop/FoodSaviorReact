@@ -14,7 +14,7 @@ const SocialButtons = () => {
         console.log(response)
         if (response.status === 'connected') {
           // Logged into your webpage and Facebook.
-           getFacebook()
+           const socialUser=getFacebook()
            const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
           console.log(users.some((element)=>{element.mail===socialUser.username}))
           if(users.some((element)=>{element.mail===socialUser.username})) 
