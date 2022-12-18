@@ -4,6 +4,7 @@ import faceLogo from '../../assets/facebook-svgrepo-com.svg'
 import styles from './social.module.css'
 import { useEffect } from 'react'
 const SocialButtons = () => {
+  console.log('social')
     window.onload = function () {
         google.accounts.id.initialize({
           client_id: "867773923360-1o9vafk85bmvsnh2oeebjg7v7ks73us9.apps.googleusercontent.com",
