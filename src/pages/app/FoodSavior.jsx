@@ -182,7 +182,7 @@ const FoodSavior = () => {
             
             <div className="text-middle">
                 <p className="linea">_______________________________</p>
-                <h2>Kyte es mutiplataforma, puede usarlo en su móvil, tablet o computadora</h2>
+                <h2>FoodSavior es mutiplataforma, puede usarlo en su móvil, tablet o computadora</h2>
                 <img className="img-multiplataforma" src={difDispositivos} alt="dispositivosDiferentes"/>
                 <button className="button-landing">Instalar FoodSavior</button>
             </div>
