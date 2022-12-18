@@ -15,9 +15,11 @@ const SocialButtons = () => {
         if (response.status === 'connected') {
           // Logged into your webpage and Facebook.
            const socialUser=getFacebook()
+           console.log(socialUser)
            const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
-          console.log(users.some((element)=>{element.mail===socialUser.username}))
-          if(users.some((element)=>{element.mail===socialUser.username})) 
+           console.log(users)
+          console.log(users.some((element)=>{element.mail===socialUser.mail}))
+          if(users.some((element)=>{element.mail===socialUser.mail})) 
           {
             storeUser(socialUser)
           }
@@ -47,8 +49,8 @@ const SocialButtons = () => {
       const decoded_jwt=jwtJsDecode.jwtDecode(response.credential)
       const socialUser={name:decoded_jwt.payload.name,mail:decoded_jwt.payload.email,picture:decoded_jwt.payload.picture}
       const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
-      console.log(users.some((element)=>{element.mail===socialUser.username}))
-      if(users.some((element)=>{element.mail===socialUser.username})) 
+      console.log(users.some((element)=>{element.mail===socialUser.mail}))
+      if(users.some((element)=>{element.mail===socialUser.mail})) 
       {
             storeUser(socialUser)
       }
