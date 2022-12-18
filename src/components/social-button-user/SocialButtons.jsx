@@ -17,6 +17,7 @@ const SocialButtons = () => {
        
       }
    useEffect(()=>{
+    console.log('entroUse')
     google.accounts.id.initialize({
       client_id: "867773923360-1o9vafk85bmvsnh2oeebjg7v7ks73us9.apps.googleusercontent.com",
       callback: loginGmail
