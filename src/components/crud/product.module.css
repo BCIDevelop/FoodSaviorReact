@@ -55,55 +55,44 @@
     margin: auto;
     margin-top: 1em;
     width: 90%;
+    flex-direction: column;
 }
-.contentFormProduct form .contentField:nth-child(1){
+.contentFormProduct .form .contentField:nth-child(1){
     padding-top: 2em;
 }
-.contentFormProduct form .contentField{
+.contentFormProduct .form .contentField{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     width: 100%;
 }
-.contentFormProduct form .prevImage{
+.contentFormProduct .form .prevImage{
     text-align: center;
 }
-.contentFormProduct form .prevImage img{
+.contentFormProduct .form .prevImage img{
     width: 200px;
     margin: auto;
 }
-.contentFormProduct form .contentField span{
+.contentFormProduct .form .contentField span{
     font-weight: bolder;
 }
-.contentFormProduct form .contentField input,
-.contentFormProduct form .contentField select,
-.contentFormProduct form .contentField button{
+.contentFormProduct .form .contentField input,
+.contentFormProduct .form .contentField select,
+.contentFormProduct .form .contentField button{
     font-size: 20px;
     margin-top: 10px;
     padding: 1em;
     width: 100%;
 }
-.contentFormProduct form .contentField button{
+.contentFormProduct .form .contentField button{
     background: var(--secondary-color);
     color: var(--primary-color);
     transition: all ease-out 0.5s;
 }
-.contentFormProduct form .contentField button:hover{
+.contentFormProduct .form .contentField button:hover{
     background: var(--secondary-color-hover);
 }
 
 
-.activity_action{
-    position: fixed;
-    bottom: 2%;
-    right: 2%;
-}
-
-.activity_action button{
-    background: var(--secondary-color);
-    color: var(--primary-color);
-    border-radius: 20px;
-    padding: 14px;
-}
 
 .contentLink{
     display: flex;
@@ -113,10 +102,16 @@
     margin-top: 10px;
 }
 .contentLink .returnA{
+    background: var(--transparent-color);
     border: solid var(--secondary-color) 1px;
     color: var(--secondary-color);
     font-weight: bolder;
     padding: 1em;
+    transition: all 0.8s ease-out;
+}
+.contentLink .returnA:hover{
+    background: var(--secondary-color);
+    color: var(--white-color);
 }
 .contentLink span.favorite{
     font-size: 20px;

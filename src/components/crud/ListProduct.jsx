@@ -10,6 +10,11 @@ const ListProduct = ( {data} ) => {
     <div className={style.bodyProduct}>
       <h3 className={style.titleh3}>Mis Productos</h3>
       <div className={style.contentFormProduct}>
+        <div className={style.contentLink}>
+            <Link to={href_create_product} className={style.returnA}>
+                <i className="fa-solid fa-plus"></i> Añadir
+            </Link>
+        </div>
         <ul>
           {
             data.map( el => 
@@ -17,9 +22,6 @@ const ListProduct = ( {data} ) => {
             )
           }
         </ul>
-        <Link to={href_create_product}  className={style.activity_action}>
-          <button><i className='fa-solid fa-plus'></i></button>
-        </Link>
       </div>
     </div>
   )

@@ -1,4 +1,6 @@
 :root{
+    --transparent-color:transparent;
+    --white-color:white;
     --primary-color:#C7D9D7;
     --secondary-color:#31401A;
     --secondary-color-hover:#56722c;

@@ -7,7 +7,7 @@ const CreateCategory = ( {data} ) => {
 
     return (
         <div className="bodyProduct">
-            <h3 className={style.titleh3}>Crear Categoria</h3>
+            <h3 className={style.titleh3}>Añadir Categoria</h3>
             <div className={style.contentFormProduct}>
                 <FormCategory data={form} activity_action="create" />
             </div>

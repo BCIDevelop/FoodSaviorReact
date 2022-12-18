@@ -55,20 +55,24 @@ const FormProduct = ( {data, activity_action} ) => {
         }
     };
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={style.form} onSubmit={handleSubmit}>
             <div className={style.contentLink}>
                 <Link to="../product" className={style.returnA}>
                     <i className="fa-solid fa-arrow-left"></i> Regresar / 
                     <i><span>{form.name}</span></i>
                 </Link>
-                <span 
-                    className={style.favorite}
-                    onClick={changeFavorite} 
-                    data-favorite={form.favorite} >
-                    <i className="fa-regular fa-star"
-                    name="favorite" 
-                    value={form.favorite}></i>
-                </span>
+                { 
+                    activity_action === "update" ?
+                    <span 
+                        className={style.favorite}
+                        onClick={changeFavorite} 
+                        data-favorite={form.favorite} >
+                        <i className="fa-regular fa-star"
+                        name="favorite" 
+                        value={form.favorite}></i>
+                    </span>:
+                    <span></span>
+                }
             </div>
             <div className={style.contentField}>
                 <span>Nombre:</span>

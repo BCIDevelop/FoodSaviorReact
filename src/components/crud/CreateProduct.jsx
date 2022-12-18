@@ -7,7 +7,7 @@ const CreateProduct = ( {data} ) => {
 
     return (
         <div className="bodyProduct">
-            <h3 className={style.titleh3}>Crear Producto</h3>
+            <h3 className={style.titleh3}>Añadir Producto</h3>
             <div className={style.contentFormProduct}>
                 <FormProduct data={form} activity_action="create" />
             </div>
