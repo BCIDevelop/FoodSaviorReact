@@ -11,7 +11,6 @@ const SocialButtons = () => {
   const history = useNavigate()
   function facebookClicked(){
     FB.login(function(response) {
-        console.log(response)
         if (response.status === 'connected') {
           // Logged into your webpage and Facebook.
           getFacebook()   
