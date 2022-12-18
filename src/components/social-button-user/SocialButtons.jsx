@@ -14,9 +14,19 @@ const SocialButtons = () => {
         console.log(response)
         if (response.status === 'connected') {
           // Logged into your webpage and Facebook.
-           const socialUser=getFacebook()
-           console.log(socialUser)
-           const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
+          getFacebook()   
+
+        } else {
+          // The person is not logged into your webpage or we are unable to tell. 
+        }
+      },{scope: 'public_profile,email'});
+    }
+
+      function getFacebook(){
+        FB.api('/me?fields=picture,name,email', function(response) {
+            
+            const socialUser= {name:response.name,mail:response.email,picture:response.picture.data.url}
+            const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
            console.log(users)
           console.log(users.some((element)=>{element.mail===socialUser.mail}))
           if(users.some((element)=>{element.mail===socialUser.mail})) 
@@ -29,18 +39,7 @@ const SocialButtons = () => {
           storeUser(socialUser)
       }
           history('/home')
-
-        } else {
-          // The person is not logged into your webpage or we are unable to tell. 
-        }
-      },{scope: 'public_profile,email'});
-    }
-
-      function getFacebook(){
-        FB.api('/me?fields=picture,name,email', function(response) {
-            console.log(response)
-            const socialUser= {name:response.name,mail:response.email,picture:response.picture.data.url}
-            return socialUser
+            
         })
     }    
  
