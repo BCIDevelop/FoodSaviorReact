@@ -21,6 +21,7 @@ const CRUDInventory = () => {
       product : 0,
       qty : 0,
       identify : "",
+      unit : "",
     };
     component = <CreateInventory data={newForm} />
   }else{

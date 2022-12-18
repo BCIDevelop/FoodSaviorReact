@@ -7,7 +7,7 @@ const Kardex = ( {item} ) => {
   const [href_Kardex, asd ] = useState("./update/" + item.id )
   const lsName = "products";
   const products = JSON.parse(localStorage.getItem(lsName));
-  const [form, instForm] = useState( products.find( function (d) { return d.id === parseInt(item.product || 0); }) ) ;
+  const form = products.find( function (d) { return d.id === parseInt(item.product || 0); });
   
   return (
     <li  className={style.ItemCategory}>

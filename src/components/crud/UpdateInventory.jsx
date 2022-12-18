@@ -5,9 +5,17 @@ import { AlertContext } from '../../context/AlertContext'
 import FormInventory from './FormInventory'
 
 const UpdateInventory = ( {data, navigate, id} ) => {
+    const lsproduct = "products";
     const {showToast}= useContext(AlertContext)
     const [form, instForm] = useState( data.find( function (d) { return d.id === parseInt(id || 0); }) ) ;
-    console.log(form);
+    
+    const formProduct = JSON.parse(localStorage.getItem(lsproduct)).find( el => el.bardcode === form.identify );
+    if ( formProduct ) {
+        form.identify = formProduct.bardcode;
+        form.product = formProduct.id;
+        form.name = formProduct.name;
+        form.unit = formProduct.unit;
+    }
     return (
         <div className="bodyProduct">
             <h3 className={style.titleh3}>Actualizar Producto</h3>

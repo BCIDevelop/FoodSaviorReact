@@ -40,7 +40,7 @@ const FormInventory = ( {data, activity_action} ) => {
     };
     const updateForm = ( upForm ) =>{
         const dbKardex = JSON.parse(localStorage.getItem(lskardex)).map( el => el.id === upForm.id ? upForm : el);
-        localStorage.setItem( lsproducts, JSON.stringify(dbKardex) );
+        localStorage.setItem( lskardex, JSON.stringify(dbKardex) );
     };
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -49,19 +49,23 @@ const FormInventory = ( {data, activity_action} ) => {
             return ;
         }else{
             if ( !form.name && form.identify ){
-                alert("buscando");
                 const formProduct = JSON.parse(localStorage.getItem(lsproduct)).find( el => el.bardcode === form.identify );
-                form.product = formProduct.id;
-                form.name = formProduct.name;
-                form.unit = formProduct.unit;
+                if ( formProduct ) {
+                    form.product = formProduct.id;
+                    form.name = formProduct.name;
+                    form.unit = formProduct.unit;
+                    showToast("Producto Encontrado");
+                }else{
+                    showToast("No se encontro el producto");
+                }
                 return
             }
             if ( !form.qty ){
-                alert("Ingresar Cantidad")
+                showToast("Ingresar Cantidad")
                 return 
             }
-            // updateForm(form);
-            // showToast("Actualizar");
+            updateForm(form);
+            showToast("Actualizar");
         }
         if (activity_action === "create") {
             return createForm(form);
