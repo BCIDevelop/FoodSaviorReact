@@ -6,11 +6,12 @@ import { ProductModel } from '../../model/ProductModel'
 import CreateProduct from './CreateProduct'
 
 const CRUDProduct = () => {
+  const lsName = "products";
   const { action } = useParams();
   const { id } = useParams();
   
-  if( localStorage.getItem('products') === null){ localStorage.setItem( 'products', JSON.stringify(ProductModel()) );}
-  const data = JSON.parse(localStorage.getItem('products'));
+  if( localStorage.getItem(lsName) === null){ localStorage.setItem( lsName, JSON.stringify(ProductModel()) );}
+  const data = JSON.parse(localStorage.getItem(lsName));
   let component = null;
   if ( action === "update" && parseInt( id || 0 ) ){
     component = <UpdateProduct data={data} id={parseInt( id || 0 )} />

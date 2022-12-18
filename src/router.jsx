@@ -27,6 +27,8 @@ function Router(){
             <Route path="/product/:action" element={<Product/>}></Route>
             <Route path="/product/:action/:id" element={<Product/>}></Route>
             <Route path="/inventory" element={<Inventory/>}></Route>
+            <Route path="/inventory/:action" element={<Inventory/>}></Route>
+            <Route path="/inventory/:action/:id" element={<Inventory/>}></Route>
             <Route path="/dashboard" element={<DashboardTest/>}></Route>
             <Route path="/alertas" element={<AlertPage/>}></Route>
             <Route path="/favorites" element={<Favorites/>}></Route>
