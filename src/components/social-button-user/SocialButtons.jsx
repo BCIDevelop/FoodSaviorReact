@@ -4,7 +4,13 @@ import faceLogo from '../../assets/facebook-svgrepo-com.svg'
 import styles from './social.module.css'
 import { useEffect } from 'react'
 const SocialButtons = () => {
-  console.log('social')
+  function loginGmail(response){
+    console.log('entro')
+    console.log(response)
+      const decoded_jwt=jwtJsDecode.jwtDecode(response.credential)
+      const socialUser={name:decoded_jwt.payload.name,username:decoded_jwt.payload.email,picture:decoded_jwt.payload.picture}
+      return socialUser
+    }
     window.onload = function () {
         google.accounts.id.initialize({
           client_id: "867773923360-1o9vafk85bmvsnh2oeebjg7v7ks73us9.apps.googleusercontent.com",
