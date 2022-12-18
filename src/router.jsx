@@ -21,6 +21,8 @@ function Router(){
           <Route element={<Private></Private>}>
             <Route path="/home" element={<Home/>}></Route>
             <Route path="/category" element={<Category/>}></Route>
+            <Route path="/category/:action" element={<Category/>}></Route>
+            <Route path="/category/:action/:id" element={<Category/>}></Route>
             <Route path="/product" element={<Product/>}></Route>
             <Route path="/product/:action" element={<Product/>}></Route>
             <Route path="/product/:action/:id" element={<Product/>}></Route>

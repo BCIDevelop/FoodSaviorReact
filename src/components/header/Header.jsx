@@ -3,6 +3,7 @@ import { UserContext } from '../../context/UserContext'
 import { NavLink } from 'react-router-dom'
 import { indexPagesPrivate,indexPagesPublic } from '../../pages/Index'
 import { ProductModel } from '../../model/ProductModel'
+import { CategoryModel } from '../../model/CategoryModel'
 import { FavoriteModel } from '../../model/FavoriteModel'
 import './header.css'
 const Header = ({setSideBar}) => {
@@ -15,6 +16,7 @@ const Header = ({setSideBar}) => {
   function refreshProducts(){
     document.querySelector('#rotate').classList.add('rotate-animation')
       localStorage.setItem('products',JSON.stringify(ProductModel()))
+      localStorage.setItem('categories',JSON.stringify(CategoryModel()))
       localStorage.setItem('favorites',JSON.stringify(FavoriteModel()))
   }
   function showSideBar(){

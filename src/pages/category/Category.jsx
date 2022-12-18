@@ -1,9 +1,10 @@
 import React from 'react'
+import CRUDCategory from '../../components/crud/CRUDCategory'
 
 const Category = () => {
   return (
     <div>
-        Category
+        <CRUDCategory />
     </div>
   )
 }

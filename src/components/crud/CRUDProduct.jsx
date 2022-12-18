@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import style from './product.module.css'
-import bannerImage from './../../img/product-banner.png'
 import { useParams } from 'react-router-dom'
 import ListProduct from './ListProduct'
 import UpdateProduct from './UpdateProduct'
@@ -19,6 +17,7 @@ const CRUDProduct = () => {
   }else if ( action === "create" ){ 
     const newForm = {
       id : 0,
+      favorite: 0,
       name : "",
       src : "",
       alt: "",
