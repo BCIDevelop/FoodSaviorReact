@@ -1,4 +1,4 @@
-import React,{ useEffect,useContext } from 'react'
+import React,{ useContext } from 'react'
 import './sidebar.css'
 import perfilImg from '../../assets/perfil.jpg'
 import { useLayoutEffect } from 'react'
@@ -46,7 +46,7 @@ const SideBar = ({setSideBar}) => {
       { user &&
         ( <div className="datos__personales">
          <div>
-          <img className="img-perfil" src={perfilImg} alt="" />
+          <img className="img-perfil" src={user.picture?user.picture:perfilImg} alt="" />
           </div>
           <div>
           <h1>Hola {user.name}</h1>

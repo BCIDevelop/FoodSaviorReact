@@ -1,14 +1,13 @@
 import React,{useContext} from 'react'
-import { facebookClicked,loginGmail } from '../../utils/socialButtons'
+import { facebookClicked } from '../../utils/socialButtons'
 import faceLogo from '../../assets/facebook-svgrepo-com.svg'
 import styles from './social.module.css'
 import { useEffect } from 'react'
-import {AlertContext} from '../../context/AlertContext'
 import { useNavigate} from 'react-router-dom'
 import {UserContext} from '../../context/UserContext'
 
 const SocialButtons = () => {
-  const {showToast} =useContext(AlertContext)
+  
   const {storeUser}=useContext(UserContext)
   const history = useNavigate()
   function loginGmail(response){

@@ -17,10 +17,4 @@
             return socialUser
         })
     }    
-    export function loginGmail(response){
-      console.log('entro')
-      console.log(response)
-        const decoded_jwt=jwtJsDecode.jwtDecode(response.credential)
-        const socialUser={name:decoded_jwt.payload.name,username:decoded_jwt.payload.email,picture:decoded_jwt.payload.picture}
-        return socialUser
-      }
+ 
