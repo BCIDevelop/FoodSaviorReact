@@ -1,27 +1,30 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import ListProduct from './ListProduct'
-import UpdateProduct from './UpdateProduct'
-import { ProductModel } from '../../model/ProductModel'
-import CreateProduct from './CreateProduct'
+import ListInventory from './ListInventory'
+import UpdateInventory from './UpdateInventory'
+import { KardexModel } from '../../model/KardexModel'
+import CreateInventory from './CreateInventory'
 
-const CRUDProduct = () => {
+const CRUDInventory = () => {
+  const lsName = "kardex";
   const { action } = useParams();
   const { id } = useParams();
   
-  if( localStorage.getItem('products') === null){ localStorage.setItem( 'products', JSON.stringify(ProductModel()) );}
-  const data = JSON.parse(localStorage.getItem('products'));
+  if( localStorage.getItem(lsName) === null){ localStorage.setItem( lsName, JSON.stringify(KardexModel()) );}
+  const data = JSON.parse(localStorage.getItem(lsName));
   let component = null;
   if ( action === "update" && parseInt( id || 0 ) ){
-    component = <UpdateProduct data={data} id={parseInt( id || 0 )} />
+    component = <UpdateInventory data={data} id={parseInt( id || 0 )} />
   }else if ( action === "create" ){ 
     const newForm = {
       id : 0,
-      product
+      product : 0,
+      qty : 0,
+      identify : "",
     };
-    component = <CreateProduct data={newForm} />
+    component = <CreateInventory data={newForm} />
   }else{
-    component = <ListProduct data={data} /> 
+    component = <ListInventory data={data} /> 
   }
 
   return (
@@ -31,4 +34,4 @@ const CRUDProduct = () => {
   )
 }
 
-export default CRUDProduct
+export default CRUDInventory
