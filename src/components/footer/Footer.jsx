@@ -6,6 +6,8 @@ const Footer = () => {
   const history=useNavigate()
   function disapearBanner(){
     document.querySelector('.cookieBanner').style.display='none'
+    document.querySelector('.footerContainer').style.margin='70px 0px 0px 0px'
+    
   }
   return (
     <footer>

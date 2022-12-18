@@ -2,8 +2,9 @@ footer{
     background-color: #363f4d;
     padding: 40px 0px 100px 0px;
     width: 100%;
-   
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .footerContainer div:not(:first-child){
     width: 247px;
@@ -68,6 +69,7 @@ footer{
     width: 198px;
     height: 50px;
 }
+/* Banner */
 .cookieBanner{
     height: 72px;
     text-align: center;
@@ -75,7 +77,12 @@ footer{
     line-height: 24px;
     padding: 15px 25px;
     width: 100%;
-    position: sticky;
+    position: fixed;
+    z-index: 99;
+   background-color: #363f4d;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 .cookieBanner div{
     display: flex;
@@ -97,4 +104,29 @@ footer{
     border-radius: 3px;
     border: transparent;
     color: #fff;
+}
+
+@media only screen and (min-width:340px) and (max-width:1000px){
+    .footerContainer{
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+        text-align: center;
+    }
+    .footerContainer h2{
+        text-align: center;
+    }
+    .cookieBanner div{
+        flex-direction: column;
+    }
+    .cookieBanner div p{
+        margin-bottom: 5px;
+    }
+    .cookieBanner{
+        bottom: 0%;
+        height: 120px;
+    }
+    .footerFirst{
+        width: auto;
+    }
 }
