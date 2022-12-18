@@ -135,10 +135,10 @@ const FoodSavior = () => {
 
                         {/* <!-- navegacion inicial manual --> */}
                         <div className="navigation-manual">
-                            <label for="radio1" className="manual-btn"></label>
-                            <label for="radio2" className="manual-btn"></label>
-                            <label for="radio3" className="manual-btn"></label>
-                            <label for="radio4" className="manual-btn"></label>
+                            <label htmlFor="radio1" className="manual-btn"></label>
+                            <label htmlFor="radio2" className="manual-btn"></label>
+                            <label htmlFor="radio3" className="manual-btn"></label>
+                            <label htmlFor="radio4" className="manual-btn"></label>
                         </div>
                     </div>
                     

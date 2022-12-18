@@ -82,6 +82,9 @@
     border-radius: 10px;
     cursor: pointer;
     transition: 2s;
+    left: auto;
+    pointer-events: all;
+    position: unset;
 }
 
 .manual-btn:not(:last-child){
@@ -160,6 +163,7 @@
 /********************* fin slider *********************/
 .container-landing{
     padding: 0px 259px;
+    margin: 50px;
 }
 
 .linea{
@@ -351,6 +355,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 100px;
 }
 
 
@@ -443,7 +448,7 @@
 
     }
     .desc-funcionalidad{
-        width: 50%;
+        
         min-width: 100px;
         flex-direction: column;
     }
