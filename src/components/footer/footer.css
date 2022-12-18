@@ -1,0 +1,132 @@
+footer{
+    background-color: #363f4d;
+    padding: 40px 0px 100px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footerContainer div:not(:first-child){
+    width: 247px;
+    height: 239px;
+}
+.footerContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 239px;
+}
+.terms{
+    margin-top: 25px;}
+.terms p {
+    font-size: 12px;
+    color:#767e8a;
+    line-height: 24px;
+}
+.terms span{
+    margin: 0px 10px;
+    cursor: pointer;
+    
+}
+.iconSocial:hover{
+   scale: 1.5;
+}
+.footerContainer h2{
+    font-size: 22px;
+    line-height: 27px;
+    text-align: left;
+    color:#ffffff;
+    margin-bottom: 20px;
+}
+
+.footerContainer li a{
+    font-size: 14px;
+    text-align: left;
+    line-height: 25px;
+    color:#a9b1be;
+}
+.footerFirst{
+    width: 399px;
+    height: 144px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.footerFirst img{
+    filter: brightness(1);
+    width: 40px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+.footerFirst button{
+    background-color: #2dd1ac;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 20px;
+    color: #fff;
+    border: transparent;
+    width: 198px;
+    height: 50px;
+}
+/* Banner */
+.cookieBanner{
+    height: 72px;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 24px;
+    padding: 15px 25px;
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+   background-color: #363f4d;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.cookieBanner div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cookieBanner{
+    font-size: 14px;
+    line-height: 25px;
+    color: #fff;
+}
+.cookieBanner button{
+    font-size: 15px;
+    line-height: 24px;
+    width: 85px;
+    height: 42px;
+    margin-left: 20px;
+    background-color: #2dd1ac;
+    border-radius: 3px;
+    border: transparent;
+    color: #fff;
+}
+
+@media only screen and (min-width:340px) and (max-width:1000px){
+    .footerContainer{
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+        text-align: center;
+    }
+    .footerContainer h2{
+        text-align: center;
+    }
+    .cookieBanner div{
+        flex-direction: column;
+    }
+    .cookieBanner div p{
+        margin-bottom: 5px;
+    }
+    .cookieBanner{
+        bottom: 0%;
+        height: 120px;
+    }
+    .footerFirst{
+        width: auto;
+    }
+}

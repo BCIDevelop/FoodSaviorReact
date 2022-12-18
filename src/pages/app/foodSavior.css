@@ -1,0 +1,305 @@
+.pricing{
+    
+    position: relative;
+   
+    height: 787px;
+}
+
+
+.pricingTitle{
+    line-height: 43px;
+    font-size: 36px;
+    letter-spacing: -1px;
+    text-align: center;
+   
+    color:#ffffff;
+
+}
+.pricingBackground{
+    padding-top: 100px;
+    background-color: #363f4d;
+    height: 600px;
+   
+
+}
+.pricePlansContainer{
+    position: absolute;
+    left:210px;
+    bottom: 0;
+    padding: 0 50px;
+
+}
+.toggleContainer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 80px;
+    align-items: center;
+   
+}
+.pricingSubtitle{
+    color: #fff;
+    opacity: 0.8;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    width: 152px;
+    text-align: center;
+}
+.toggle{
+    width: 70px;
+    height: 34px;
+    padding: 5px 5px 0 5px;
+    margin: 0 25px;
+    border-radius: 50px;
+    background-color: #fff;
+    
+}
+.circle{
+    width: 24px;
+    height: 24px;
+    background-color: #2dd1ac;
+    border-radius: 50%;
+}
+.cardPricingContainer{
+    display: flex;
+    gap:20px
+}
+/* Plan sections */
+.plans{
+    padding: 0px 290px;
+}
+.plans h2{
+    font-size: 36px;
+    line-height: 43px;
+    letter-spacing: -1px;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+.tableContainer{
+    padding: 20px 20px 0 20px;
+}
+.plansContainer{/*  */
+    padding-top: 60px;
+    box-shadow:rgba(0, 0, 0, 0.1) 0px 10px 25px 3px ;
+    padding-left: 10px;
+}
+.headerTable{
+    color: #25bf97;
+     height: 65px;
+    
+    line-height: 33.6px;
+    text-align: left;
+    letter-spacing: normal;
+
+}
+.headerRow th{
+    border-bottom: 1px solid #25bf97;
+}
+
+
+.plansContainer tr th:first-child{
+    width: 387px !important;
+    font-weight: bold;
+    font-size: 25px !important; 
+}
+.plansContainer tr th:nth-child(n){
+    width: 124px;
+    font-size: 20px;
+}
+.colorCheck{
+    color: #25bf97;
+}
+td{
+    height: 57px;
+    text-align: center;
+    font-size: 1rem;
+}
+.plansContainer tr:nth-child(2n){
+    background-color: #f7f7f8;
+}
+.rowElement{
+    text-align: left !important;
+}
+td:first-child{
+   padding: 4px 8px;
+   
+}
+.new{
+    font-size: 12px;
+    line-height: 24px;
+    color: #f5a623;
+    height: 24px;
+}
+/* Section Q&A */
+ .questionAnswer{
+    padding-left: 291px;
+    padding-top: 50px;
+    margin-bottom: 60px;
+ }
+ .questionCard{
+    background-color: #f7f7f8;
+    width: 940px;
+ }
+.questionCardContent{
+   
+    padding: 20px 40px 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    
+    height: 80px;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 6px;
+    align-items: center;
+}
+.questionAnswer h2{
+    font-size: 36px;
+    line-height: 43px;
+    text-align: center;
+    width: 940px;
+    margin-bottom: 20px;
+}
+/* Animations */
+.dropDownCard{
+    cursor: pointer;
+}
+.collapse{
+    animation-name: collapse;
+    animation-duration: 10s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+}
+.cardCollapse{
+    display: none;
+    padding: 10px;    
+}
+.cardCollapse p{
+    font-size: 16px;
+    line-height: 32px;
+    padding-left:10px ;
+}
+@keyframes collapse {
+    0%{
+        height: 0px;
+    }
+    100%{
+        height: 124px;
+    }
+}
+.togglePrice{
+    animation-name: togglePrice;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+}
+@keyframes togglePrice {
+    0%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+}
+
+.togglePriceRight{
+    animation-name: togglePriceRight;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+}
+@keyframes togglePriceRight {
+    0%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+}
+
+
+
+/* Toggle */
+.toggled{
+    animation-name: toggle;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes toggle {
+    0%{
+        transform: translateX(0px);
+    } 
+    100%{
+        transform: translateX(38px);
+
+    }   
+}
+@media only screen and (min-width:340px) and (max-width:1000px){
+
+    .pricing{
+        height: 1500px;
+    }
+    .pricingTitle{
+        font-size: 23px;
+    }
+    .pricingBackground{
+        padding-top: 40px;
+    }
+    .pricePlansContainer{
+        left: 40px;
+        padding: 0px;
+        
+    }
+    .cardPricingContainer{
+       flex-direction: column;
+       gap: 8px;
+      
+       
+    }
+    .toggleContainer{
+        margin-bottom: 40px;
+    }
+    .pricingSubtitle{
+        width: auto;
+    }
+    .plans {
+       padding: 0px;
+       margin-top: 100px;
+    }
+    .plans h2{
+        font-size: 24px;
+    }
+    .plansContainer{
+        margin-top: 20px;
+       
+    }
+    .plansContainer tr th:nth-child(n) {
+        font-size: 12px;
+    }
+    .isDisplay{
+        display: none;
+    }
+    td:first-child{
+        font-size: 12.6px;
+    }
+    /* QA section */
+    .questionAnswer h2{
+        width: auto;
+        font-size: 24px;
+    }
+    .questionAnswer{
+        padding-left: 0px;
+       
+    }
+    .questionCard{
+        width: auto;
+    }
+}
