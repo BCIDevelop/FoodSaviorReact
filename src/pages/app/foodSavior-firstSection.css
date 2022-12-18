@@ -1,0 +1,471 @@
+
+
+/********************* inicio slider *********************/
+
+.container-slider{
+    /* border: 10px solid red; */
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background: #2dd1ac; */
+    /* position: relative; */
+}
+
+.slider{
+    /* border: 8px solid red; */
+    padding-top: 2%;
+    width: 90%;
+    height: 95%;
+    border-radius: 10px;
+    overflow: hidden; 
+}
+
+.slides{
+    /* border: 5px solid green; */
+
+    width: 400%;
+    height: 95%;
+    display: flex;
+}
+
+.slides input{
+    display: none;
+}
+.slide{
+    /* border: 3px solid pink; */
+
+    width: 25%; 
+    transition: 2s;
+}
+.slide img{
+    /* border: 3px solid gold; */
+
+    width: 100%;
+    height: 100%;
+
+}
+
+/*-------------------- css inicio slider manual --------------------*/
+.navigation{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* border: 8px solid blue; */
+    width: 200px;
+    height: 10px;
+    padding-bottom: 50px;
+}
+
+.navigation-manual{
+    /* border: 2px solid #40D3DC; */
+
+    width: 80%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /*antes*/
+    /* position: absolute;
+    width: 10%;
+    
+    display: flex;
+    justify-content: center;
+    padding-left: 45%; */
+}
+
+.manual-btn{
+    border: 2px solid #40D3DC;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 2s;
+}
+
+.manual-btn:not(:last-child){
+    margin-right: 40px;
+}
+
+.manual-btn:hover{
+    background: #40d4dcd2;
+}
+
+#radio1:checked ~ .first{
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+    margin-left: -25%;
+}
+
+#radio3:checked ~ .first{
+    margin-left: -50%;
+}
+
+#radio4:checked ~ .first{
+    margin-left: -75%;
+}
+
+
+/*-------------------- css fin slider manual --------------------*/
+
+
+
+/*-------------------- css inicio slider automatico --------------------*/
+
+.navigation-auto{
+    /* border: 2px solid black; */
+
+    width: 80%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    /* padding-right: 45%; */
+    /* margin-top: 650px; */
+  }
+  
+   .navigation-auto div{
+    border: 2px solid #40D3DC;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+  }
+  
+  .navigation-auto div:not(:last-child){
+    margin-right: 40px;
+  }
+  
+  #radio1:checked ~ .navigation-auto .auto-btn1{
+    background: #40D3DC;
+  }
+  
+  #radio2:checked ~ .navigation-auto .auto-btn2{
+    background: #40D3DC;
+  }
+  
+  #radio3:checked ~ .navigation-auto .auto-btn3{
+    background: #40D3DC;
+  }
+  
+  #radio4:checked ~ .navigation-auto .auto-btn4{
+    background: #40D3DC;
+  }
+
+
+/*-------------------- css fin slider automatico --------------------*/
+
+
+/********************* fin slider *********************/
+.container-landing{
+    padding: 0px 259px;
+}
+
+.linea{
+    color: #2dd1ac;
+    margin-bottom: 20px;
+}
+.sup-description{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .img-banner{
+    width: 95%;
+    height: 90%;
+} */
+.title-container{
+    width: 100%;
+    text-align: center;
+    padding: 0 50px;
+    margin-bottom: 30px;
+}
+.title{
+    width: 100%;
+    font-size: 41px;
+    line-height: 50px;
+    letter-spacing: -1px;
+    height: 100px;
+   
+
+}
+.sup-description p{
+   
+    
+    text-align: center;
+}
+.social-review{
+    font-size: 14px;
+    line-height: 24px;
+    color: #444e5e;
+    width: auto !important;
+}
+
+.button-landing{
+    margin: 1.5%;
+    display: block;
+    width: 360px;
+    height: 50px;
+    background-color: #2dd1ac;
+    color: white;
+    font-size: 15px;
+    line-height: 20px;
+    border-radius: 6px;
+    border: transparent;
+}
+
+.button-landing:hover{
+    background-color: #18866dea;
+    cursor: pointer;
+}
+
+.opiniones{
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    text-align: center;
+    width: 80%;
+    margin-top: 30px;
+}
+
+.opiniones div{
+    width: 90%;
+    padding-left: 20px;
+}
+
+.text-inicial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    /* padding-left: 40px; */
+}
+
+.text-inicial p{
+    padding-bottom: 20px;
+    font-size: 1rem;
+    line-height: 29px
+    /* padding-left: 40px; */
+}
+.text-inicial h2{
+    font-size: 14px;
+    line-height: 25px;
+    color:#a9b1be;
+    text-align: center;
+}
+
+.text-middle{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text-middle h2{
+    text-align: center;
+    padding-top: 10px;
+    font-size: 36px;
+    line-height: 43px;
+    letter-spacing: -1px;
+    
+}
+
+.img-multiplataforma{
+    width: 100%;
+    height: 504px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.estrellas{
+    color: #2dd1ac;
+}
+
+/*cuadro de descripcion de funcionalidades app*/
+.description-app-container  h2{
+    font-size: 36px;
+    line-height: 43px;
+    letter-spacing: -1px;
+    text-align: center;
+    margin-top: 80px;
+}
+.item-desc a{
+    font-size: 1rem;
+    line-height: 29px;
+    text-align: center;
+    color: #363f4d;
+}
+.description-app{
+    
+    width: 100%;
+    height: 100%;
+    padding-top: 30px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 5rem;
+    row-gap: 5rem;
+    margin-top: 35px;
+    /* padding-left: 20px; */
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.item-desc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+
+.img-funcion{
+    width: 300px;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+
+    /* width: 250px; */
+    /* height: 400px; */
+    padding-right: 2px;
+}
+.img-funcion img{
+    width: 300px;
+    height: 450px;
+    
+}
+
+.desc-funcionalidad{
+    width: 100%;
+    min-width: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.descripcion-funcionalidad{
+    width: 900px;
+    /* max-width: 350px; */
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.descripcion-funcionalidad span{
+    padding-top: 20px;
+    text-align: justify;
+}
+
+.descripcion-funcionalidad h2{
+    padding-bottom: 30px;
+}
+
+.container-planes{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+
+.text-plan{
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/**************************************************/
+
+/************************media querys********************************/
+
+
+@media only screen and (min-width:340px) and (max-width:1000px){
+    .opiniones {
+        width: 95%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+       
+        row-gap: 2rem;
+        /* width: 60%; */
+    }
+
+    .description-app{
+        width: 100%;
+        padding-top: 30px;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+         column-gap: 0;
+      
+        padding-bottom: 50px;
+        /* padding-left: 20px; */
+    }
+
+    .container-landing{
+        padding: 0px;
+    }
+    .title-container{
+        padding: 0px;
+    }
+    .title{
+        width: 100%;
+        font-size: 28px;
+        line-height: 34px;
+    }
+    .text-middle h2{
+        font-size: 24px;
+        line-height: 29px;
+
+    }
+    .img-multiplataforma{
+        width: 340px;
+        height: 190px;
+    }
+    .description-app-container h2{
+        font-size: 24px;
+        line-height: 29px;
+
+    }
+    .desc-funcionalidad{
+        width: 50%;
+        min-width: 100px;
+        flex-direction: column;
+    }
+    .descripcion-funcionalidad{
+        width: auto;
+        margin-top: 30px;
+    }
+    .desc-funcionalidad span{
+        line-height: 29px;
+    }
+    .descripcion-funcionalidad h2{
+        font-size: 21px;
+        line-height: 25px;
+        text-align: center;
+    }
+    .slide img{
+        height: 85%;
+    }
+    .img-funcion img {
+        width: 200px;
+        height: 300px;
+    }
+}
+
+

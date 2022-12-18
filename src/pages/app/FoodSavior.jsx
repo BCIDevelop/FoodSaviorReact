@@ -1,6 +1,14 @@
-import React,{useState} from 'react'
+import React,{Fragment, useState} from 'react'
 import './foodSavior.css'
 import AppCard from '../../components/cards/appCard/AppCard'
+import './foodSavior-firstSection.css'
+import slider1 from '../../img/slide1.jpg'
+import slider2 from '../../img/slide2.jpg'
+import slider3 from '../../img/slide3.jpg'
+import slider4 from '../../img/slide4.jpg'
+import funcionalid from '../../img/funcionalidad.png'
+import difDispositivos from '../../img/diferentes-dispositivos.png'
+
 
 const FoodSavior = () => {
   const monthly=[
@@ -68,6 +76,167 @@ const FoodSavior = () => {
       },500)
   }
   return (
+  <div>
+
+    {/* /**********************************************************/
+    /***************** landing parte SUPERIOR *****************/
+    /**********************************************************/ }
+
+    <section className="container-landing">
+
+        
+            <div className="title-container">
+
+                <h1 className="title">Sistema para Control de Inventario y Gestión de Stock</h1>
+            </div>
+          {/* 
+            <!----------------------inicio banner---------------------------->       
+                <!--------------------------------------------------------------->   */}
+
+                <div className="container-slider">
+                    <div className="slider">
+                        <div className="slides">
+    
+                            {/* <!-- radio-btns --> */}
+                            <input type="radio" name="radio-btn" id="radio1"/>
+                            <input type="radio" name="radio-btn" id="radio2"/>
+                            <input type="radio" name="radio-btn" id="radio3"/>
+                            <input type="radio" name="radio-btn" id="radio4"/>
+    
+                            {/* <!-- imagenes --> */}
+                            <div className="slide first">
+                                <img src={slider1} alt="slider_1"/>
+                            </div>
+                            <div className="slide">
+                                <img src={slider2} alt="slider_2"/>
+                            </div>
+                            <div className="slide">
+                                <img src={slider3} alt="slider_3"/>
+                            </div>
+                            <div className="slide">
+                                <img src={slider4} alt="slider_4"/>
+                            </div>
+
+                        </div>
+
+                        
+    
+                    </div>  
+                    
+                    <div className="navigation">
+                                
+                        {/* <!-- navegacion inicial automatica --> */}
+                        <div className="navigation-auto">
+                            <div className="auto-btn1"></div>
+                            <div className="auto-btn2"></div>
+                            <div className="auto-btn3"></div>
+                            <div className="auto-btn4"></div>
+                        </div>
+
+                        {/* <!-- navegacion inicial manual --> */}
+                        <div className="navigation-manual">
+                            <label for="radio1" className="manual-btn"></label>
+                            <label for="radio2" className="manual-btn"></label>
+                            <label for="radio3" className="manual-btn"></label>
+                            <label for="radio4" className="manual-btn"></label>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                {/* <!--------------------------------------------------------------->     
+                <!-------------------------fin banner---------------------------->*/}
+
+
+            <div className="sup-description"> 
+
+                <div className="text-inicial">
+                    <p>El sistema de control de inventario que simplificará su trabajo. Ahora tener el control de sus productos es más fácil que nunca con Kyte. ¡La app para control de stock y ventas que estaba buscando!</p>
+                    <button className="button-landing">Instalar FoodSavior</button>
+                    <h2>Para tiendas y vendedores autónomos.</h2>
+                </div>
+
+
+                {/* <!--------------------------------------------------------------->     
+                <!--opiniones-->       
+                <!--------------------------------------------------------------->*/}
+                <div className="opiniones">
+                    <div> 
+                        <p className="estrellas">★★★★★</p>
+                        <p className="social-review">"La app esta muy completa"</p>
+                    </div>
+                    <div> 
+                        <p className="estrellas">★★★★★</p>
+                        <p className="social-review">"Excelente app"</p>
+                    </div>
+                    <div> 
+                        <p className="estrellas">★★★★★</p>
+                        <p className="social-review">"App muy intuitiva y facil"</p>
+                    </div>
+                    <div> 
+                        <p className="estrellas">★★★★★</p>
+                        <p className="social-review">"Es genial!"</p>
+                    </div>
+                  </div>
+            </div>
+            
+            <div className="text-middle">
+                <p className="linea">_______________________________</p>
+                <h2>Kyte es mutiplataforma, puede usarlo en su móvil, tablet o computadora</h2>
+                <img className="img-multiplataforma" src={difDispositivos} alt="dispositivosDiferentes"/>
+                <button className="button-landing">Instalar FoodSavior</button>
+            </div>
+            <div className="description-app-container">
+                <h2>Como se hace un control de inventarios</h2>
+                <div className="description-app">
+                <div className="item">
+                    <i className="fa fa-cutlery" aria-hidden="true"></i>
+                    <span className="item-desc"><a href="#">Control de stock</a></span>
+                </div>
+                <div className="item">
+                    <i className="far fa-bell"></i>
+                    <span className="item-desc"><a href="#">Alertas de productos a vencer</a></span>
+                </div>
+                <div className="item">
+                    <i className="fas fa-mouse-pointer"></i>
+                    <span className="item-desc"><a href="#">Fácil de usar</a></span>
+                </div>
+                <div className="item">
+                    <i className="fas fa-chart-bar"></i>
+                    <span className="item-desc"><a href="#">Reportes en tiempo real</a></span>
+                </div>
+                <div className="item">
+                    <i className="fas fa-unlock-alt"></i>
+                    <span className="item-desc"><a href="#">100% Seguro</a></span>
+                </div>
+                <div className="item">
+                    <i className="fas fa-clipboard-list"></i>
+                    <span className="item-desc"><a href="#">Control de consumo</a></span>
+                </div>
+                </div>
+            </div>
+            {/* <!-- -------------------------------------------------------------------- -->
+            <!-- funcionalidades-descripcion -->
+            <!-- -------------------------------------------------------------------- --> */}
+            <p className="linea">_______________________________</p>
+            <div className="desc-funcionalidad">
+                <div className="img-funcion">
+                    <img src={funcionalid} alt=""/>
+                </div>
+                <div className="descripcion-funcionalidad">
+                    <h2>Control de stock</h2>
+                    <span>Con nuestro sistema para control de inventario, la gestión de su negocio se quedará mucho más fácil.</span>
+                    <span>Controle las cantidades que tiene en stock desde su celular, tablet o computadora. Sepa cuántos artículos tiene disponible para vender, inclusive productos a granel.</span>
+                    <span>Su inventario actualizado en tiempo real con las ventas de cada vendedor, de esta forma nunca le tomarán de sorpresa sin productos disponibles. Administre sus pedidos con diferentes estados que afecten o no el stock de sus productos.</span>
+                </div>
+            </div>
+ 
+            
+    </section>
+    
+    {/* /**********************************************************/
+    /***************** landing parte INFERIOR *****************/
+    /**********************************************************/ }
     <div className='containerApp'>
        <section className='pricing'>
           <div className='pricingBackground'>
@@ -221,6 +390,7 @@ const FoodSavior = () => {
             </div>
         </div>
       </section>
+    </div>
     </div>
   )
 }
