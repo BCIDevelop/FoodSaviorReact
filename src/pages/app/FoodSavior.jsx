@@ -5,7 +5,8 @@ import './foodSavior-firstSection.css'
 import slider1 from '../../img/slide1.jpg'
 import slider2 from '../../img/slide2.jpg'
 import slider3 from '../../img/slide3.jpg'
-import slider4 from '../../img/slide4.jpg'
+/* import slider4 from '../../img/slide4.jpg' */
+import slider4 from '../../img/openGraph.png'
 import funcionalid from '../../img/funcionalidad.png'
 import difDispositivos from '../../img/diferentes-dispositivos.png'
 
