@@ -151,7 +151,7 @@ const FoodSavior = () => {
             <div className="sup-description"> 
 
                 <div className="text-inicial">
-                    <p>El sistema de control de inventario que simplificará su trabajo. Ahora tener el control de sus productos es más fácil que nunca con Kyte. ¡La app para control de stock y ventas que estaba buscando!</p>
+                    <p>El sistema de control de inventario que simplificará su trabajo. Ahora tener el control de sus productos es más fácil que nunca con FoodSavior. ¡La app para control de stock y ventas que estaba buscando!</p>
                     <button className="button-landing">Instalar FoodSavior</button>
                     <h2>Para tiendas y vendedores autónomos.</h2>
                 </div>
