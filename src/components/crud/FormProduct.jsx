@@ -7,7 +7,7 @@ import { UserContext } from '../../context/UserContext'
 
 const FormProduct = ( {data, activity_action} ) => {
     const categoriesDB = JSON.parse(localStorage.getItem('categories'));
-    // const {user,removeUser}=useContext(UserContext)
+    const {user,removeUser}=useContext(UserContext)
     const {showToast}= useContext(AlertContext)
     const [form, instForm] = useState( data ) ;
     const navigateTo = useNavigate();
@@ -33,6 +33,9 @@ const FormProduct = ( {data, activity_action} ) => {
         e.target.value = "0";
         if ( e.target.getAttribute("value") === "0" ){
             e.target.value = "1";
+            const dbData = JSON.parse(localStorage.getItem('favorites'));
+            dbData.push( { userId : user.mail, productId : form.id } );
+            localStorage.setItem( 'favorites', JSON.stringify(dbData) );
         }
         handleChange( e );
     }
@@ -119,7 +122,7 @@ const FormProduct = ( {data, activity_action} ) => {
             </div>
             <div className={style.contentField}>
                 <span>Stock:</span>
-                <input name="stock" type="number" value={qty} />
+                <input name="stock" type="number" value={qty} disabled/>
             </div>
             <div className={style.contentField}>
                 <span>Unidad:</span>
