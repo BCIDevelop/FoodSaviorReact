@@ -7,17 +7,27 @@ import { UserContext } from '../../context/UserContext'
 
 const FormProduct = ( {data, activity_action} ) => {
     const categoriesDB = JSON.parse(localStorage.getItem('categories'));
-    const {user,removeUser}=useContext(UserContext)
+    // const {user,removeUser}=useContext(UserContext)
     const {showToast}= useContext(AlertContext)
     const [form, instForm] = useState( data ) ;
     const navigateTo = useNavigate();
-
+    
     const handleChange = (e) =>{
         instForm({
             ...form,
             [ e.target.name ] : e.target.value
         });
     }
+    let qty = 0;
+    const getQty = () => {
+        const kardexDB =  JSON.parse(localStorage.getItem('kardex'));
+        kardexDB.map( function (e) {
+            if ( form.id === e.product ){
+                qty += parseInt( e.qty );
+            }
+        })
+    }
+    getQty();
     const changeFavorite = (e) => {
         e.target.name = e.target.getAttribute("name");
         e.target.value = "0";
@@ -106,6 +116,10 @@ const FormProduct = ( {data, activity_action} ) => {
             <div className={style.contentField}>
                 <span>Codigo Barra:</span>
                 <input name="bardcode" type="text" onChange={handleChange} value={form.bardcode} />
+            </div>
+            <div className={style.contentField}>
+                <span>Stock:</span>
+                <input name="stock" type="number" value={qty} />
             </div>
             <div className={style.contentField}>
                 <span>Unidad:</span>
