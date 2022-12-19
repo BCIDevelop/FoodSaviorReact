@@ -28,6 +28,14 @@ const FormProduct = ( {data, activity_action} ) => {
         })
     }
     getQty();
+    const favorite = () => {
+        const favoriteDB =  JSON.parse(localStorage.getItem('favorites'));
+        const tmp = favoriteDB.find( function (d) { return d.productId === parseInt(form.id || 0); });
+        if ( tmp ){
+            form.favorite = 1;
+        }
+    }
+    favorite();
     const changeFavorite = (e) => {
         e.target.name = e.target.getAttribute("name");
         e.target.value = "0";
