@@ -11,18 +11,39 @@ const FormProduct = ( {data, activity_action} ) => {
     const {showToast}= useContext(AlertContext)
     const [form, instForm] = useState( data ) ;
     const navigateTo = useNavigate();
-
+    
     const handleChange = (e) =>{
         instForm({
             ...form,
             [ e.target.name ] : e.target.value
         });
     }
+    let qty = 0;
+    const getQty = () => {
+        const kardexDB =  JSON.parse(localStorage.getItem('kardex'));
+        kardexDB.map( function (e) {
+            if ( form.id === e.product ){
+                qty += parseInt( e.qty );
+            }
+        })
+    }
+    getQty();
+    const favorite = () => {
+        const favoriteDB =  JSON.parse(localStorage.getItem('favorites'));
+        const tmp = favoriteDB.find( function (d) { return d.productId === parseInt(form.id || 0); });
+        if ( tmp ){
+            form.favorite = 1;
+        }
+    }
+    favorite();
     const changeFavorite = (e) => {
         e.target.name = e.target.getAttribute("name");
         e.target.value = "0";
         if ( e.target.getAttribute("value") === "0" ){
             e.target.value = "1";
+            const dbData = JSON.parse(localStorage.getItem('favorites'));
+            dbData.push( { userId : user.mail, productId : form.id } );
+            localStorage.setItem( 'favorites', JSON.stringify(dbData) );
         }
         handleChange( e );
     }
@@ -106,6 +127,10 @@ const FormProduct = ( {data, activity_action} ) => {
             <div className={style.contentField}>
                 <span>Codigo Barra:</span>
                 <input name="bardcode" type="text" onChange={handleChange} value={form.bardcode} />
+            </div>
+            <div className={style.contentField}>
+                <span>Stock:</span>
+                <input name="stock" type="number" value={qty} disabled/>
             </div>
             <div className={style.contentField}>
                 <span>Unidad:</span>

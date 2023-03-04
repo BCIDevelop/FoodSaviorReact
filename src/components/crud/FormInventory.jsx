@@ -2,14 +2,14 @@ import React, { useContext, useState } from 'react'
 import {useNavigate, Link} from "react-router-dom"
 import style from './product.module.css'
 import { AlertContext } from '../../context/AlertContext'
-import notImage from './../../img/productoSinImagen.png'
-import { UserContext } from '../../context/UserContext'
+// import notImage from './../../img/productoSinImagen.png'
+// import { UserContext } from '../../context/UserContext'
 
 const FormInventory = ( {data, activity_action} ) => {
     const lskardex = "kardex";
     const lsproduct = "products";
-    const categoriesDB = JSON.parse(localStorage.getItem('categories'));
-    const {user,removeUser}=useContext(UserContext)
+    // const categoriesDB = JSON.parse(localStorage.getItem('categories'));
+    // const {user,removeUser}=useContext(UserContext)
     const {showToast}= useContext(AlertContext)
     const [form, instForm] = useState( data ) ;
     const navigateTo = useNavigate();

@@ -51,6 +51,7 @@ const Footer = () => {
         <div>
            <p>Usamos cookies para ofrecerle la mejor experiencia de nuestros servicios. Mas info</p>
             <button onClick={disapearBanner}>Acepto</button>
+         
         </div>
         </div> 
     </footer>

@@ -1,5 +1,5 @@
 import { BrowserRouter,Route,Routes } from "react-router-dom"
-import { Login,Register,FoodSavior,Category,Product, Inventory,NotFound,Home ,DashboardTest,AlertPage,Favorites} from "./pages/Index"
+import { Login,Register,FoodSavior,Category,Product, Inventory,NotFound,Home ,DashboardTest,AlertPage,Favorites,Error} from "./pages/Index"
 import Layout from "./Layout"
 import Private from "./guard/Private"
 import Public from "./guard/Public"
@@ -33,8 +33,9 @@ function Router(){
             <Route path="/alertas" element={<AlertPage/>}></Route>
             <Route path="/favorites" element={<Favorites/>}></Route>
           </Route>
+          <Route path="/error" element={<Error/>}></Route>
 
-            <Route path="*" element={<NotFound/>}></Route>
+          <Route path="*" element={<NotFound/>}></Route>
 
           </Routes>
         

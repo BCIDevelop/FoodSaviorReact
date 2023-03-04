@@ -6,13 +6,13 @@ const FavoriteCard = ({favorite}) => {
   return (
     <div className={styles.cardContainer}>
         <div className={styles.cardMedia}> 
-            <img src={defaultImage} alt="" />
+            <img className={styles.cardImage} src={favorite.product.image} alt="" />
         </div>
         <div className={styles.cardContent}>
-            <h3 className={styles.subtitle}>{favorite.name}</h3>
+            <h3 className={styles.subtitle}>{favorite.product.name}</h3>
             
-            {remainingDate(favorite.spoilDate)>0 ? (<p>{`Vence en ${remainingDate(favorite.spoilDate)} dias`}</p>) 
-          : (<p className={styles.spoiledProduct}>{`Vencio hace ${Math.abs(remainingDate(favorite.spoilDate))} dias`}</p>) }
+            {remainingDate(favorite.product.spoilDate)>0 ? (<p>{`Vence en ${remainingDate(favorite.product.spoilDate)} dias`}</p>) 
+          : (<p className={styles.spoiledProduct}>{`Vencio hace ${Math.abs(remainingDate(favorite.product.spoilDate))} dias`}</p>) }
           
         </div>
         <div className={styles.cardActions}>

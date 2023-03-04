@@ -5,11 +5,12 @@ import { AlertContext } from '../../context/AlertContext'
 
 const Toast = () => {
     const {toast,hideToast}=useContext(AlertContext)
-   
    useEffect(()=>{
+        const fn= toast.visibility ? hideToast : ()=>{}
          const timerId=setTimeout(()=>{
-            hideToast()
+           fn()
         },3000) 
+        
         return ()=> clearTimeout(timerId) 
    },[toast]) 
    if (toast.visibility===true){

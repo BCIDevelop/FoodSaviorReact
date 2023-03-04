@@ -32,3 +32,9 @@
 .spoiledProduct{
     color: var(--third-color)
  }
+ .cardImage{
+    width: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    margin-right: 16px;
+ }

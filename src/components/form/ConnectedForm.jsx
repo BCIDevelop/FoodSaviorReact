@@ -1,9 +1,12 @@
 import React,{useContext} from 'react'
 import Form from './Form'
+import makeRequest from '../../globalServices/api.service'
 import { invalidEffect } from '../../utils/sessionInit'
 import { useNavigate } from 'react-router-dom'
 import { AlertContext } from '../../context/AlertContext'
 import { UserContext } from '../../context/UserContext'
+import { LoaderContext } from '../../context/LoaderContext'
+import responseHandler from '../../utils/handlerResponse'
 const ConnectedForm = ({location}) => {
     function validityPassword(){
         const testPasswordLength=new RegExp( "^(?=.{8,})")
@@ -13,13 +16,12 @@ const ConnectedForm = ({location}) => {
         if (!testPasswordUpperCase.test(password)) return {isValid:false,message:'Password have at least one Uppercase'}
         return {isValid:true,message:''}
     }
-    function serverValidation(){
-        return JSON.parse(localStorage.getItem('users')  || "[]" ).some((element)=>element.mail===document.querySelector('#email-input').value)     
-    }
+  
     const history = useNavigate()
     const {showToast}= useContext(AlertContext)
     const {storeUser}=useContext(UserContext)
-  function handleSubmitLogin(e){
+    const {toogleLoader}=useContext(LoaderContext)
+    async function handleSubmitLogin(e){
         let invalid=false
         e.preventDefault()
         for(i=0;i<e.nativeEvent.srcElement.children.length-1;i++){  
@@ -28,30 +30,28 @@ const ConnectedForm = ({location}) => {
            }
         }
         if(!invalid){
+            const labels=document.querySelectorAll('label')
             const inputs=document.querySelectorAll('.input')
-            const userData=[]
-            inputs.forEach((element)=>{
-                userData.push(element.value)
+            const userData={}
+            inputs.forEach((element,index)=>{
+                const key=labels[index].textContent.toLowerCase()
+                userData[key]=element.value
             })
-            const userArray=JSON.parse(localStorage.getItem('users'))
-            const validar=userArray.find(element=> element.mail=== userData[0])
-            if(validar===undefined){
-                showToast("User doesn't exist",'Error')
-            } else{
-                if(validar.password===userData[1])   {
-                    storeUser(validar)
-                    history('/home')
-                } 
-                else {
-                    showToast('Password doesnt match','Error')
+            const response=await makeRequest('auth/signin','POST',userData,false)
+            const validated=await responseHandler(response,history,showToast)
+            if (validated){
+                const user={
+                    access_token:response.results.access_token,
+                    refresh_token:response.results.refresh_token,
+                    email:userData.email
                 }
-             
+                
+                storeUser(user)
+                history('/home')
             }
         } 
   }
-  function handleSubmitRegister(e){
-    const userStorage=JSON.parse(localStorage.getItem('users'))
-    const users= userStorage ? userStorage : []
+  async function handleSubmitRegister(e){
     let invalid=false
     e.preventDefault()
     for(i=0;i<e.nativeEvent.srcElement.children.length-1;i++){  
@@ -66,17 +66,22 @@ const ConnectedForm = ({location}) => {
             invalidEffect(2,validationPassword.message)
         }
         else{
-            if(!serverValidation()) {
+            toogleLoader()
+            const labels=document.querySelectorAll('label')
             const inputs=document.querySelectorAll('.input')
-            const userData=[]
-            inputs.forEach((element)=>{
-                userData.push(element.value)
-            })
-            users.push({name:userData[0],mail:userData[1],password:userData[2],picture:''})
-            localStorage.setItem('users',JSON.stringify(users))
-            showToast('Successful Register','Success')
-            history('/login')
-            } else showToast('Username already in use, please use another one','Error')
+            const userData={}
+            inputs.forEach((element,index)=>{
+                let key=labels[index].textContent.toLowerCase()
+                if (key==='last name') key="last_name"
+                userData[key]=element.value
+            })  
+            const response=await makeRequest('auth/signup','POST',userData,false)
+            toogleLoader()
+            const validated=responseHandler(response,history,showToast)
+            if (validated){
+                showToast('Successful Register','Success')
+                history('/login')
+            }
         }
     }
 }
