@@ -1,17 +1,26 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import React,{useState,} from 'react'
 import { sortByDate } from '../../utils/handlerDate'
 import Alerta from '../../components/alertas/Alerta'
 import { UserContext } from '../../context/UserContext'
-
-
+import { getProductsService,deleteProductService } from '../../globalServices/products.service'
+import { AlertContext } from '../../context/AlertContext'
+import { useNavigate } from 'react-router-dom'
 const AlertPage = () => {
-  const {user}=useContext(UserContext)
-    const [alerta,setAlerta]=useState(sortByDate(JSON.parse(localStorage.getItem('products')) ? JSON.parse(localStorage.getItem('products')).filter(element=>element.userId===user.mail) : []))
+    const [alerta,setAlerta]=useState([])
+    const history=useNavigate()
+    const {showToast}=useContext(AlertContext)
+    const {removeUser}=useContext(UserContext)
     
-    function dismissedAlert(alertElement){
-      localStorage.setItem('products',JSON.stringify(JSON.parse(localStorage.getItem('products')).filter(element=> element.id!== alertElement)) )
-      localStorage.setItem('favorites',JSON.stringify(JSON.parse(localStorage.getItem('favorites')).filter(element=> element.productId!==alertElement )) )
+    async function getAlertas(){
+        const results=await getProductsService(history,showToast,removeUser,6,1)
+        setAlerta(results)
+    }
+    useEffect(()=>{
+        getAlertas()
+    },[])
+    async function dismissedAlert(alertElement){
+        await deleteProductService(history,showToast,removeUser,alertElement)
         setAlerta(prev=> prev.filter(element=> element.id!== alertElement))
       }
   return (

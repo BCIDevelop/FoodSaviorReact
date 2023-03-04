@@ -1,14 +1,19 @@
-import React,{ useContext } from 'react'
+import React,{ useEffect,useContext, useState } from 'react'
 import './sidebar.css'
 import perfilImg from '../../assets/perfil.jpg'
 import { useLayoutEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import { indexPagesPrivate,indexPagesPublic } from '../../pages/Index'
-
+import { AlertContext } from '../../context/AlertContext'
+import { useNavigate } from 'react-router-dom'
+import { getUserService } from '../../globalServices/user.service'
 
 const SideBar = ({setSideBar}) => {
+    const [activeUser,setActiveUser]=useState({})
     const {user,removeUser}=useContext(UserContext)
+    const {showToast}=useContext(AlertContext)
+    const history=useNavigate()
     const navbarElements=user ? indexPagesPrivate : indexPagesPublic
     const activeStyle = {
       textDecoration: "underline",
@@ -20,9 +25,13 @@ const SideBar = ({setSideBar}) => {
       },450)
     }
     function logOut(){
-      sessionStorage.clear()
+      
       setSideBar(false)
       removeUser()
+    }
+    async function getProfile(){
+       const response= await getUserService(history,showToast,removeUser)
+       setActiveUser(response)
     }
     useLayoutEffect(()=>{
       const timerId=setTimeout(()=>{
@@ -30,8 +39,11 @@ const SideBar = ({setSideBar}) => {
       },100) 
       return ()=> {
         clearInterval(timerId)
-        console.log('termino')
+        
       }
+    },[])
+    useEffect(()=>{
+        getProfile()
     },[])
 
 
@@ -46,11 +58,15 @@ const SideBar = ({setSideBar}) => {
       { user &&
         ( <div className="datos__personales">
          <div>
+<<<<<<< HEAD
           <img className="img-perfil" src={user.picture?user.picture:perfilImg} alt="" />
+=======
+          <img className="img-perfil" src={activeUser?.avatar} alt="" />
+>>>>>>> 0835ad7b5cff7827ba406f81914abe6cee79a8aa
           </div>
           <div>
-          <h1>Hola {user.name}</h1>
-          <p>{user.mail}</p>
+          <h1>Hola {activeUser?.username}</h1>
+          <p>{activeUser?.email}</p>
         </div>
         </div>)
       }
