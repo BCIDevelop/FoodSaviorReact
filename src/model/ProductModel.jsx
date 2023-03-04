@@ -3,13 +3,13 @@ export function ProductModel() {
         {
             id : 1,
             favorite: 0,
-            name : "Platano de Seda",
-            src : "https://plazavea.vteximg.com.br/arquivos/ids/646256-450-450/772631.jpg",
+            name : "Coca Cola - 500ml",
+            src : "https://plazavea.vteximg.com.br/arquivos/ids/525958-1000-1000/281027.jpg",
             alt: "no disponible",
             spoilDate:new Date("2022-12-18 GMT-0500"),
-            unit : "UNI",
-            bardcode : "",
-            category: 2,
+            unit : "ML",
+            bardcode : "7750182006095",
+            category: 3,
             userId:'luis@gmail.com'
         },
         {
