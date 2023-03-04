@@ -73,7 +73,6 @@
 /* panel container */
 .panel{
     position: absolute;
-    z-index: 2;
     display: flex;
     bottom: 1%;
     left: 5%;

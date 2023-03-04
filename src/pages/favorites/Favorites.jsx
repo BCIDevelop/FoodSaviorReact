@@ -2,47 +2,65 @@ import React,{useState,useEffect,useContext} from 'react'
 import styles from './favorites.module.css'
 import Filter from '../../components/filter/Filter'
 import FavoriteCard from '../../components/cards/favoriteCard/FavoriteCard'
-import { handlerByUser,joinTableProduct ,getCategoryId} from '../../utils/handlerAssets'
-import { UserContext } from '../../context/UserContext'
-import { AlertContext } from '../../context/AlertContext'
+import { getCategoryId} from '../../utils/handlerAssets'
 import { useRef } from 'react'
-
+import { AlertContext } from '../../context/AlertContext'
+import {UserContext} from "../../context/UserContext"
+import { getFavoritesService ,deleteFavoritesService} from '../../globalServices/favorites.service'
+import { useNavigate } from 'react-router-dom'
+import { LoaderContext } from '../../context/LoaderContext'
 const Favorites = () => {
     const favoritos=useRef([])
-    const {user}=useContext(UserContext)
+    const history=useNavigate()
+    const {toogleLoader} = useContext(LoaderContext)
     const {showToast}=useContext(AlertContext)
-   const [favorites,setFavorites]=useState([])
-  useEffect(()=>{
-    const favoritesByUser=joinTableProduct(JSON.parse(localStorage.getItem('products') || "[]"),handlerByUser(JSON.parse(localStorage.getItem('favorites')),user.mail))
-    favoritos.current=favoritesByUser
-    setFavorites(favoritesByUser)
-  },[])
+    const {removeUser}=useContext(UserContext)
+    const [favorites,setFavorites]=useState([])
+    
+    
+    async function getFavorites(){
+        const response=await getFavoritesService(history,showToast,removeUser)
+        toogleLoader()
+        favoritos.current=response
+        setFavorites(response)
+    }
+    
+    useEffect(()=>{
+      toogleLoader()
+      getFavorites()
+    },[])
   function chipSelected(chipName,state,mode){
     if(state===true) {
+      console.log(getCategoryId(chipName))
+
       if(mode==='reset'){ 
-          setFavorites(prev=> favoritos.current.filter(element=>element.category===getCategoryId(chipName)))
+          setFavorites(prev=> favoritos.current.filter(element=>element.product.category.name===chipName))
       }
-      else setFavorites(prev=> prev.filter(element=>element.category===getCategoryId(chipName)))
+     
+      else  console.log(favoritos.current);setFavorites(prev=> prev.filter(element=>element.product.category.name===chipName))
     }
     else setFavorites(favoritos.current)
 
   }
 
-  function handleSubmitFavorite(e){
+  async function handleSubmitFavorite(e){
       e.preventDefault()
       const chekedElements=[]
       for(i=0;i<e.nativeEvent.target.length-1;i++){  
         if(e.nativeEvent.target[i].checked)  chekedElements.push(favorites[i])
      }
-     console.log(chekedElements)
-
      if(chekedElements.length>0){
+      const products=[]
+      chekedElements.forEach(element => {
+          products.push(element.product.id)
+      });
+      await deleteFavoritesService(products,history,showToast,removeUser)
       favoritos.current=favoritos.current.filter(element=>  !chekedElements.some(item=>item.id===element.id))
       setFavorites(prev=>prev.filter(element=> !chekedElements.some(item=> item.id === element.id)))
-      localStorage.setItem('favorites',JSON.stringify(JSON.parse(localStorage.getItem('favorites')).filter(element=>!chekedElements.some(item=> item.id===element.productId))))
+
      }
      else showToast('Por favor, selecciona un elemento','Error')
-      
+     
   }
 
   return (

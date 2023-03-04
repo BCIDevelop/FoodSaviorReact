@@ -1,10 +1,11 @@
-import React,{ useEffect,useState } from 'react'
+import React,{ useEffect } from 'react'
 import './alerta.css'
 import defaultImage from '../../assets/defaultImage.png'
 import { remainingDate } from '../../utils/handlerDate'
 const Alerta = ({producto,dismissedAlert,index}) => {
-  
-   let timerID
+  const image=producto.image? producto.image : defaultImage
+  console.log(image)
+  let timerID
   function dismissAlert(){
     document.querySelector(`.alerta${index}`).classList.add('dismissed')
     timerID =setTimeout(()=>{
@@ -18,7 +19,7 @@ const Alerta = ({producto,dismissedAlert,index}) => {
   return (
     <ul className={`contenedor-alerta alerta${index}`}>
         <li className="alerta-detalle">
-          <img className="img-product-alert" src={defaultImage} alt="" />
+          <img className="img-product-alert" src={image} alt="" />
          
           <p className="alerta-mensaje">
           

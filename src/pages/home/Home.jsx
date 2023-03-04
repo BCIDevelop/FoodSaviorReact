@@ -7,26 +7,31 @@ import { sortByDate } from '../../utils/handlerDate'
 import { Link } from 'react-router-dom'
 import { handlerByUser } from '../../utils/handlerAssets'
 import {UserContext} from '../../context/UserContext'
+import { getProductsService,deleteProductService } from '../../globalServices/products.service'
+import { useNavigate } from 'react-router-dom'
+import { AlertContext } from "../../context/AlertContext"
 const Home = () => {
+  const history=useNavigate()
   const products=useRef([])
-  const {user}=useContext(UserContext)
+  const {user,removeUser}=useContext(UserContext)
+  const {showToast}=useContext(AlertContext)
   const [alerta,setAlerta]=useState([])
-  function dismissedAlert(alertElement){
-  localStorage.setItem('products',JSON.stringify(JSON.parse(localStorage.getItem('products')).filter(element=> element.id!== alertElement)) )
-  localStorage.setItem('favorites',JSON.stringify(JSON.parse(localStorage.getItem('favorites')).filter(element=> element.productId!==alertElement )) )
-
+  async function dismissedAlert(alertElement){
+    await deleteProductService(history,showToast,removeUser,alertElement)
     setAlerta(prev=> prev.filter(element=> element.id!== alertElement))
   }
-  useEffect(()=>{
-    const productsDB=JSON.parse(localStorage.getItem('products')) ? JSON.parse(localStorage.getItem('products')) : []
-    products.current =sortByDate(handlerByUser(productsDB,user.mail))
+  async function getAllProducts(){
+    const productsDB=await getProductsService(history,showToast,removeUser,2,1)
+    products.current =productsDB
     const productos=products.current.slice(0,2)
     setAlerta(productos)  
     products.current.splice(0,1)
+  }
+  useEffect(()=>{
+    getAllProducts()
    
   },[])
   useEffect(()=>{
-    
     if (alerta.length < 2 && alerta.length!==0) {
       products.current.shift()
       if(products.current.length!==0){
