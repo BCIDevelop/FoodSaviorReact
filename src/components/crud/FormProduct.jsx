@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import {useNavigate, Link} from "react-router-dom"
 import style from './product.module.css'
 import { AlertContext } from '../../context/AlertContext'
@@ -6,6 +6,8 @@ import notImage from './../../img/productoSinImagen.png'
 import { UserContext } from '../../context/UserContext'
 
 const FormProduct = ( {data, activity_action} ) => {
+    console.log("Esto es lo que contiene");
+    console.log(data);
     const categoriesDB = JSON.parse(localStorage.getItem('categories'));
     const {user,removeUser}=useContext(UserContext)
     const {showToast}= useContext(AlertContext)
@@ -17,17 +19,25 @@ const FormProduct = ( {data, activity_action} ) => {
             ...form,
             [ e.target.name ] : e.target.value
         });
-    }
+    }    
+    // useEffect(()=>{
+    //     console.log(data);
+    //     instForm({
+    //         ...form,
+    //         ["image"] : data.image
+    //     })
+    // },[])
+
     let qty = 0;
-    const getQty = () => {
-        const kardexDB =  JSON.parse(localStorage.getItem('kardex'));
-        kardexDB.map( function (e) {
-            if ( form.id === e.product ){
-                qty += parseInt( e.qty );
-            }
-        })
-    }
-    getQty();
+    // const getQty = () => {
+    //     const kardexDB =  JSON.parse(localStorage.getItem('kardex'));
+    //     kardexDB.map( function (e) {
+    //         if ( form.id === e.product ){
+    //             qty += parseInt( e.qty );
+    //         }
+    //     })
+    // }
+    // getQty();
     const favorite = () => {
         const favoriteDB =  JSON.parse(localStorage.getItem('favorites'));
         const tmp = favoriteDB.find( function (d) { return d.productId === parseInt(form.id || 0); });
@@ -99,17 +109,22 @@ const FormProduct = ( {data, activity_action} ) => {
                 <input name="name" type="text" onChange={handleChange} value={form.name} />
             </div>
             <div className={style.prevImage}>
-                <img 
-                    src={form.src.length > 0 ? form.src : notImage } 
-                    alt={form.alt} />
+                {
+                    form.image 
+                    ?   <img  src={ form.image } 
+                    alt={form.alt} /> 
+                    :<img  src={ notImage } 
+                    alt="cargando!"/> 
+                }
+                
             </div>
             <div className={style.contentField}>
                 <span>Image:</span>
-                <input name="src" type="text" onChange={handleChange} value={form.src} />
-                <input name="alt" type="text" onChange={handleChange} value={form.alt} />
+                <input name="src" type="text" onChange={handleChange} value={form.image} disabled/>
+                {/* <input name="alt" type="text" onChange={handleChange} value={form.alt} /> */}
                 <p><i>(*) Este contenido se mostrar solo si no tiene una imagen referenciada</i></p>
             </div>
-            <div className={style.contentField}>
+            {/* <div className={style.contentField}>
                 <span>Categoria:</span>
                 <select name="category" onChange={handleChange}>
                     <option>SELECCIONAR</option>
@@ -123,10 +138,10 @@ const FormProduct = ( {data, activity_action} ) => {
                             )
                     }
                 </select>
-            </div>
+            </div> */}
             <div className={style.contentField}>
                 <span>Codigo Barra:</span>
-                <input name="bardcode" type="text" onChange={handleChange} value={form.bardcode} />
+                <input name="bardcode" type="text" onChange={handleChange} value={form.barcode} />
             </div>
             <div className={style.contentField}>
                 <span>Stock:</span>
