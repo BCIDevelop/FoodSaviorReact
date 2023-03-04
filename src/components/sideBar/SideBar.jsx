@@ -58,11 +58,7 @@ const SideBar = ({setSideBar}) => {
       { user &&
         ( <div className="datos__personales">
          <div>
-<<<<<<< HEAD
-          <img className="img-perfil" src={user.picture?user.picture:perfilImg} alt="" />
-=======
           <img className="img-perfil" src={activeUser?.avatar} alt="" />
->>>>>>> 0835ad7b5cff7827ba406f81914abe6cee79a8aa
           </div>
           <div>
           <h1>Hola {activeUser?.username}</h1>
