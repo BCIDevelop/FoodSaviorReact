@@ -10,6 +10,8 @@ import FoodSavior from "./app/FoodSavior";
 import DashboardTest from "./dashboardTest/Dashboard";
 import AlertPage from "./alert/AlertPage";
 import Favorites from "./favorites/Favorites";
-export {Login,Register,Product, Inventory,Home,NotFound,Category,FoodSavior,DashboardTest,AlertPage,Favorites,Error}
-export const indexPagesPrivate=['Home','DashBoard','Category','Product', 'Inventory','Favorites']
+import Profile from "./profile/Profile";
+import ClaimAccount from "./claimAccount/ClaimAccount";
+export {Login,Register,Product, Inventory,Home,NotFound,Category,FoodSavior,DashboardTest,AlertPage,Favorites,Error,ClaimAccount,Profile}
+export const indexPagesPrivate=['Home','DashBoard','Category','Product', 'Inventory','Favorites','Profile']
 export const indexPagesPublic =['Login']

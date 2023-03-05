@@ -1,0 +1,39 @@
+.claim-account{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.titleIdent{
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.parrafoIdent{
+    position: absolute;
+    top: 0;
+    text-align: center;
+    padding:40px 40px;
+    width:100%;
+}
+.bg-img{
+    opacity: 0.65;
+    width: 100%;
+    height: 100%;
+}
+.bg-text{
+    padding: 0px 30px;
+    font-size: 20px;
+    text-align: center;
+}
+.claim-title{
+    margin-bottom: 40px;
+    
+}
+.email-image{
+    width: 200px;
+    aspect-ratio: 1/1;
+    margin-bottom: 10px;
+}
+

@@ -50,8 +50,8 @@ const ConnectedForm = ({location}) => {
                 history('/home')
             }
         } 
-  }
-  async function handleSubmitRegister(e){
+    }
+   async function handleSubmitRegister(e){
     let invalid=false
     e.preventDefault()
     for(i=0;i<e.nativeEvent.srcElement.children.length-1;i++){  
@@ -84,10 +84,11 @@ const ConnectedForm = ({location}) => {
             }
         }
     }
-}
+   }
   
-  if(location ==='login') return <Form onSubmit={handleSubmitLogin} location='login' ></Form>
-  return <Form location='register' onSubmit={handleSubmitRegister}></Form>
+  
+  if(location ==='login') return <Form onSubmit={handleSubmitLogin}  inputs={['Email','Password']} height='235.11px' ></Form>
+  return <Form onSubmit={handleSubmitRegister} inputs={['Email', 'Last Name','Name','Password','Username']} height='390px'></Form>
 }
 
 export default ConnectedForm
