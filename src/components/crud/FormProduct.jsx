@@ -233,6 +233,10 @@ const FormProduct = ( {data, activity_action} ) => {
                 <input name="barcode" type="text" onChange={handleChange} value={form.barcode} />
             </div>
             <div className={style.contentField}>
+                <span>Description:</span>
+                <input name="description" type="text" onChange={handleChange} value={form.description} />
+            </div>
+            <div className={style.contentField}>
                 <span>Stock:</span>
                 <input name="stock" type="number" value={qty} disabled/>
             </div>

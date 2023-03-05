@@ -1,9 +1,13 @@
- const makeRequest = async (context,method,data,hasCredentials,bodyFormat="row")=>{
+const makeRequest = async (context,method,data,hasCredentials,bodyFormat="row")=>{
     try{
         const url='http://127.0.0.1:5000'
         const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("accept", "application/json");
+        if (bodyFormat==='row'){
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("accept", "application/json");
+        }
+
+        
         if (hasCredentials) {
             const user=JSON.parse(localStorage.getItem("user"))
             const token=user.access_token
