@@ -8,7 +8,7 @@ import {UserContext} from "../../context/UserContext"
 import { getProductById } from '../../globalServices/products.service'
 import { LoaderContext } from '../../context/LoaderContext'
 
-const UpdateProduct = ( {data, navigate, id} ) => {
+const UpdateProduct = ( {id} ) => {
     console.log(parseInt(id || 0));
     const {showToast}= useContext(AlertContext)
     // const [form, instForm] = useState( data.find( function (d) { return d.id === parseInt(id || 0); }) ) ;
