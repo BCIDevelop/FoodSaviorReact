@@ -1,0 +1,14 @@
+
+.form-profile{
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-avatar{
+    width: 200px;
+    aspect-ratio: 1/1;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

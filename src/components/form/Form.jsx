@@ -1,6 +1,6 @@
 import React from 'react'
 import './form.css'
-const Form = ({onSubmit,inputs,height}) => {
+const Form = ({onSubmit,inputs,height,disabledForm=false,buttonText='Submit'}) => {
     function submitForm(e){
         onSubmit(e)
     }
@@ -10,7 +10,7 @@ const Form = ({onSubmit,inputs,height}) => {
             {
                 inputs.map((input)=>(
                     <div className="input-container">
-                    <input autoComplete={input.toLowerCase()} className="input" required="required" type={input.toLowerCase()==='password'?'password':'text'}/>
+                    <input autoComplete={input.toLowerCase()} disabled={disabledForm} className="input" required="required" type={input.toLowerCase()==='password'?'password':'text'}/>
                     <i></i>
                     <label id="label-1-error" className="label-text" htmlFor="">{input}</label>
                     <span id="label-1-error" className="material-symbols-outlined">
@@ -23,7 +23,7 @@ const Form = ({onSubmit,inputs,height}) => {
                
                
                 
-          <button className="btn-submit" type="submit">Submit</button>
+          <button className="btn-submit" type="submit">{buttonText}</button>
          
          
           </form>
