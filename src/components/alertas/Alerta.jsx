@@ -20,10 +20,11 @@ const Alerta = ({producto,dismissedAlert,index}) => {
     <ul className={`contenedor-alerta alerta${index}`}>
         <li className="alerta-detalle">
           <img className="img-product-alert" src={image} alt="" />
-         
+
+          
           <p className="alerta-mensaje">
           
-            {remainingDate(producto.spoilDate)>0 ? `Faltan ${remainingDate(producto.spoilDate)} dias para que ${producto.name} venza`
+          {remainingDate(producto.spoilDate)>0 ? `Faltan ${remainingDate(producto.spoilDate)} dias para que "${(producto.name)}" venza`
             : `El producto ${producto.name}  vencio hace ${Math.abs(remainingDate(producto.spoilDate))} dias`}
           </p>
         </li>

@@ -19,6 +19,7 @@
     })
     const result=response.status!==204 ? await response.json() : {}
     const status=response.status
+    console.log(result)
     return {results:result,status:status}
     }
     catch(error){
