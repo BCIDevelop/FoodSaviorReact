@@ -14,8 +14,7 @@ const makeRequest = async (context,method,data,hasCredentials,bodyFormat="row")=
             myHeaders.append("Authorization",`Bearer ${token}`)
         }
         let body=null
-        console.log(bodyFormat);
-        console.log(data);
+       
         if (bodyFormat == "form-data") {
             body = data
         }else{
@@ -29,14 +28,7 @@ const makeRequest = async (context,method,data,hasCredentials,bodyFormat="row")=
             credentials:credentials,
             headers:myHeaders
         }
-        console.log("consultando")
-        console.log( `${url}/${context}` );
         const response=await fetch(`${url}/${context}`, requestOptions)
-            // .then(response => response.text())
-            // .then(result => console.log(result))
-            // .catch(error => console.log('error', error))
-        
-        console.log("imprime el response")
         const result=response.status!==204 ? await response.json() : {}
         const status=response.status
         return {results:result,status:status}
