@@ -1,6 +1,6 @@
  const makeRequest = async (context,method,data,hasCredentials)=>{
     try{
-    const url='http://127.0.0.1:5000'
+    const url='http://127.0.0.1:5000' 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     if (hasCredentials) {
@@ -19,7 +19,7 @@
     })
     const result=response.status!==204 ? await response.json() : {}
     const status=response.status
-    console.log(result)
+    console.log(response)
     return {results:result,status:status}
     }
     catch(error){

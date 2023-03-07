@@ -31,10 +31,10 @@ const responseHandler=async (response,history=null,showToast=null,removeUser=nul
                 }
                 return false
             }
-
            
         }
         showToast(response.results.message)
+        console.log(response)
         return false
     }
     if(response.status <= 204 && response.status >=200){
