@@ -9,6 +9,7 @@ import { AlertContext } from '../../context/AlertContext'
 import { UserContext } from '../../context/UserContext'
 
 
+
 const Profile = () => {
   const history=useNavigate()
   const {showToast}=useContext(AlertContext)
@@ -44,7 +45,7 @@ const Profile = () => {
       <img className='profile-avatar' src={image} alt="" />
       <div>
       {!isEdit?
-      <Form onSubmit={editProfile} inputs={['Name','Last Name','Username','Email']} disabledForm={true} buttonText='Edit' height='410px'></Form>:
+      <Form onSubmit={editProfile} inputs={['Name','Last Name','Username','Email']} disabledForm={true} buttonText='Edit' height='410px' values={Object.values()}></Form>:
       <Form onSubmit={submitProfile} inputs={['Name','Last Name','Username','Password','Confirrm Password']} disabledForm={false} buttonText='Update' height='410px'></Form>
       }
       </div>

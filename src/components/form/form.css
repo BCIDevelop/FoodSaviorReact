@@ -29,6 +29,8 @@
   border-radius: 4px;
   width: 100%;
   height: 56px;
+  outline: none;
+  padding-left: 16px;
 }
 
 .input-container {
@@ -59,7 +61,12 @@ input:focus + i + .label-password, .animation-input + i + .label-password {
   background: transparent;
   left: 16px !important;
 }
-
+.profile-focus{
+  top: -6.5px;
+  font-size: 12px;
+  background: transparent;
+  left: 21px !important;
+}
 input:focus + i + .label-email, .animation-input + i + .label-email {
   top: -6.5px;
   font-size: 12px;
@@ -91,7 +98,21 @@ input:focus + i + label {
 .animation-input, .animation-input + i + label {
   color: gray;
 }
-
+.apertura{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 33px;
+  height: 2px;
+  width: 0px;
+  letter-spacing: 10px;
+  background: #fff;
+  transform: skewX(-45deg);
+  transition: 0.2s;
+  width: 20px;
+  transform: scale(4.0);
+  letter-spacing: 50px;
+}
 /* Apertura del borde para que suba el label */
 i::after {
   content: "";

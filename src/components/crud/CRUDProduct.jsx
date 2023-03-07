@@ -26,7 +26,6 @@ const CRUDProduct = () => {
   async function getProducts(){
     const response=await getAllProductsService(history,showToast,removeUser)
     toogleLoader()
-    // favoritos.current=response
     setProducts(response)
   }
   useEffect(()=>{
@@ -38,19 +37,18 @@ const CRUDProduct = () => {
   // const data = 
   let component = null;
   if ( action === "update" && parseInt( id || 0 ) ){
-    component = <UpdateProduct data={products} id={parseInt( id || 0 )} />
+    component = <UpdateProduct id={parseInt( id || 0 )} />
   }else if ( action === "create" ){ 
     const newForm = {
-      id : 0,
-      favorite: 0,
-      name : "",
-      src : "",
-      alt: "",
+      // id : 0,
+      // favorite: 0,
+      name:"",
+      image : "",
       spoilDate:new Date(),
       unit : "",
-      bardcode : "",
-      category: 0,
-      userId:''
+      barcode : "",
+      category_id: 0,
+      // userId:''
     };
     component = <CreateProduct data={newForm} />
   }else{

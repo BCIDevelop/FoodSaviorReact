@@ -3,6 +3,7 @@ import responseHandler from "../utils/handlerResponse"
 
 export const getFavoritesService=async(history,showToast,removeUser)=>{
     const response=await makeRequest('favorites','GET',{},true)
+    
     const isResponseValid=await responseHandler(response,history,showToast,removeUser)
     if (isResponseValid)  return response.results.results    
     else{
@@ -12,6 +13,7 @@ export const getFavoritesService=async(history,showToast,removeUser)=>{
 }
 
 export const deleteFavoritesService=async (products,history,showToast,removeUser)=>{
+    
     const response=await makeRequest('favorites/bulk','DELETE',{products:products},true)
     const isResponseValid=await responseHandler(response,history,showToast,removeUser)
     if (isResponseValid)  return response.results?.results    

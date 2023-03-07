@@ -19,6 +19,7 @@ const Favorites = () => {
     
     
     async function getFavorites(){
+       
         const response=await getFavoritesService(history,showToast,removeUser)
         toogleLoader()
         favoritos.current=response
@@ -27,7 +28,7 @@ const Favorites = () => {
     
     useEffect(()=>{
       toogleLoader()
-      getFavorites()
+      getFavorites() 
     },[])
   function chipSelected(chipName,state,mode){
     if(state===true) {

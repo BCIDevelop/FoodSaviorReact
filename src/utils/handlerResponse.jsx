@@ -8,17 +8,21 @@ const responseHandler=async (response,history=null,showToast=null,removeUser=nul
     if (response.status <= 404 && response.status >=400){
         if(response.status===401){
             if(localStorage.getItem('user')){
-                const myHeaders = new Headers();
                 const user=JSON.parse(localStorage.getItem("user"))
                 const refresh=user.refresh_token
+                // HEADER COMPOSITION
+                const myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
-                myHeaders.append("Authorization",`Bearer ${refresh}`)
-                const response= await fetch(`http://127.0.0.1:5000/auth/token/refresh`,{
-                    method: 'POST',
-                    mode: "cors", 
-                    credentials:"include",
-                    headers:myHeaders
-                })
+                myHeaders.append("accept", "application/json");
+                myHeaders.append("Authorization",`Bearer ${refresh}`);
+                // FULL COMPOSITION
+                let compose = {};
+                compose.method = "POST";
+                compose.mode = "cors";
+                compose.credentials = "include";
+                compose.headers = myHeaders;
+
+                const response= await fetch(`${url}/auth/token/refresh`,compose)
                 const data=await response.json()
                 if (response.ok) {
                     const access_token=data.access_token

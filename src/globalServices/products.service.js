@@ -1,8 +1,19 @@
 import makeRequest from "./api.service"
 import responseHandler from "../utils/handlerResponse"
 
+export const setProductByIdAndUser=async(history,showToast,removeUser,formData)=>{
+  const response=await makeRequest(`products/user`,'POST',formData,true,"form-data")
+  const isResponseValid=await responseHandler(response,history,showToast,removeUser)
+  if (isResponseValid)  {
+    return response.results    
+  }
+  else{
+      const response=await makeRequest('products','GET',{},true)
+      return response.results.results
+    }
+}
+
 export const getProductById=async(history,showToast,removeUser,id)=>{
-  console.log(id);
   const response=await makeRequest(`products/${id}`,'GET',{},true)
   const isResponseValid=await responseHandler(response,history,showToast,removeUser)
   if (isResponseValid)  {
