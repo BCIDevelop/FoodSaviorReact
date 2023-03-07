@@ -18,3 +18,20 @@ export const getUserProfileService= async(history,showToast,removeUser)=>{
 
         
 }
+
+export const updateProfileService= async(history,showToast,removeUser,data)=>{
+    const response=await makeRequest('profile/me','PATCH',data,true,"form-data")
+    
+    //(response,history=null,showToast=null,removeUser=null)
+    const valida= await responseHandler(response,history,showToast,removeUser)
+    console.log(valida)
+    if(valida) {
+        return response.results.result
+    }
+    else {
+        const response=await makeRequest('profile/me','PATCH',{},true)
+        return response.results.result
+    }
+
+        
+}

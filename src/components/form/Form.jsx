@@ -1,18 +1,29 @@
 import React from 'react'
 import './form.css'
-const Form = ({onSubmit,inputs,height,disabledForm=false,buttonText='Submit'}) => {
+const Form = ({onSubmit,inputs,height,disabledForm=false,buttonText='Submit',values={}}) => {
+   
+    const inputArray=inputs.map((element)=>{
+        if(element==='Last Name'){
+           return 'last_name'
+        }
+        else return element.toLowerCase()
+    })
+    console.log(values)
+    
     function submitForm(e){
         onSubmit(e)
     }
+    const valueInput=values
   return (
     <div>
        <form onSubmit={submitForm} style={{height:height}} className="form-container" noValidate>
             {
                 inputs.map((input,index)=>(
+                  
                     <div  key={`input${index}`} className="input-container">
-                    <input value="Luis Lopez" autoComplete={input.toLowerCase()} disabled={disabledForm} className="input" required="required" type={input.toLowerCase()==='password' ||  'confirm password' ?'password':'text'}/>
-                    <i className='apertura'></i>
-                    <label id="label-1-error" className="label-text profile-focus" htmlFor="">{input}</label>
+                    <input defaultValue={valueInput[inputArray[index]]} autoComplete={input.toLowerCase()} disabled={disabledForm} className={Object.keys(values).length>0 ? "input input-profile animation-input" :"input"} required="required" type={(input.toLowerCase()==='password' ||input.toLowerCase()===  'confirm password') ?'password':'text'}/>
+                    <i></i>
+                    <label id="label-1-error" className={Object.keys(values).length>0 ? "label-text profile-focus" :"label-text"}  htmlFor="">{input}</label>
                     <span id="label-1-error" className="material-symbols-outlined">
                         error
                     </span>
