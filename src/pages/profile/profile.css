@@ -6,9 +6,38 @@
     align-items: center;
 }
 
-.profile-avatar{
-    width: 200px;
-    aspect-ratio: 1/1;
+.image-container-profile{
     padding-top: 20px;
     padding-bottom: 20px;
+    position: relative;
+    /* border: 1px solid blue; */
+}
+
+.profile-avatar{
+    border: 1px solid black;
+    width: 200px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+.fa-pencil{
+    position: absolute;
+    /* top: 111px;
+    left: 99px; */
+    top: 170px;
+    right: 10px;
+    /* border: 1px solid gray; */
+    padding: 10px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.profile-avatar:hover{
+    background-color: hsla(140, 1%, 48%, 0.75);
+    transition: all .3s ease-in-out
+}
+
+.fa-pencil:hover{
+    background-color: hsla(140, 1%, 48%, 0.75);
+    transition: all .3s ease-in-out
 }
