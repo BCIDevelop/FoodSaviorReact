@@ -1,0 +1,214 @@
+.subscription-container{
+    padding: 20px;
+    width: 100%;
+}
+.subscription-section-container{
+    border-top:solid 0.5px rgba(232,232,232,255);
+    display:  flex;
+}
+/* Plan section */
+.subscription-plan,.subscription-pricing{
+    width: 50%;
+    padding-right: 10%;
+}
+.subscription-section-title{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
+}
+.subscription-section-title h3{
+    font-size: 1rem;
+    
+    width: 60%;
+}
+.subscription-chips {
+    display: flex;
+    align-items: center;
+    border: solid 0.3px rgba(232,232,232,255) ;
+    border-radius:10px;
+    background-color: rgba(232,232,232,255);
+    width: 20%;
+    justify-content: space-around;
+    padding: 3px;
+    position: relative;
+    height: 25px ;
+}
+.subscription-chips div h4{
+    font-size: 0.6rem;
+    position:relative;
+    cursor: pointer;
+}
+.chip-toggle{
+    background-color: #fff;
+    width: 50%;
+    height: 90%;
+    position: absolute;
+    left: 2%;
+    border-radius:10px;
+}
+.subscription-plan-card{
+    border: solid 0.3px rgba(232,232,232,255);
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    border-radius: 10px;
+    height: 65px;
+    justify-content: space-between;
+}
+.card-plan-name{
+    display: flex;
+   
+}
+.card-plan-name div{
+    margin-left: 8px;
+}
+.card-plan-name div h6{
+    color:rgba(177,177,177,255) ;
+}
+/* Pricing Section */
+.subscription-pricing{
+   
+}
+.subscription-plan-card figure{
+    width: 15%;
+}
+
+.subscription-image-card{
+    width: 60%;
+    aspect-ratio: 1/0.7;
+    display: block;
+}
+.card-price-option{
+    display: flex;
+}
+.card-price-option h6{
+    border-right:solid 1px ;
+    padding: 0 4px 0 0px;
+ 
+ }
+ 
+.card-price-option button{
+   border: none;
+   color:rgba(177,177,177,255) ;
+   font-size: 0.67rem;
+   font-weight: bold;
+   padding: 0 0px 0 4px;
+
+}
+.card-price-button-container{
+    border: solid 0.3px rgba(232,232,232,255);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-price-button-container span{
+    font-size: large;
+}
+.card-price-button-container button{
+    border: none;
+   color: #0085ff;
+   height: 30px;
+}
+
+/* Discount */
+.discount-container{
+    margin:15px 0
+    
+}
+.discount-text{
+    display: flex;
+    align-items: center;
+    height: 19.8px;
+}
+.discount-help{
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: #a6a6a6;
+    font-size: 8px;
+    text-align: center;
+    color: #fff;
+    margin-left: 5px;
+}
+.discount-code-container{
+    height: 30px;
+    margin-top: 5px;
+}
+.discount-code-container input{
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-right: none;
+    width: 80%;
+    height: 100%;
+}
+.discount-code-container button{
+   
+    width: 20%;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 100%;
+ }
+ /* Price Detail */
+
+ .subtotal-container{
+    border-top: dashed 1px rgba(232,232,232,255);
+    border-bottom: dashed 1px rgba(232,232,232,255);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px;
+    height: 50px;
+    align-items: center;
+ }
+ .total-container{
+    display: flex;
+    justify-content: space-between;
+    margin:15px 0 ;
+ }
+ .total-container p{
+    font-size: 0.67rem;
+    color:rgba(177,177,177,255);
+
+ }
+ .total-price{
+    display: flex;
+ 
+ }
+ .total-price h6 {
+    font-size: 2rem;
+    
+ }
+ .price-detail-container button{
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    border: transparent;
+    background-color: #0085ff;
+    color: #fff;
+    margin-bottom: 10px;
+ }
+
+ .price-detail-container p{
+      text-align: center;
+      font-size: 0.67rem;
+      color:rgba(177,177,177,255)
+ }
+ .price-detail-container a{
+    margin-left: 5px;
+    color: #0085ff;
+ }
+
+ @media only screen and (min-width:375px) and (max-width:950px){
+    .subscription-section-container {
+        display: block;
+    }
+    .subscription-plan, .subscription-pricing {
+        width: 100%;
+        padding-right: 0px;
+    }
+    .subscription-chips{
+        width: 30%;
+    }
+ }

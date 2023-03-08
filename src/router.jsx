@@ -1,5 +1,5 @@
 import { BrowserRouter,Route,Routes } from "react-router-dom"
-import { Login,Register,FoodSavior,Category,Product, Inventory,NotFound,Home ,DashboardTest,AlertPage,Favorites,Error,ClaimAccount,Profile} from "./pages/Index"
+import { Login,Register,FoodSavior,Category,Product,Subscription, Inventory,NotFound,Home ,DashboardTest,AlertPage,Favorites,Error,ClaimAccount,Profile} from "./pages/Index"
 import Layout from "./Layout"
 import Private from "./guard/Private"
 import Public from "./guard/Public"
@@ -34,6 +34,7 @@ function Router(){
             <Route path="/alertas" element={<AlertPage/>}></Route>
             <Route path="/favorites" element={<Favorites/>}></Route>
             <Route path="/profile" element={<Profile/>}></Route>
+            <Route path="/subscription" element={<Subscription/>}></Route>
           </Route>
           <Route path="/error" element={<Error/>}></Route>
 

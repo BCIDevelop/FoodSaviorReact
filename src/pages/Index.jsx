@@ -12,6 +12,7 @@ import AlertPage from "./alert/AlertPage";
 import Favorites from "./favorites/Favorites";
 import Profile from "./profile/Profile";
 import ClaimAccount from "./claimAccount/ClaimAccount";
-export {Login,Register,Product, Inventory,Home,NotFound,Category,FoodSavior,DashboardTest,AlertPage,Favorites,Error,ClaimAccount,Profile}
-export const indexPagesPrivate=['Home','DashBoard','Category','Product', 'Inventory','Favorites','Profile']
+import Subscription from "./subscription/Subscription";
+export {Login,Register,Product, Inventory,Home,NotFound,Category,FoodSavior,DashboardTest,AlertPage,Favorites,Error,ClaimAccount,Profile,Subscription}
+export const indexPagesPrivate=['Home','DashBoard','Category','Product', 'Inventory','Favorites','Profile','Subscription']
 export const indexPagesPublic =['Login']
