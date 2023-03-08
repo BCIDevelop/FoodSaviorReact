@@ -55,6 +55,7 @@ const Profile = () => {
       <h3>View Profile</h3>
       <figure className='image-container-profile'>
         <img className='profile-avatar' src={user.avatar} alt="" />
+        <i class="fa-solid fa-pencil"></i>
       </figure>
       <div>
       {!isEdit?
