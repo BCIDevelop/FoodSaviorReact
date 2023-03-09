@@ -8,7 +8,6 @@ const Form = ({onSubmit,inputs,height,disabledForm=false,buttonText='Submit',val
         }
         else return element.toLowerCase()
     })
-    console.log(values)
     
     function submitForm(e){
         onSubmit(e)
