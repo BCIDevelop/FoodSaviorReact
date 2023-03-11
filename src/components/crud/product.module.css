@@ -98,7 +98,8 @@
 }
 .contentPage{
     list-style: none;
-    display:inline-flex
+    display:inline-flex;
+    margin-bottom:  1em;
 }
 .contentPage li{
     background: rgb(232, 232, 232);
