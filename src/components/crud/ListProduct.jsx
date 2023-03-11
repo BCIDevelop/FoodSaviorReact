@@ -14,7 +14,7 @@ const ListProduct = (  ) => {
   const [href_create_product, asd ] = useState("./create" )
   const [positionPage,setPositionPage]=useState(1)
   const [totalPage,setTotalPage]=useState(1)
-  
+
   const history=useNavigate()
   const {showToast}=useContext(AlertContext)
   const {removeUser}=useContext(UserContext)
@@ -47,27 +47,29 @@ const ListProduct = (  ) => {
                 <i className="fa-solid fa-plus"></i> Añadir
             </Link>
         </div>
-        <ul>
-          {
-            products.map( el => 
-              <Product key={el.id} item={el} /> 
-            )
-          }
-        </ul>
-      </div>
-      <div className={style.contentFormProduct}>
-        <ul className={style.contentPage}>
-          {
-            range.map( el => 
-              <li 
-                key={el} 
-                data-status={positionPage == el ? 'active' : 'disabled'}
-                onClick={() => (
-                  setPositionPage(el)
-              )} >{el}</li>
-            )
-          }
-        </ul>
+        <div className={style.contentFormProduct}>
+          <ul className={style.contentPage}>
+            {
+              range.map( el => 
+                <li 
+                  key={el} 
+                  data-status={positionPage == el ? 'active' : 'disabled'}
+                  onClick={() => (
+                    setPositionPage(el)
+                )} >{el}</li>
+              )
+            }
+          </ul>
+        </div>
+        <div>
+          <ul>
+            {
+              products.map( el => 
+                <Product key={el.id} item={el} /> 
+              )
+            }
+          </ul>
+        </div>
       </div>
     </div>
   )
