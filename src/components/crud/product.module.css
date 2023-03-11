@@ -91,8 +91,27 @@
 .contentFormProduct .form .contentField button:hover{
     background: var(--secondary-color-hover);
 }
-
-
+.contentFieldBarcode{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.contentPage{
+    list-style: none;
+    display:inline-flex
+}
+.contentPage li{
+    background: rgb(232, 232, 232);
+    border-radius: solid 2px ;
+    cursor: pointer;
+    text-align: center;
+    width: 40px;
+    transition: ease-out all 0.6s;
+}
+.contentPage li:hover,
+.contentPage li[data-status="active"]{
+    background: rgb(160, 160, 160);
+}
 
 .contentLink{
     display: flex;

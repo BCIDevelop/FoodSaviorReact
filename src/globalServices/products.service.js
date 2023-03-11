@@ -1,6 +1,18 @@
 import makeRequest from "./api.service"
 import responseHandler from "../utils/handlerResponse"
 
+export const setProductUpdateById=async(history,showToast,removeUser,id, formData)=>{
+  const response=await makeRequest(`products/${id}`,'PATCH',formData,true,"form-data")
+  const isResponseValid=await responseHandler(response,history,showToast,removeUser)
+  if (isResponseValid)  {
+    return response.results    
+  }
+  else{
+      const response=await makeRequest('products','GET',{},true)
+      return response.results.results
+    }
+}
+
 export const setProductByIdAndUser=async(history,showToast,removeUser,formData)=>{
   const response=await makeRequest(`products/user`,'POST',formData,true,"form-data")
   const isResponseValid=await responseHandler(response,history,showToast,removeUser)
@@ -19,6 +31,18 @@ export const getProductById=async(history,showToast,removeUser,id)=>{
   if (isResponseValid)  {
     // console.log(response);
     return response.results    
+  }
+  else{
+      const response=await makeRequest('products','GET',{},true)
+      return response.results.results
+    }
+}
+
+export const getAllProductByUser=async(history,showToast,removeUser, paramGET)=>{
+  const response=await makeRequest('products/user?page='+paramGET.page,'GET',{},true)
+  const isResponseValid=await responseHandler(response,history,showToast,removeUser)
+  if (isResponseValid)  {
+    return response.results;    
   }
   else{
       const response=await makeRequest('products','GET',{},true)
