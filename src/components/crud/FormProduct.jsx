@@ -123,11 +123,14 @@ const FormProduct = ( {data, activity_action, identified} ) => {
 
         if (activity_action === "update") {
             response = await setProductUpdateById(history,showToast,removeUser, identified, formDataContent);
+            showToast( 'Producto actualizado', 'Warning');
+            return navigateTo( updateProducto );
         }else{
+            showToast( 'Producto Creado', 'Warning');
             response = await setProductByIdAndUser(history,showToast,removeUser, formDataContent);
             updateProducto = `./../../../product`;
+            return navigateTo( updateProducto );
         }
-        return navigateTo( updateProducto );
 
         // newform.id = Date.now();
         // instForm(newform);

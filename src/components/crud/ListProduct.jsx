@@ -34,9 +34,6 @@ const ListProduct = (  ) => {
     }
     getProducts()
   }, [positionPage])
-  
-
-
 
   return (
     <div className={style.bodyProduct}>
