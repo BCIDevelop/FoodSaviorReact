@@ -61,7 +61,7 @@ const FormProduct = ( {data, activity_action, identified} ) => {
     }    
     async function processGetCategories(){
         const response = await getCategories(history,showToast,removeUser);
-        toogleLoader();
+        // toogleLoader();
         setCategoriesDB( response.results );
     }
     useEffect(()=>{

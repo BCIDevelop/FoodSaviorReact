@@ -11,17 +11,19 @@ import { UserContext } from '../../context/UserContext'
 const CRUDCategory = () => {
   const { action } = useParams()
   const { id } = useParams()
-  const newForm = { id : 0, name : "", favorite: 0 };
+  // const newForm = { id : 0, name : "", favorite: 0 };
   
   return (
     <div className="bodyWroduct">
       {/* {component} */}
       {
-        action === "update" && parseInt( id || 0 ) && <UpdateCategory data={data} id={parseInt( id || 0 )} />
-      }
-      {
-        action === "create" ? <CreateCategory data={ newForm } />
-        : <ListCategory /> 
+        action === "update" && parseInt( id || 0 ) ? <UpdateCategory identify={parseInt( id || 0 )} />
+        : <>
+          {
+            action === "create" ? <CreateCategory  />
+            : <ListCategory /> 
+          }
+        </>
       }
 
     </div>
