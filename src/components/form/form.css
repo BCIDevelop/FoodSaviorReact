@@ -43,7 +43,7 @@
 }
 
 /* Texto del input */
-label {
+.label-form {
   position: absolute;
   left: 5%;
   font-size: 16px;

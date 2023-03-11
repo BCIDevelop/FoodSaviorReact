@@ -22,7 +22,7 @@ const Form = ({onSubmit,inputs,height,disabledForm=false,buttonText='Submit',val
                     <div  key={`input${index}`} className="input-container">
                     <input defaultValue={valueInput[inputArray[index]]} autoComplete={input.toLowerCase()} disabled={disabledForm} className={Object.keys(values).length>0 ? "input input-profile animation-input" :"input"} required="required" type={(input.toLowerCase()==='password' ||input.toLowerCase()===  'confirm password') ?'password':'text'}/>
                     <i></i>
-                    <label id="label-1-error" className={Object.keys(values).length>0 ? "label-text profile-focus" :"label-text"}  htmlFor="">{input}</label>
+                    <label  id="label-1-error" className={Object.keys(values).length>0 ? "label-form label-text profile-focus" :"label-form label-text"}  htmlFor="">{input}</label>
                     <span id="label-1-error" className="material-symbols-outlined">
                         error
                     </span>

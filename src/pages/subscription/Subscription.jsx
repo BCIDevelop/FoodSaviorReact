@@ -1,8 +1,56 @@
-import React from 'react'
-import cardImage from '../../assets/visa.png'
+import React, { useEffect, useRef, useState } from 'react'
 import './subscription.css'
+import { getPlansService } from '../../globalServices/subscription.service'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { AlertContext } from '../../context/AlertContext'
+import { UserContext } from '../../context/UserContext'
+import SubscriptionCard from '../../components/cards/subscriptionCard/SubscriptionCard'
+import PaymentCard from '../../components/cards/paymentCard/PaymentCard'
+import CardPopUp from '../../components/popup/CardPopUp'
+
 const Subscription = () => {
+
+  const [plans,setPlans]=useState([])
+  const [paymentCard,setPaymentCard]=useState([])
+  const [isPopUpVisible,setIsPopUpVisible]=useState(false)
+  const planRef=useRef([])
+  const history=useNavigate()
+  const {showToast}=useContext(AlertContext)
+  const {removeUser}=useContext(UserContext)
+  async function getPlans(){
+    const records=await getPlansService(history,showToast,removeUser)
+    planRef.current=records
+    setPlans(records)
+  }
+  function addCard(){
+    setIsPopUpVisible(true)
+  }
+  function submitCard(event){
+    event.preventDefault()
+    setIsPopUpVisible(false)
+  }
+  function changeDetail(period){
+    const toogle=document.querySelector('.chip-toggle')
+    if (period==='anual'){
+        toogle.classList.add('chip-toggle-effect')
+        setPlans(prev=>{
+           return prev.map(obj=>{
+               return {...obj, price:Math.round(obj.price*12 * 100) / 100,status:false}
+           })
+        })
+    }
+     else {
+       toogle.classList.remove('chip-toggle-effect')
+       setPlans(planRef.current)
+     }
+  }
+  
+  useEffect(()=>{
+    getPlans()
+
+  },[])
   return (
     <div className='subscription-container'>
         <h2>Subscription</h2>
@@ -14,28 +62,21 @@ const Subscription = () => {
                     <div className='subscription-chips'>
                         <div className='chip-toggle'></div>
                         <div>
-                            <h4>Monthly</h4>
+                            <h4 onClick={()=>changeDetail('month')}>Monthly</h4>
 
                         </div>
                         <div>
-                            <h4>Anually</h4>
+                            <h4 onClick={()=>changeDetail('anual')}>Anually</h4>
 
                         </div>
                     </div>
                 </div>
-                <div className='subscription-plan-card'>
-                    <div className='card-plan-name'>
-                        <input type="radio" name="" id="" />
-                        <div>
-                            <h4>Plus</h4>
-                            <h6>for Individuals</h6>    
-                        </div>
-                    </div>
-                    <div>
-                        <h4>$8.99</h4>
-                        <h6>Month</h6>
-                    </div>
-                </div>
+                { plans.length>0 ? plans.map((element,index)=>(
+
+                    <SubscriptionCard plan={element} key={`plansub${index}`}></SubscriptionCard>
+                )): <h4>No se han agregado planes</h4>
+ 
+                }
             </section>
             {/* Section Payment */}
             <section className='subscription-pricing'>
@@ -46,32 +87,24 @@ const Subscription = () => {
                     <div className='subscription-chips'>
                         <div className='chip-toggle'></div>
                         <div>
-                            <h4>Paypal</h4>
+                            <h4 >Card</h4>
 
                         </div>
                         <div>
-                            <h4> Card</h4>
+                            <h4 > Paypal</h4>
 
                         </div>
                     </div>
                 </div>
-                <div className='subscription-plan-card'>
-                    <div className='card-plan-name'>
-                        <input type="radio" name="" id="" />
-                        <div>
-                            <h4>**** 4857</h4>
-                            <section className='card-price-option'>
-                                <h6> Visa</h6>
-                                <button>Edit</button>
-                            </section> 
-                        </div>
-                    </div>
-                    <figure>
-                        <img className='subscription-image-card' src={cardImage} alt="Credit card" />
-                    </figure>
-                </div>  
+                
+                { paymentCard.length>0 ? paymentCard.map((element,index)=>(
+                        <PaymentCard></PaymentCard>
+                    )): <h4>No se encontro tarjeta</h4>
+
+                }
+                
                 <div className='card-price-button-container'>
-                    <button> <span>+</span> Add New</button>
+                    <button onClick={addCard}> <span>+</span> Add New</button>
                 </div>
                 </div>
                 {/* Discount code */}
@@ -118,6 +151,8 @@ const Subscription = () => {
                  </div>
             </section>
         </div>
+         { isPopUpVisible && <CardPopUp submitCard={submitCard}></CardPopUp> } 
+    
     </div>
   )
 }
