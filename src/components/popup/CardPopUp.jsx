@@ -17,7 +17,6 @@ const CardPopUp = ({submitCard}) => {
        form[1].remove()
        
      }} onSubmit={(cardFor)=>{
-      console.log("entro")
       return new Promise((resolve, reject) => {
         fetch("/process_payment", { 
             method: "POST",

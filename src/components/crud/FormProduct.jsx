@@ -138,7 +138,6 @@ const FormProduct = ( {data, activity_action, identified} ) => {
         }
         // return navigateTo( updateProducto );
 
-        // console.log( response );
         // newform.id = Date.now();
         // instForm(newform);
         // const dbData = JSON.parse(localStorage.getItem('products'));
@@ -163,7 +162,7 @@ const FormProduct = ( {data, activity_action, identified} ) => {
             return createForm( form );
         }
         if (activity_action === "update") {
-            console.log( formUpdate );
+          
             return createForm( formUpdate );
         }
     };

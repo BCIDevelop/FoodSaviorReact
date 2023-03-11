@@ -5,7 +5,7 @@ export const getCategoryById=async(history,showToast,removeUser,id)=>{
   const response=await makeRequest(`categories/${id}`,'GET',{},true)
   const isResponseValid=await responseHandler(response,history,showToast,removeUser)
   if (isResponseValid)  {
-    // console.log(response);
+ 
     return response.results    
   }
   else{

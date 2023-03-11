@@ -15,7 +15,6 @@ const ElementCard = ({index,categoryName}) => {
     
    async function getProductByCategory(categoryId){
       const results=await getProductsByCategoryService(history,showToast,removeUser,categoryId,3)
-      console.log(results)
       setElementProduct(results)
    }
   useEffect(()=>{

@@ -4,7 +4,7 @@ import defaultImage from '../../assets/defaultImage.png'
 import { remainingDate } from '../../utils/handlerDate'
 const Alerta = ({producto,dismissedAlert,index}) => {
   const image=producto.image? producto.image : defaultImage
-  console.log(image)
+
   let timerID
   function dismissAlert(){
     document.querySelector(`.alerta${index}`).classList.add('dismissed')

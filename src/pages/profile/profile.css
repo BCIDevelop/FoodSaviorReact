@@ -41,3 +41,9 @@
 .image-avatar-profile{
     display: none;
 }
+.delete-account{
+    background-color: #ff0000;
+    margin-top: 10px;
+    width: 100%;
+
+}

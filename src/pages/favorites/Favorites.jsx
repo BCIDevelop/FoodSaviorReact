@@ -32,13 +32,13 @@ const Favorites = () => {
     },[])
   function chipSelected(chipName,state,mode){
     if(state===true) {
-      console.log(getCategoryId(chipName))
+   
 
       if(mode==='reset'){ 
           setFavorites(prev=> favoritos.current.filter(element=>element.product.category.name===chipName))
       }
      
-      else  console.log(favoritos.current);setFavorites(prev=> prev.filter(element=>element.product.category.name===chipName))
+      else  setFavorites(prev=> prev.filter(element=>element.product.category.name===chipName))
     }
     else setFavorites(favoritos.current)
 

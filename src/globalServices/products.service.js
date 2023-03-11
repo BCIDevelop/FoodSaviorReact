@@ -29,7 +29,7 @@ export const getProductById=async(history,showToast,removeUser,id)=>{
   const response=await makeRequest(`products/${id}`,'GET',{},true)
   const isResponseValid=await responseHandler(response,history,showToast,removeUser)
   if (isResponseValid)  {
-    // console.log(response);
+   
     return response.results    
   }
   else{

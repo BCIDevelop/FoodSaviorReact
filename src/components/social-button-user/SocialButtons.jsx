@@ -26,8 +26,8 @@ const SocialButtons = () => {
             
             const socialUser= {name:response.name,mail:response.email,picture:response.picture.data.url}
             const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
-           console.log(users)
-          console.log(users.some((element)=>{element.mail===socialUser.mail}))
+         
+         
           if(users.some((element)=>{element.mail===socialUser.mail})) 
           {
             storeUser(socialUser)
@@ -43,11 +43,11 @@ const SocialButtons = () => {
     }    
  
   function loginGmail(response){
-    console.log(response)
+    
       const decoded_jwt=jwtJsDecode.jwtDecode(response.credential)
       const socialUser={name:decoded_jwt.payload.name,mail:decoded_jwt.payload.email,picture:decoded_jwt.payload.picture}
       const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
-      console.log(users.some((element)=>{element.mail===socialUser.mail}))
+     
       if(users.some((element)=>{element.mail===socialUser.mail})) 
       {
             storeUser(socialUser)

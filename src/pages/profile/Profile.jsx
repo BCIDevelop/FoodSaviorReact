@@ -1,13 +1,12 @@
 import React, { useEffect, useState,useRef } from 'react'
 import './profile.css'
-import image from '../../assets/logo.svg'
 import Form  from '../../components/form/Form'
-import { getUserProfileService,updateProfileService } from '../../globalServices/profile.service'
+import { getUserProfileService,updateProfileService,deleteUserService } from '../../globalServices/profile.service'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { AlertContext } from '../../context/AlertContext'
 import { UserContext } from '../../context/UserContext'
-
+import { invalidEffect } from '../../utils/sessionInit'
 
 
 const Profile = () => {
@@ -29,6 +28,14 @@ const Profile = () => {
     userFetched.current=response
     setUser(response)
   }
+  function validityPassword(){
+    const testPasswordLength=new RegExp( "^(?=.{8,})")
+    const testPasswordUpperCase = new RegExp("^(?=.*[A-Z])")
+     const password= document.getElementById('password-input').value
+    if (!testPasswordLength.test(password)) return {isValid:false,message:'Password must be 8 character long'}
+    if (!testPasswordUpperCase.test(password)) return {isValid:false,message:'Password have at least one Uppercase'}
+    return {isValid:true,message:''}
+}
 
   useEffect(()=>{
     getUserProfile()
@@ -38,20 +45,40 @@ const Profile = () => {
   ,[])
 
   async function submitProfile(e){
+    const password=document.getElementById('password-input').value
+    const confirmPassword=document.getElementById('confirm password').value
+    console.log(password,confirmPassword)
     e.preventDefault()
-    const inputs=document.querySelectorAll('.input')
-    const avatar=document.querySelector('.image-avatar-profile')
-    const labels=document.querySelectorAll('label')
-    const formData=new FormData()
-    inputs.forEach((element,index)=>{
-      
-      let key=labels[index].textContent.toLowerCase()
-      if (key==='last name') key="last_name"
-      if (key==="confirm password") key="confirm_password"
-      formData.append(key,element.value)
-    })  
-    formData.append('avatar',avatar.files[0])
-    await updateProfileService(history,showToast,removeUser,formData)
+    if (password){
+        const validationPassword=validityPassword()
+          if (!validationPassword.isValid) {
+              invalidEffect(3,validationPassword.message)
+              return
+      }
+      else if(password!=confirmPassword){
+        invalidEffect(4,"Password doesnt match")
+        return
+      }
+    }
+    
+   
+      const inputs=document.querySelectorAll('.input')
+      const avatar=document.querySelector('.image-avatar-profile')
+      const labels=document.querySelectorAll('label')
+      const formData=new FormData()
+      inputs.forEach((element,index)=>{
+        
+        let key=labels[index].textContent.toLowerCase()
+        if (key==='last name') key="last_name"
+        if (key==="confirm password") key="confirm_password"
+        if (element.value!='') formData.append(key,element.value)
+      })  
+      formData.append('avatar',avatar.files[0])
+      await updateProfileService(history,showToast,removeUser,formData)
+      showToast('Se actualizo correctamente','Success')
+      history('/home')
+  
+    
     
 
   }
@@ -66,6 +93,11 @@ const Profile = () => {
     
     
   }
+  async function deleteAccount(){
+    await deleteUserService(history,showToast,removeUser)
+    removeUser()
+    history('/login')
+  }
   return (
     <div className='form-profile'>
       <h3>View Profile</h3>
@@ -77,7 +109,12 @@ const Profile = () => {
        <input className='image-avatar-profile' type='file'></input>
       {!isEdit?
       <Form onSubmit={editProfile} inputs={['Name','Last Name','Username','Email']} disabledForm={true} buttonText='Edit' height='410px' values={user}></Form>:
-      <Form onSubmit={submitProfile} inputs={['Name','Last Name','Username','Password','Confirm Password']} disabledForm={false} buttonText='Update' height='410px' values={userFetched.current}></Form>
+      (
+        <>
+        <Form onSubmit={submitProfile} inputs={['Name','Last Name','Username','Password','Confirm Password']} disabledForm={false} buttonText='Update' height='410px' values={userFetched.current}></Form>
+        <button onClick={deleteAccount} className='btn-submit delete-account'>Eliminar Cuenta</button>
+        </>
+      )
       }
       </div>
     </div>
