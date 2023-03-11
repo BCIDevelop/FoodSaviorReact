@@ -127,7 +127,7 @@ const FormProduct = ( {data, activity_action, identified} ) => {
             response = await setProductByIdAndUser(history,showToast,removeUser, formDataContent);
             updateProducto = `./../../../product`;
         }
-        // return navigateTo( updateProducto );
+        return navigateTo( updateProducto );
 
         // newform.id = Date.now();
         // instForm(newform);
