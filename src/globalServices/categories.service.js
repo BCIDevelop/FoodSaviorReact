@@ -17,7 +17,7 @@ export const getCategoryById=async(history,showToast,removeUser,id)=>{
 export const getCategories=async(history,showToast,removeUser,perPage = 5)=>{
   const response=await makeRequest(`categories?page=1&per_page=${perPage}`,'GET',{},true)
   const isResponseValid=await responseHandler(response,history,showToast,removeUser)
-  if (isResponseValid)  return response.results.results    
+  if (isResponseValid)  return response.results    
   else{
       const response=await makeRequest('categories','GET',{},true)
       return response.results.results

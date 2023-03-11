@@ -43,15 +43,6 @@ const FormProduct = ( {data, activity_action, identified} ) => {
     const handleChange = (e) =>{
         let fieldName = e.target.name;
         let fieldValue = e.target.value;
-        // if ( activity_action == "create" && fieldName == "image"){
-        //     const [files] = e.target.files;
-        //     fileContent.content = files;
-        //     setFileContent({
-        //         ...fileContent,
-        //         [ "filename" ] : fieldValue
-        //     });
-        // }
-
         if (e.target.name == "spoilDate"){
             setNewDate(  fieldValue )
         }
@@ -71,7 +62,7 @@ const FormProduct = ( {data, activity_action, identified} ) => {
     async function processGetCategories(){
         const response = await getCategories(history,showToast,removeUser);
         toogleLoader();
-        setCategoriesDB( response );
+        setCategoriesDB( response.results );
     }
     useEffect(()=>{
         processGetCategories();
@@ -168,7 +159,7 @@ const FormProduct = ( {data, activity_action, identified} ) => {
         }
     };
     const printBarcode = () =>{
-        print("hola mundo");
+        print();
     }
     return (
         <form className={style.form} onSubmit={handleSubmit}>
@@ -202,41 +193,35 @@ const FormProduct = ( {data, activity_action, identified} ) => {
                 <span>Description:</span>
                 <input name="description" type="text" onChange={handleChange} value={form.description} />
             </div>
-            <div className={style.prevImage}>
-                {
-                    form.image 
-                    ?   <img  src={ form.image } 
-                    alt={form.alt} /> 
-                    :<img  src={ notImage } 
-                    alt="cargando!"/> 
-                }
-                
-            </div>
+            
             <div className={style.contentField}>
                 <span>URL:</span>
+                <input 
+                    accept="image/jpg,image/gif,image/png,image/svg+xml"
+                    name="image" 
+                    type="file" 
+                    onChange={handleFile}
+                    value={ fileContent.filename } />
+                <div className={style.prevImage}>
+                    {
+                        form.image 
+                        ?   <img  src={ form.image } 
+                        alt={form.alt} /> 
+                        :<img  src={ notImage } 
+                        alt="cargando!"/> 
+                    }
+                    
+                </div>
+            </div>
+            <div className={style.contentField}>
+                <span>Codigo Barra:</span>
                 {
-                    activity_action === "update" &&
-                    <>
-                        <input name="image" type="text" onChange={handleChange} value={form.image} disabled/>
-                        {/* <input name="alt" type="text" onChange={handleChange} value={form.alt} /> */}
-                        <p><i>(*) Este contenido se mostrar solo si no tiene una imagen referenciada</i></p> 
-                    </>
+                    form.barcode && 
+                    <div className={style.contentFieldBarcode}>
+                        <Barcode style="width:100%!important" value={form.barcode} />
+                    </div>
                 }
-                        <input 
-                            accept="image/jpg,image/gif,image/png,image/svg+xml"
-                            name="image" 
-                            type="file" 
-                            onChange={handleFile}
-                            value={ fileContent.filename } />
-
-                {form.image}
-                {
-                    // activity_action !== "update" & fileContent.filename.length > 0 
-                    // ?  <>
-                    //     {fileContent.filename}
-                    // </>
-                    // : ""
-                }
+                <input name="barcode" type="text" onChange={handleChange} value={form.barcode} />
             </div>
             <div className={style.contentField}>
                 <span>Categoria:</span>
@@ -266,16 +251,6 @@ const FormProduct = ( {data, activity_action, identified} ) => {
                 </select>
             </div>
             <div className={style.contentField}>
-                <span>Codigo Barra:</span>
-                {
-                    form.barcode && 
-                    <div className={style.contentFieldBarcode}>
-                        <Barcode style="width:100%!important" value={form.barcode} />
-                    </div>
-                }
-                <input name="barcode" type="text" onChange={handleChange} value={form.barcode} />
-            </div>
-            <div className={style.contentField}>
                 <span>Stock:</span>
                 <input name="stock" type="number" value={qty} disabled/>
             </div>
@@ -290,7 +265,7 @@ const FormProduct = ( {data, activity_action, identified} ) => {
                         name="spoilDate" 
                         type="date" 
                         onChange={handleChange} 
-                        value={form.spoilDate}  /> {form.spoilDate}
+                        value={form.spoilDate}  />
                 </div>
             }
             <div className={style.contentField}>
