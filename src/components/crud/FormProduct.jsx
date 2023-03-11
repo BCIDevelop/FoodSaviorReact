@@ -6,57 +6,80 @@ import { AlertContext } from '../../context/AlertContext'
 import notImage from './../../img/productoSinImagen.png'
 import { UserContext } from '../../context/UserContext'
 import { getCategories } from '../../globalServices/categories.service'
-import { setProductByIdAndUser } from '../../globalServices/products.service'
+import { setProductByIdAndUser, setProductUpdateById } from '../../globalServices/products.service'
 import { LoaderContext } from '../../context/LoaderContext'
+import Barcode from 'react-barcode';
 
-const FormProduct = ( {data, activity_action} ) => {
+
+const FormProduct = ( {data, activity_action, identified} ) => {
     const [fileContent, setFileContent] = useState( {
         filename : "", 
         content : "",
     } );
     let formdata = new FormData();
-    const [newDate, setNewDate ] =  useState(  moment(data.spoilDate).format('YYYY-MM-DD') );
+    const [idProduct, setIdProduct] = useState( identified )
+    const [newDate, setNewDate ] =  useState(  moment( data.spoilDate ).format('YYYY-MM-DD')  );
     const _today_ = moment();
-    data.spoilDate = newDate.toLocaleString();
+    data.spoilDate = moment( data.spoilDate ).format('YYYY-MM-DD');
     const [ categoriesDB, setCategoriesDB] = useState([]);
     const {user,removeUser}=useContext(UserContext)
     const {showToast}= useContext(AlertContext)
     const [form, instForm] = useState( data ) ;
+    const [formUpdate, instFormUpdate] = useState( {} ) ;
     const navigateTo = useNavigate();
     const {toogleLoader} = useContext(LoaderContext)
+
+    const handleFile = (e) =>{
+        let fieldName = e.target.name;
+        let fieldValue = e.target.value;
+        const [files] = e.target.files;
+        fileContent.content = files;
+        setFileContent({
+            ...fileContent,
+            [ "filename" ] : fieldValue
+        });
+    }
 
     const handleChange = (e) =>{
         let fieldName = e.target.name;
         let fieldValue = e.target.value;
-        console.log(fieldValue);
-        if ( activity_action == "create" && fieldName == "image"){
-            const [files] = e.target.files;
-            fileContent.content = files;
-            setFileContent({
-                ...fileContent,
-                [ "filename" ] : fieldValue
-            });
-        }
+        // if ( activity_action == "create" && fieldName == "image"){
+        //     const [files] = e.target.files;
+        //     fileContent.content = files;
+        //     setFileContent({
+        //         ...fileContent,
+        //         [ "filename" ] : fieldValue
+        //     });
+        // }
 
         if (e.target.name == "spoilDate"){
-            setNewDate( moment(e.target.value).format('YYYY-MM-DD') )
+            setNewDate(  fieldValue )
         }
         if ( fieldName !== "image"){
             instForm({
                 ...form,
                 [ fieldName ] : fieldValue
             });
-        } 
+            if ( activity_action == "update" ){
+                instFormUpdate({
+                    ...formUpdate,
+                    [ fieldName ] : fieldValue
+                })
+            }
+        }
     }    
     async function processGetCategories(){
         const response = await getCategories(history,showToast,removeUser);
         toogleLoader();
         setCategoriesDB( response );
-        console.log(data);
     }
     useEffect(()=>{
         processGetCategories();
     },[])
+
+    // useEffect( () => {
+    //     instForm( data )
+    // },[data])
 
     let qty = 0;
     // const getQty = () => {
@@ -69,11 +92,12 @@ const FormProduct = ( {data, activity_action} ) => {
     // }
     // getQty();
     const favorite = () => {
-        const favoriteDB =  JSON.parse(localStorage.getItem('favorites'));
-        const tmp = favoriteDB.find( function (d) { return d.productId === parseInt(form.id || 0); });
-        if ( tmp ){
-            form.favorite = 1;
-        }
+        const favoriteDB =  [];
+        // const favoriteDB =  JSON.parse(localStorage.getItem('favorites'));
+        // const tmp = favoriteDB.find( function (d) { return d.productId === parseInt(form.id || 0); });
+        // if ( tmp ){
+        //     form.favorite = 1;
+        // }
     }
     favorite();
     const changeFavorite = (e) => {
@@ -88,22 +112,33 @@ const FormProduct = ( {data, activity_action} ) => {
         handleChange( e );
     }
 
-    async function createForm (  ) {
-        const arrayForm = Object.keys(form);
+    async function createForm ( data  ) {
+        const arrayForm = Object.keys(data);
         var formDataContent = new FormData();
         for (let index = 0; index < arrayForm.length; index++) {
             let fieldName = arrayForm[index];
             let fieldValue = form[fieldName];
-            if( fieldName === "image"){
-                formDataContent.append(fieldName, fileContent.content, fileContent.filename );
+            if( fieldName == "image"){
+
             }else{
-                formDataContent.append(fieldName, fieldValue );
-                console.log(`${fieldName}, ${fieldValue}`);
+                formDataContent.append(fieldName, fieldName == "category_id" ? parseInt(fieldValue) : fieldValue );
             }
         }
-        console.log( formDataContent.get("name") );
-        const response = await setProductByIdAndUser(history,showToast,removeUser, formDataContent);
-        console.log(response);
+        if( fileContent.filename.length > 0 ){
+            formDataContent.append("image", fileContent.content );
+        }
+        let updateProducto = `./`;
+        let response = null;
+
+        if (activity_action === "update") {
+            response = await setProductUpdateById(history,showToast,removeUser, identified, formDataContent);
+        }else{
+            response = await setProductByIdAndUser(history,showToast,removeUser, formDataContent);
+            updateProducto = `./../../../product`;
+        }
+        // return navigateTo( updateProducto );
+
+        // console.log( response );
         // newform.id = Date.now();
         // instForm(newform);
         // const dbData = JSON.parse(localStorage.getItem('products'));
@@ -111,55 +146,61 @@ const FormProduct = ( {data, activity_action} ) => {
         // localStorage.setItem( 'products', JSON.stringify(dbData) );
 
         // const updateProducto = `./../update/${newform.id}`;
-        // return navigateTo( updateProducto );
-    };
-    const updateForm = ( upForm ) =>{
-        const dbData = JSON.parse(localStorage.getItem('products')).map( el => el.id === upForm.id ? upForm : el);
-        localStorage.setItem( 'products', JSON.stringify(dbData) );
     };
     const handleSubmit = (e) =>{
         e.preventDefault();
         
-        console.log(fileContent);
-        if ( !fileContent.filename ){
-            showToast( 'Es necesario cargar una imagen', 'Warning');
-            return ;
-        }
         // return ;
         if ( !form.name ){
             showToast( 'No se puede dejar en blanco', 'Warning');
             return ;
-        }else{
-            updateForm(form);
-            showToast("Actualizar");
         }
         if (activity_action === "create") {
-            return createForm();
+            if ( !fileContent.filename ){
+                showToast( 'Es necesario cargar una imagen', 'Warning');
+                return ;
+            }
+            return createForm( form );
+        }
+        if (activity_action === "update") {
+            console.log( formUpdate );
+            return createForm( formUpdate );
         }
     };
+    const printBarcode = () =>{
+        print("hola mundo");
+    }
     return (
         <form className={style.form} onSubmit={handleSubmit}>
             <div className={style.contentLink}>
                 <Link to="../product" className={style.returnA}>
                     <i className="fa-solid fa-arrow-left"></i> Regresar / 
-                    <i><span>{form.name}</span></i>
+                    <i><span>{form.name} ({idProduct})</span></i>
                 </Link>
                 { 
                     activity_action === "update" ?
-                    <span 
-                        className={style.favorite}
-                        onClick={changeFavorite} 
-                        data-favorite={form.favorite} >
-                        <i className="fa-regular fa-star"
-                        name="favorite" 
-                        value={form.favorite}></i>
-                    </span>:
+                    <span>
+                        <span 
+                            className={style.favorite}
+                            onClick={changeFavorite} 
+                            data-favorite={form.favorite} >
+                            <i className="fa-regular fa-star"
+                            name="favorite" 
+                            value={form.favorite}></i>
+                        </span>
+                        <span onClick={printBarcode}> <i className="fa fa-print" ></i> </span>
+                    </span>
+                    :
                     <span></span>
                 }
             </div>
             <div className={style.contentField}>
                 <span>Nombre:</span>
                 <input name="name" type="text" onChange={handleChange} value={form.name} />
+            </div>
+            <div className={style.contentField}>
+                <span>Description:</span>
+                <input name="description" type="text" onChange={handleChange} value={form.description} />
             </div>
             <div className={style.prevImage}>
                 {
@@ -172,7 +213,7 @@ const FormProduct = ( {data, activity_action} ) => {
                 
             </div>
             <div className={style.contentField}>
-                <span>Image:</span>
+                <span>URL:</span>
                 {
                     activity_action === "update" &&
                     <>
@@ -181,29 +222,25 @@ const FormProduct = ( {data, activity_action} ) => {
                         <p><i>(*) Este contenido se mostrar solo si no tiene una imagen referenciada</i></p> 
                     </>
                 }
-                {
-                    activity_action !== "update" & !fileContent.filename 
-                    ?  <>
                         <input 
                             accept="image/jpg,image/gif,image/png,image/svg+xml"
                             name="image" 
                             type="file" 
-                            onChange={handleChange} 
-                            value={form.image} />
-                    </>
-                    : ""
-                }
+                            onChange={handleFile}
+                            value={ fileContent.filename } />
+
+                {form.image}
                 {
-                    activity_action !== "update" & fileContent.filename.length > 0 
-                    ?  <>
-                        {fileContent.filename}
-                    </>
-                    : ""
+                    // activity_action !== "update" & fileContent.filename.length > 0 
+                    // ?  <>
+                    //     {fileContent.filename}
+                    // </>
+                    // : ""
                 }
             </div>
             <div className={style.contentField}>
                 <span>Categoria:</span>
-                <select name="category_id" onChange={handleChange}>
+                <select name="category_id" onChange={handleChange} >
                     <option key="0">SELECCIONAR</option>
                     {
                         <>
@@ -213,7 +250,7 @@ const FormProduct = ( {data, activity_action} ) => {
                                     <option 
                                         value={el.id} 
                                         key={el.id.toString()}  
-                                        selected={el.name == form.category.name ? "selected" : ""}
+                                        selected={el.name == form.category.name && "selected" }
                                         >{el.name}</option>
                                     )
                                 :
@@ -230,11 +267,13 @@ const FormProduct = ( {data, activity_action} ) => {
             </div>
             <div className={style.contentField}>
                 <span>Codigo Barra:</span>
+                {
+                    form.barcode && 
+                    <div className={style.contentFieldBarcode}>
+                        <Barcode style="width:100%!important" value={form.barcode} />
+                    </div>
+                }
                 <input name="barcode" type="text" onChange={handleChange} value={form.barcode} />
-            </div>
-            <div className={style.contentField}>
-                <span>Description:</span>
-                <input name="description" type="text" onChange={handleChange} value={form.description} />
             </div>
             <div className={style.contentField}>
                 <span>Stock:</span>
@@ -251,13 +290,12 @@ const FormProduct = ( {data, activity_action} ) => {
                         name="spoilDate" 
                         type="date" 
                         onChange={handleChange} 
-                        value={form.spoilDate} 
-                        min={form.spoilDate} />
+                        value={form.spoilDate}  /> {form.spoilDate}
                 </div>
             }
             <div className={style.contentField}>
                 {
-                    activity_action === "update" ?
+                    activity_action == "update" ?
                     <button type="submit" >Actualizar</button>
                     : 
                     <button type="submit" >Crear</button>
