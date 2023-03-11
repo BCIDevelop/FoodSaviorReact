@@ -103,10 +103,10 @@
 }
 .contentPage li{
     background: rgb(232, 232, 232);
-    border-radius: solid 2px ;
+    border-radius: 30px ;
     cursor: pointer;
     text-align: center;
-    width: 40px;
+    width: 30px;
     transition: ease-out all 0.6s;
 }
 .contentPage li:hover,
