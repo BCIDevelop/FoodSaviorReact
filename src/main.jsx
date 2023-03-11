@@ -8,7 +8,7 @@ import {UserProviderLogin} from './context/UserContext'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  
       <UserProviderLogin>
       
       <AlertContextApp>
@@ -18,5 +18,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       
       </UserProviderLogin>
      
-  </React.StrictMode>
+
 )
