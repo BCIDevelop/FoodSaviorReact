@@ -1,4 +1,4 @@
-const makeRequest = async (context,method,data,hasCredentials,bodyFormat="row")=>{
+const makeRequest = async (signal,context,method,data,hasCredentials,bodyFormat="row")=>{
     try{
         const url='http://127.0.0.1:5000'
         const myHeaders = new Headers();
@@ -26,7 +26,8 @@ const makeRequest = async (context,method,data,hasCredentials,bodyFormat="row")=
             mode: "cors", 
             body:body,
             credentials:credentials,
-            headers:myHeaders
+            headers:myHeaders,
+            signal
         }
         const response=await fetch(`${url}/${context}`, requestOptions)
         const result=response.status!==204 ? await response.json() : {}
@@ -34,7 +35,7 @@ const makeRequest = async (context,method,data,hasCredentials,bodyFormat="row")=
         return {results:result,status:status}
     }
     catch(error){
-        console.log(error);
+        throw error
     }
 }
 export default makeRequest  
