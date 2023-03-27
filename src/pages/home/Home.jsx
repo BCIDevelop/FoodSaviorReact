@@ -1,44 +1,30 @@
-import React,{useState,useEffect,useRef,useContext} from 'react'
+import React,{useEffect} from 'react'
 import './home.css'
 import Alerta from '../../components/alertas/Alerta'
 import CategoryCards from '../../components/cards/categoryCard/CategoryCards'
 import {CategoryModel} from '../../model/CategoryModel'
-import { sortByDate } from '../../utils/handlerDate'
 import { Link } from 'react-router-dom'
-import { handlerByUser } from '../../utils/handlerAssets'
-import {UserContext} from '../../context/UserContext'
-import { getProductsService,deleteProductService } from '../../globalServices/products.service'
-import { useNavigate } from 'react-router-dom'
-import { AlertContext } from "../../context/AlertContext"
+import  useFetch from '../../hooks/useFetch'
 const Home = () => {
-  const history=useNavigate()
-  const products=useRef([])
-  const {user,removeUser}=useContext(UserContext)
-  const {showToast}=useContext(AlertContext)
-  const [alerta,setAlerta]=useState([])
+  const perPage=10
+  const orderBySpoilDate=1
+  const context=`products/user?page=1&per_page=${perPage}&ordering_by_spoilDate=${orderBySpoilDate}`
+  const [{data},makeFetch,setAlerta]=useFetch({url:context,method:'GET',body:{},hasCredentials:true,makeRender:true})
   async function dismissedAlert(alertElement){
-    await deleteProductService(history,showToast,removeUser,alertElement)
+    //await deleteProductService(history,showToast,removeUser,alertElement)
+    makeFetch({url:`products/${alertElement}`,method:'DELETE',body:{},hasCredentials:true,makeRender:false})
     setAlerta(prev=> prev.filter(element=> element.id!== alertElement))
   }
-  async function getAllProducts(){
-    const productsDB=await getProductsService(history,showToast,removeUser,2,1)
-    products.current =productsDB
-    const productos=products.current.slice(0,2)
-    setAlerta(productos)  
-    products.current.splice(0,1)
-  }
+
   useEffect(()=>{
-    getAllProducts()
-   
-  },[])
-  useEffect(()=>{
-    if (alerta.length < 2 && alerta.length!==0) {
-      products.current.shift()
-      if(products.current.length!==0){
-      setAlerta(prev=> [...prev, products.current[0]])
+    if (data.length < 2 && data.length!==0) {
+      const products=[...data]
+      products.shift()
+      if(products.length!==0){
+      setAlerta(prev=> [...prev, products[0]])
      }
     }
-  },[alerta])
+  },[data])
   return (
     <section className="container__productos">
     <div className="contenedor-sup-alertas">
@@ -50,7 +36,7 @@ const Home = () => {
       
         <div > <Link className="ver-todo icon_inside_alert" to='/alertas'> VER TODOS</Link> </div>
       </div>
-        {alerta.length>0 ? (alerta.map((element,index)=>(
+        {data.slice(0,2).length>0 ? (data.slice(0,2).map((element,index)=>(
             <Alerta key={`alert${index}`} index={index} producto={element} dismissedAlert={dismissedAlert}></Alerta>
         ))) : <h2>No se registran mas productos</h2>}
     </div>

@@ -22,6 +22,8 @@ const ConnectedForm = ({location}) => {
     const {storeUser}=useContext(UserContext)
     const {toogleLoader}=useContext(LoaderContext)
     async function handleSubmitLogin(e){
+        const controller=new AbortController()
+        const signal=controller.signal
         let invalid=false
         e.preventDefault()
         for(i=0;i<e.nativeEvent.srcElement.children.length-1;i++){  
@@ -37,8 +39,8 @@ const ConnectedForm = ({location}) => {
                 const key=labels[index].textContent.toLowerCase()
                 userData[key]=element.value
             })
-            const response=await makeRequest('auth/signin','POST',userData,false)
-            const validated=await responseHandler(response,history,showToast)
+            const response=await makeRequest(signal,'auth/signin','POST',userData,false)
+            const validated=await responseHandler(signal,response,history,showToast)
             if (validated){
                 const user={
                     access_token:response.results.access_token,
@@ -52,6 +54,8 @@ const ConnectedForm = ({location}) => {
         } 
     }
    async function handleSubmitRegister(e){
+    const controller=new AbortController()
+    const signal=controller.signal
     let invalid=false
     e.preventDefault()
     for(i=0;i<e.nativeEvent.srcElement.children.length-1;i++){  
@@ -75,9 +79,9 @@ const ConnectedForm = ({location}) => {
                 if (key==='last name') key="last_name"
                 userData[key]=element.value
             })  
-            const response=await makeRequest('auth/signup','POST',userData,false)
+            const response=await makeRequest(signal,'auth/signup','POST',userData,false)
             toogleLoader()
-            const validated=responseHandler(response,history,showToast)
+            const validated=responseHandler(signal,response,history,showToast)
             if (validated){
                 showToast('Successful Register','Success')
                 history('/login')

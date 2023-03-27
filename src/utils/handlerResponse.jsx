@@ -1,11 +1,11 @@
 
-const responseHandler=async (response,history=null,showToast=null,removeUser=null)=>{
+const responseHandler=async (signal,response,history=null,showToast=null,removeUser=null)=>{
     const url='http://127.0.0.1:5000'
-    if (response?.status===500){
+    if (response.status===500){
         //Enviar a la pagina de error
         history('/error')
     }
-    if (response?.status <= 404 && response?.status >=400){
+    if (response.status <= 404 && response.status >=400){
         if(response.status===401){
             if(localStorage.getItem('user')){
                 const user=JSON.parse(localStorage.getItem("user"))
@@ -21,6 +21,7 @@ const responseHandler=async (response,history=null,showToast=null,removeUser=nul
                 compose.mode = "cors";
                 compose.credentials = "include";
                 compose.headers = myHeaders;
+                compose.signal=signal
 
                 const response= await fetch(`${url}/auth/token/refresh`,compose)
                 const data=await response.json()
@@ -41,7 +42,7 @@ const responseHandler=async (response,history=null,showToast=null,removeUser=nul
        
         return false
     }
-    if(response?.status <= 204 && response?.status >=200){
+    if(response.status <= 204 && response.status >=200){
         return true
     }
 }

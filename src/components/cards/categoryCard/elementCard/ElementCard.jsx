@@ -1,32 +1,22 @@
-import React,{useEffect,useRef,useContext, useState} from 'react'
+import React,{useEffect} from 'react'
 import './elementCard.css'
-import { AlertContext } from '../../../../context/AlertContext'
-import { useNavigate } from 'react-router-dom'
 import defaultImage from '../../../../assets/defaultImage.png'
 import { remainingDate } from '../../../../utils/handlerDate'
-import { UserContext } from '../../../../context/UserContext'
 import { getCategoryId } from '../../../../utils/handlerAssets'
-import { getProductsByCategoryService } from '../../../../globalServices/products.service'
+import useFetch from '../../../../hooks/useFetch'
 const ElementCard = ({index,categoryName}) => {
-    const {user,removeUser} = useContext(UserContext)
-    const history=useNavigate()
-    const {showToast}=useContext(AlertContext)
-    const [elementProduct,setElementProduct]=useState([])
-    
-   async function getProductByCategory(categoryId){
-      const results=await getProductsByCategoryService(history,showToast,removeUser,categoryId,3)
-      setElementProduct(results)
-   }
+  const perPage=3
+  const context=`products/user?page=1&per_page=${perPage}&category_id=${getCategoryId(categoryName)}`
+  const [{data},makeFetch,setElement]=useFetch({url:context,method:'GET',body:{},hasCredentials:true,makeRender:true})
+
   useEffect(()=>{
-    document.querySelector(`.element${index}`).classList.add('element-mounted')
-    getProductByCategory(getCategoryId(categoryName))
-    
+    document.querySelector(`.element${index}`).classList.add('element-mounted') 
   },[])
 
   return (
     <ul className={`element-category-container element${index}`}>
   
-    {elementProduct.length>0 ? elementProduct.map((element , index)=>(
+    {data.length>0 ? data.map((element , index)=>(
        
         <li key={`element${index}`} className="products-detalle">
         <img className="img-product-alerta" src={element.image} alt=""/>

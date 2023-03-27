@@ -13,23 +13,25 @@ const useFetch = (initialConfig) => {
   const {showToast}  = useContext(AlertContext)
   const {removeUser}  = useContext(UserContext)
   async function requestApi() {
-    try{
-    const {url,method,body,hasCredentials,makeRender}=config
-    controllerRef.current=new AbortController()
-    const signal=controllerRef.current.signal
-    const response=await makeRequest(signal,url,method,body,hasCredentials)
-    const valid=await responseHandler(response,history,showToast,removeUser,)
-    if (valid) {
-       if(makeRender) setData(response.results?.results)
-    }  
-    else{
-        const response=await makeRequest(signal,url,method,body,hasCredentials)
-         if(makeRender) setData(response.results?.results)
-      }
-    }
-    catch(error){
-      console.log(error)
-    }
+   try{
+   const {url,method,body,hasCredentials,makeRender}=config
+   controllerRef.current=new AbortController()
+   const signal=controllerRef.current.signal
+   const response=body instanceof FormData ? await makeRequest(signal,url,method,body,hasCredentials,"form-data") : await makeRequest(signal,url,method,body,hasCredentials)
+   const valid=await responseHandler(signal,response,history,showToast,removeUser,)
+   if (valid) {
+      const result=response.results?.results ? response.results.results : response.results.result
+      if(makeRender) setData(result)
+   }  
+   else{
+      const response=body instanceof FormData ? await makeRequest(signal,url,method,body,hasCredentials,"form-data") : await makeRequest(signal,url,method,body,hasCredentials)
+      const result=response.results?.results ? response.results.results : response.results.result
+      if(makeRender) setData(result)
+   } 
+   }
+   catch(error){
+   console.log(error)
+   }
     
  } 
  useEffect(()=>{
