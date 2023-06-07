@@ -1,44 +1,25 @@
-import React,{useState,useEffect,useContext} from 'react'
+import React,{useContext} from 'react'
 import styles from './favorites.module.css'
 import Filter from '../../components/filter/Filter'
 import FavoriteCard from '../../components/cards/favoriteCard/FavoriteCard'
-import { getCategoryId} from '../../utils/handlerAssets'
 import { useRef } from 'react'
 import { AlertContext } from '../../context/AlertContext'
-import {UserContext} from "../../context/UserContext"
-import { getFavoritesService ,deleteFavoritesService} from '../../globalServices/favorites.service'
-import { useNavigate } from 'react-router-dom'
 import { LoaderContext } from '../../context/LoaderContext'
+import useFetch from '../../hooks/useFetch'
 const Favorites = () => {
-    const favoritos=useRef([])
-    const history=useNavigate()
     const {toogleLoader} = useContext(LoaderContext)
+    const [{data},makeFetch,setFavorites]=useFetch({url:'favorites',method:'GET',body:{},hasCredentials:true,makeRender:true})
     const {showToast}=useContext(AlertContext)
-    const {removeUser}=useContext(UserContext)
-    const [favorites,setFavorites]=useState([])
-    
-    
-    async function getFavorites(){
-       
-        const response=await getFavoritesService(history,showToast,removeUser)
-        toogleLoader()
-        favoritos.current=response
-        setFavorites(response)
-    }
-    
-    useEffect(()=>{
-      toogleLoader()
-      getFavorites() 
-    },[])
+    const favoritos=useRef([])
   function chipSelected(chipName,state,mode){
     if(state===true) {
-   
-
       if(mode==='reset'){ 
-          setFavorites(prev=> favoritos.current.filter(element=>element.product.category.name===chipName))
+          setFavorites( favoritos.current.filter(element=>element.product.category.name===chipName))
       }
-     
-      else  setFavorites(prev=> prev.filter(element=>element.product.category.name===chipName))
+      else  {
+        setFavorites(prev=> prev.filter(element=>element.product.category.name===chipName))
+        favoritos.current=data
+      }
     }
     else setFavorites(favoritos.current)
 
@@ -48,14 +29,14 @@ const Favorites = () => {
       e.preventDefault()
       const chekedElements=[]
       for(i=0;i<e.nativeEvent.target.length-1;i++){  
-        if(e.nativeEvent.target[i].checked)  chekedElements.push(favorites[i])
+        if(e.nativeEvent.target[i].checked)  chekedElements.push(data[i])
      }
      if(chekedElements.length>0){
       const products=[]
       chekedElements.forEach(element => {
           products.push(element.product.id)
       });
-      await deleteFavoritesService(products,history,showToast,removeUser)
+      makeFetch({url:'favorites/bulk',method:'DELETE',body:{products:products},hasCredentials:true,makeRender:false})
       favoritos.current=favoritos.current.filter(element=>  !chekedElements.some(item=>item.id===element.id))
       setFavorites(prev=>prev.filter(element=> !chekedElements.some(item=> item.id === element.id)))
 
@@ -71,7 +52,7 @@ const Favorites = () => {
 
      <div className={styles.favoriteContainer}>
       
-     {favorites.length>0 ? favorites.map((element,index)=>(
+     {data.length>0 ? data.map((element,index)=>(
        <FavoriteCard key={`favorites${index}`} favorite={element}></FavoriteCard>
        )): 
        <div>

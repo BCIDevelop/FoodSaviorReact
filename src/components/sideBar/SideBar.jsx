@@ -1,19 +1,13 @@
-import React,{ useEffect,useContext, useState } from 'react'
+import React,{ useContext ,useLayoutEffect} from 'react'
 import './sidebar.css'
-import perfilImg from '../../assets/perfil.jpg'
-import { useLayoutEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import { indexPagesPrivate,indexPagesPublic } from '../../pages/Index'
-import { AlertContext } from '../../context/AlertContext'
-import { useNavigate } from 'react-router-dom'
-import { getUserService } from '../../globalServices/user.service'
+import useFetch from '../../hooks/useFetch'
 
 const SideBar = ({setSideBar}) => {
-    const [activeUser,setActiveUser]=useState({})
     const {user,removeUser}=useContext(UserContext)
-    const {showToast}=useContext(AlertContext)
-    const history=useNavigate()
+    const [{data},makeFetch,setUser]=useFetch({url:'profile/me',method:'GET',body:{},hasCredentials:true,makeRender:true}) 
     const navbarElements=user ? indexPagesPrivate : indexPagesPublic
     const activeStyle = {
       textDecoration: "underline",
@@ -29,10 +23,7 @@ const SideBar = ({setSideBar}) => {
       setSideBar(false)
       removeUser()
     }
-    async function getProfile(){
-       const response= await getUserService(history,showToast,removeUser)
-       setActiveUser(response)
-    }
+  
     useLayoutEffect(()=>{
       const timerId=setTimeout(()=>{
         document.getElementById('container__category').classList.add('navbar-on')
@@ -42,10 +33,7 @@ const SideBar = ({setSideBar}) => {
         
       }
     },[])
-    useEffect(()=>{
-        getProfile()
-    },[])
-
+   
 
 
 
@@ -58,11 +46,11 @@ const SideBar = ({setSideBar}) => {
       { user &&
         ( <div className="datos__personales">
          <div>
-          <img className="img-perfil" src={activeUser?.avatar} alt="" />
+          <img key={data?.avatar} className="img-perfil" src={data?.avatar} alt="" />
           </div>
           <div>
-          <h1>Hola {activeUser?.username}</h1>
-          <p>{activeUser?.email}</p>
+          <h1>Hola {data?.username}</h1>
+          <p>{data?.email}</p>
         </div>
         </div>)
       }

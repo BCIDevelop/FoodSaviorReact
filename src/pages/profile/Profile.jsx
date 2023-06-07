@@ -1,33 +1,26 @@
-import React, { useEffect, useState,useRef } from 'react'
+import React, {useState} from 'react'
 import './profile.css'
 import Form  from '../../components/form/Form'
-import { getUserProfileService,updateProfileService,deleteUserService } from '../../globalServices/profile.service'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { AlertContext } from '../../context/AlertContext'
 import { UserContext } from '../../context/UserContext'
 import { invalidEffect } from '../../utils/sessionInit'
-
+import { deleteUserService } from '../../globalServices/profile.service'
+import useFetch from '../../hooks/useFetch'
 
 const Profile = () => {
   const history=useNavigate()
   const {showToast}=useContext(AlertContext)
   const {removeUser}=useContext(UserContext)
-  const userFetched=useRef({})
-
+  const [{data},makeFetch,setUser]=useFetch({url:'profile/me',method:'GET',body:{},hasCredentials:true,makeRender:true}) 
   const [isEdit,setIsEdit] = useState(false)
-  const [user,setUser] = useState({})
 
   function editProfile(e){
     e.preventDefault()
     setIsEdit(true)
   }
-  
-  async function getUserProfile(){
-    const response = await getUserProfileService(history,showToast,removeUser)
-    userFetched.current=response
-    setUser(response)
-  }
+
   function validityPassword(){
     const testPasswordLength=new RegExp( "^(?=.{8,})")
     const testPasswordUpperCase = new RegExp("^(?=.*[A-Z])")
@@ -36,14 +29,6 @@ const Profile = () => {
     if (!testPasswordUpperCase.test(password)) return {isValid:false,message:'Password have at least one Uppercase'}
     return {isValid:true,message:''}
 }
-
-  useEffect(()=>{
-    getUserProfile()
-    
-  }
-
-  ,[])
-
   async function submitProfile(e){
     const password=document.getElementById('password-input').value
     const confirmPassword=document.getElementById('confirm password').value
@@ -74,7 +59,7 @@ const Profile = () => {
         if (element.value!='') formData.append(key,element.value)
       })  
       formData.append('avatar',avatar.files[0])
-      await updateProfileService(history,showToast,removeUser,formData)
+      makeFetch({url:'profile/me',method:'PATCH',body:formData,hasCredentials:true,makeRender:false})
       showToast('Se actualizo correctamente','Success')
       history('/home')
   
@@ -102,16 +87,16 @@ const Profile = () => {
     <div className='form-profile'>
       <h3>View Profile</h3>
       <figure className='image-container-profile'>
-        <img className='profile-avatar' src={user.avatar} alt="" />
+        <img key={data.avatar} className='profile-avatar' src={data.avatar} alt="" />
         <i onClick={()=>openFile()} className="fa-solid fa-pencil"></i>
       </figure>
-      <div>
+      <div> 
        <input className='image-avatar-profile' type='file'></input>
       {!isEdit?
-      <Form onSubmit={editProfile} inputs={['Name','Last Name','Username','Email']} disabledForm={true} buttonText='Edit' height='410px' values={user}></Form>:
+      <Form onSubmit={editProfile} inputs={['Name','Last Name','Username','Email']} disabledForm={true} buttonText='Edit' height='410px' values={data}></Form>:
       (
         <>
-        <Form onSubmit={submitProfile} inputs={['Name','Last Name','Username','Password','Confirm Password']} disabledForm={false} buttonText='Update' height='410px' values={userFetched.current}></Form>
+        <Form onSubmit={submitProfile} inputs={['Name','Last Name','Username','Password','Confirm Password']} disabledForm={false} buttonText='Update' height='410px' values={data}></Form>
         <button onClick={deleteAccount} className='btn-submit delete-account'>Eliminar Cuenta</button>
         </>
       )

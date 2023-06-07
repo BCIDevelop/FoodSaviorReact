@@ -1,6 +1,6 @@
 
-const responseHandler=async (response,history=null,showToast=null,removeUser=null)=>{
-    const url='https://foodsavior.onrender.com'
+const responseHandler=async (signal,response,history=null,showToast=null,removeUser=null)=>{
+    const url='http://127.0.0.1:5000'
     if (response.status===500){
         //Enviar a la pagina de error
         history('/error')
@@ -21,6 +21,7 @@ const responseHandler=async (response,history=null,showToast=null,removeUser=nul
                 compose.mode = "cors";
                 compose.credentials = "include";
                 compose.headers = myHeaders;
+                compose.signal=signal
 
                 const response= await fetch(`${url}/auth/token/refresh`,compose)
                 const data=await response.json()

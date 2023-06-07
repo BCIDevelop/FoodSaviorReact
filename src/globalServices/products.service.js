@@ -61,11 +61,13 @@ export const getAllProductsService=async(history,showToast,removeUser,perPage = 
 }
 
 export const getProductsService=async(history,showToast,removeUser,perPage,orderBySpoilDate)=>{
-    const response=await makeRequest(`products/user?page=1&per_page=${perPage}&ordering_by_spoilDate=${orderBySpoilDate}`,'GET',{},true)
-    const isResponseValid=await responseHandler(response,history,showToast,removeUser)
+   const controller=new AbortController()
+   const signal=controller.signal
+    const response=await makeRequest(signal,`products/user?page=1&per_page=${perPage}&ordering_by_spoilDate=${orderBySpoilDate}`,'GET',{},true)
+    const isResponseValid=await responseHandler(signal,response,history,showToast,removeUser)
     if (isResponseValid)  return response.results.results    
     else{
-        const response=await makeRequest('products/user','GET',{},true)
+        const response=await makeRequest(signal,'products/user','GET',{},true)
         return response.results.results
       }
 }
