@@ -23,7 +23,7 @@ const ListProduct = (  ) => {
     async function getProducts(){
       let paramGET = {}
       paramGET.page = positionPage
-      const response=await getAllProductByUser(history,showToast,removeUser, paramGET)
+      const response=await getAllProductByUser(new AbortController().signal,history,showToast,removeUser, paramGET)
       setProducts(response.results )
       setTotalPage( response.pagination.totalPages )
       let tmp = []

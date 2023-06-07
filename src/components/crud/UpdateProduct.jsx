@@ -27,7 +27,7 @@ const UpdateProduct = ( {id} ) => {
     const [loading, setLoading] = useState(false)
     const [activityAction, setActivityAction] = useState( "create" )
     async function consultaProducto() {
-            const content= await getProductById(history,showToast,removeUser, identified)
+            const content= await getProductById(new AbortController().signal,history,showToast,removeUser, identified)
             instForm(content)
             setLoading( true)
             setActivityAction("update")

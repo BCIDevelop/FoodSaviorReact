@@ -13,7 +13,7 @@ const FormCategory = ( {identify, activity_action} ) => {
     const navigateTo = useNavigate();
 
     async function getCategory(){
-        const response = await getCategoryById(history,showToast,removeUser, idCategory);
+        const response = await getCategoryById(new AbortController().signal,history,showToast,removeUser, idCategory);
         instForm( response );
     }
 
@@ -38,7 +38,7 @@ const FormCategory = ( {identify, activity_action} ) => {
         handleChange( e );
     }
     async function setCategory( formDataContent ){
-        const response = await setCategoriesCreate(history,showToast,removeUser, formDataContent);
+        const response = await setCategoriesCreate(new AbortController().signal,history,showToast,removeUser, formDataContent);
         instForm( response );
     }
 
@@ -68,7 +68,7 @@ const FormCategory = ( {identify, activity_action} ) => {
         // localStorage.setItem( 'categories', JSON.stringify(dbData) );
 
         async function update(){
-            const response = await setCategoriesUpdate(history,showToast,removeUser, idCategory, upForm);
+            const response = await setCategoriesUpdate(new AbortController().signal,history,showToast,removeUser, idCategory, upForm);
             console.log(response);
         }
         update()

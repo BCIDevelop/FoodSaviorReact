@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import ListInventory from './ListInventory'
 import UpdateInventory from './UpdateInventory'

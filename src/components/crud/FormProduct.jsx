@@ -60,7 +60,7 @@ const FormProduct = ( {data, activity_action, identified} ) => {
         }
     }    
     async function processGetCategories(){
-        const response = await getCategories(history,showToast,removeUser);
+        const response = await getCategories(new AbortController().signal,history,showToast,removeUser);
         // toogleLoader();
         setCategoriesDB( response.results );
     }
@@ -122,20 +122,13 @@ const FormProduct = ( {data, activity_action, identified} ) => {
         let response = null;
 
         if (activity_action === "update") {
-            response = await setProductUpdateById(history,showToast,removeUser, identified, formDataContent);
+            response = await setProductUpdateById(new AbortController().signal,history,showToast,removeUser, identified, formDataContent);
         }else{
-            response = await setProductByIdAndUser(history,showToast,removeUser, formDataContent);
+            response = await setProductByIdAndUser(new AbortController().signal,history,showToast,removeUser, formDataContent);
             updateProducto = `./../../../product`;
         }
         return navigateTo( updateProducto );
 
-        // newform.id = Date.now();
-        // instForm(newform);
-        // const dbData = JSON.parse(localStorage.getItem('products'));
-        // dbData.push( newform );
-        // localStorage.setItem( 'products', JSON.stringify(dbData) );
-
-        // const updateProducto = `./../update/${newform.id}`;
     };
     const handleSubmit = (e) =>{
         e.preventDefault();

@@ -17,7 +17,7 @@ const ListCategory = (  ) => {
   const [totalPage,setTotalPage]=useState(1)
   
   async function processGetCategories(){
-    const response = await getCategories(history,showToast,removeUser)
+    const response = await getCategories(new AbortController().signal,history,showToast,removeUser)
     setData( response.results )
     setTotalPage( response.pagination.totalPages )
       let tmp = []

@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react'
 import {useNavigate, Link} from "react-router-dom"
 import style from './product.module.css'
 import { AlertContext } from '../../context/AlertContext'
-// import notImage from './../../img/productoSinImagen.png'
-// import { UserContext } from '../../context/UserContext'
+
 
 const FormInventory = ( {data, activity_action} ) => {
     const lskardex = "kardex";
