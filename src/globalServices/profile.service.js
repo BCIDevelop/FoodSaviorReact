@@ -14,7 +14,7 @@ export const deleteUserService=async(signal,history,showToast,removeUser)=>{
   }
   export const updateProfileService= async(signal,history,showToast,removeUser,data)=>{
     const response=await makeRequest(signal,'profile/me','PATCH',data,true,"form-data")
-
+    console.log(response)
     const valida= await responseHandler(signal,response,history,showToast,removeUser)
 
     if(valida) {

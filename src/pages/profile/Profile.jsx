@@ -63,11 +63,12 @@ const Profile = () => {
         if (element.value!='') formData.append(key,element.value)
       })  
       formData.append('avatar',avatar.files[0])
+      console.log(formData)
       controllerRef.current=new AbortController()
       const signal=controllerRef.current.signal
       await updateProfileService(signal,history,showToast,removeUser,formData)
       showToast('Se actualizo correctamente','Success')
-      history('/home')
+      /* history('/home') */
   
     
     
