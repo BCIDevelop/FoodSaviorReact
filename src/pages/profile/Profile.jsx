@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState,useRef} from 'react'
 import './profile.css'
 import Form  from '../../components/form/Form'
 import { useNavigate } from 'react-router-dom'
@@ -68,7 +68,7 @@ const Profile = () => {
       const signal=controllerRef.current.signal
       await updateProfileService(signal,history,showToast,removeUser,formData)
       showToast('Se actualizo correctamente','Success')
-      /* history('/home') */
+      history('/home')
   
     
     
