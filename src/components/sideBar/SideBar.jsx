@@ -12,6 +12,7 @@ const SideBar = ({setSideBar}) => {
     const activeStyle = {
       textDecoration: "underline",
     };
+    const rand= Math.random()
     function closeSideBar(){
       document.getElementById('container__category').classList.remove('navbar-on');
       setTimeout(()=>{
@@ -46,7 +47,7 @@ const SideBar = ({setSideBar}) => {
       { user &&
         ( <div className="datos__personales">
          <div>
-          <img key={data?.avatar} className="img-perfil" src={data?.avatar} alt="" />
+          <img key={rand} className="img-perfil" src={data?.avatar} alt="" />
           </div>
           <div>
           <h1>Hola {data?.username}</h1>
