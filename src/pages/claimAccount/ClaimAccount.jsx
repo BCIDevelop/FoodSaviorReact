@@ -3,25 +3,18 @@ import './claim-account.css'
 import image from '../../assets/imagenVerif.png'
 import { Link } from 'react-router-dom'
 import imageConfirmation from '../../assets/confirmation.png'
-import { useNavigate,useLocation } from 'react-router-dom'
-import { AlertContext } from '../../context/AlertContext'
-import { claimAccountService } from '../../globalServices/auth.service'
+import { useLocation } from 'react-router-dom'
 
+import useFetch from '../../hooks/useFetch'
 
 const ClaimAccount = () => {
-    const {showToast}=useContext(AlertContext)
-    const history=useNavigate()
+    
     const search=useLocation().search
     const email = new URLSearchParams(search).get('email');
     const token = new URLSearchParams(search).get('token');
+    const [{data},makeFetch,setFetch]=useFetch({url:`auth/claim-account?email=${email}&token=${token}`,method:'POST',body:{},hasCredentials:false,makeRender:true}) 
     
-    async function claimAccountRequest(){
-        await claimAccountService(history,showToast,email,token)
-    }
-
-    useEffect(()=>{
-        claimAccountRequest()
-    },[])
+ 
   return (
     
     <div className='claim-account'>

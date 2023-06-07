@@ -32,7 +32,6 @@ const Profile = () => {
   async function submitProfile(e){
     const password=document.getElementById('password-input').value
     const confirmPassword=document.getElementById('confirm password').value
-    console.log(password,confirmPassword)
     e.preventDefault()
     if (password){
         const validationPassword=validityPassword()
