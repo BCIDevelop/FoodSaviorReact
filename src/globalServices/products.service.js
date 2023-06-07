@@ -61,8 +61,7 @@ export const getAllProductsService=async(signal,history,showToast,removeUser,per
 }
 
 export const getProductsService=async(signal,history,showToast,removeUser,perPage,orderBySpoilDate)=>{
-   const controller=new AbortController()
-   const signal=controller.signal
+  
     const response=await makeRequest(signal,`products/user?page=1&per_page=${perPage}&ordering_by_spoilDate=${orderBySpoilDate}`,'GET',{},true)
     const isResponseValid=await responseHandler(signal,response,history,showToast,removeUser)
     if (isResponseValid)  return response.results.results    
