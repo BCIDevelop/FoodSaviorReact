@@ -46,7 +46,7 @@ const SideBar = ({setSideBar}) => {
       </span>
       { user &&
         ( <div className="datos__personales">
-         <div>
+         <div key={rand}>
           <img key={rand} className="img-perfil" src={data?.avatar} alt="" />
           </div>
           <div>

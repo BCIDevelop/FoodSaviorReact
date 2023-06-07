@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './profile.css'
 import Form  from '../../components/form/Form'
 import { useNavigate } from 'react-router-dom'
@@ -8,19 +8,24 @@ import { UserContext } from '../../context/UserContext'
 import { invalidEffect } from '../../utils/sessionInit'
 import { deleteUserService } from '../../globalServices/profile.service'
 import useFetch from '../../hooks/useFetch'
-
+import { updateProfileService } from '../../globalServices/profile.service'
 const Profile = () => {
   const history=useNavigate()
   const {showToast}=useContext(AlertContext)
   const {removeUser}=useContext(UserContext)
   const [{data},makeFetch,setUser]=useFetch({url:'profile/me',method:'GET',body:{},hasCredentials:true,makeRender:true}) 
   const [isEdit,setIsEdit] = useState(false)
+  const controllerRef=useRef(null)
 
   function editProfile(e){
     e.preventDefault()
     setIsEdit(true)
   }
-
+  useEffect(()=>{
+   return () => {
+    controllerRef.current.abort()
+   } 
+  })
   function validityPassword(){
     const testPasswordLength=new RegExp( "^(?=.{8,})")
     const testPasswordUpperCase = new RegExp("^(?=.*[A-Z])")
@@ -58,7 +63,9 @@ const Profile = () => {
         if (element.value!='') formData.append(key,element.value)
       })  
       formData.append('avatar',avatar.files[0])
-      makeFetch({url:'profile/me',method:'PATCH',body:formData,hasCredentials:true,makeRender:false})
+      controllerRef.current=new AbortController()
+      const signal=controllerRef.current.signal
+      await updateProfileService(signal,history,showToast,removeUser,formData)
       showToast('Se actualizo correctamente','Success')
       history('/home')
   
@@ -78,7 +85,9 @@ const Profile = () => {
     
   }
   async function deleteAccount(){
-    await deleteUserService(history,showToast,removeUser)
+    controllerRef.current=new AbortController()
+    const signal=controllerRef.current.signal
+    await deleteUserService(signal,history,showToast,removeUser)
     removeUser()
     history('/login')
   }
