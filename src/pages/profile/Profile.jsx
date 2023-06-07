@@ -25,7 +25,7 @@ const Profile = () => {
    return () => {
     controllerRef.current.abort()
    } 
-  })
+  },[])
   function validityPassword(){
     const testPasswordLength=new RegExp( "^(?=.{8,})")
     const testPasswordUpperCase = new RegExp("^(?=.*[A-Z])")
