@@ -1,19 +1,22 @@
 import React,{useContext} from 'react'
 import faceLogo from '../../assets/facebook-svgrepo-com.svg'
 import styles from './social.module.css'
-import { useEffect } from 'react'
+import { useEffect,useRef } from 'react'
 import { useNavigate} from 'react-router-dom'
 import {UserContext} from '../../context/UserContext'
-
+import { AlertContext } from '../../context/AlertContext'
+import { FBLoginService } from '../../globalServices/auth.service'
 const SocialButtons = () => {
-  
-  const {storeUser}=useContext(UserContext)
+  const {showToast}  = useContext(AlertContext)
+  const signalRef = useRef(null)
+  const {storeUser,removeUser}=useContext(UserContext)
   const history = useNavigate()
   function facebookClicked(){
     FB.login(function(response) {
         if (response.status === 'connected') {
           // Logged into your webpage and Facebook.
-          getFacebook()   
+          const access_token=response.authResponse.accessToken
+          getFacebook(access_token)   
 
         } else {
           // The person is not logged into your webpage or we are unable to tell. 
@@ -21,25 +24,16 @@ const SocialButtons = () => {
       },{scope: 'public_profile,email'});
     }
 
-      function getFacebook(){
-        FB.api('/me?fields=picture,name,email', function(response) {
-            
-            const socialUser= {name:response.name,mail:response.email,picture:response.picture.data.url}
-            const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
-         
-         
-          if(users.some((element)=>{element.mail===socialUser.mail})) 
-          {
-            storeUser(socialUser)
-          }
-           else {
-          users.push(socialUser)
-          localStorage.setItem('users',JSON.stringify(users))
-          storeUser(socialUser)
-      }
-          history('/home')
-            
-        })
+      async function getFacebook(access_token){
+        signalRef.current = new AbortController().signal
+        const response=await FBLoginService(signalRef.current,history,showToast,removeUser,access_token)
+        const user={
+          access_token:response.results.access_token,
+          refresh_token:response.results.refresh_token,
+        }
+        
+        storeUser(user)
+        history('/home')
     }    
  
   function loginGmail(response){
