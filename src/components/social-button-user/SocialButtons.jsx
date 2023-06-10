@@ -27,7 +27,7 @@ const SocialButtons = () => {
       async function getFacebook(access_token){
         
         signalRef.current = new AbortController()
-        const response=await fbLoginService(signalRef.current,history,showToast,removeUser,access_token)
+        const response=await fbLoginService(signalRef.current.signal,history,showToast,removeUser,access_token)
         const user={
           access_token:response.access_token,
           refresh_token:response.refresh_token,
@@ -41,7 +41,7 @@ const SocialButtons = () => {
         console.log('entro callback gmail')
         signalRef.current = new AbortController()
         const credential=response.credential
-        const result=await gmailLoginService(signalRef.current,history,showToast,removeUser,credential)
+        const result=await gmailLoginService(signalRef.current.signal,history,showToast,removeUser,credential)
         /* const user={
           access_token:result.access_token,
           refresh_token:result.refresh_token,
