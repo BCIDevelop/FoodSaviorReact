@@ -5,7 +5,7 @@ import { useEffect,useRef } from 'react'
 import { useNavigate} from 'react-router-dom'
 import {UserContext} from '../../context/UserContext'
 import { AlertContext } from '../../context/AlertContext'
-import { FBLoginService } from '../../globalServices/auth.service'
+import { fbLoginService } from '../../globalServices/auth.service'
 const SocialButtons = () => {
   const {showToast}  = useContext(AlertContext)
   const signalRef = useRef(null)
@@ -27,7 +27,7 @@ const SocialButtons = () => {
       async function getFacebook(access_token){
         
         signalRef.current = new AbortController()
-        const response=await FBLoginService(signalRef.current.signal,history,showToast,removeUser,access_token)
+        const response=await fbLoginService(signalRef.current,history,showToast,removeUser,access_token)
         const user={
           access_token:response.access_token,
           refresh_token:response.refresh_token,
@@ -37,22 +37,18 @@ const SocialButtons = () => {
         history('/home')
     }    
  
-  function loginGmail(response){
+    async function loginGmail(response){
     
-      const decoded_jwt=jwtJsDecode.jwtDecode(response.credential)
-      const socialUser={name:decoded_jwt.payload.name,mail:decoded_jwt.payload.email,picture:decoded_jwt.payload.picture}
-      const users=JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
-     
-      if(users.some((element)=>{element.mail===socialUser.mail})) 
-      {
-            storeUser(socialUser)
-      }
-      else {
-        users.push(socialUser)
-        localStorage.setItem('users',JSON.stringify(users))
-        storeUser(socialUser)
-      }
-      history('/home')
+        signalRef.current = new AbortController()
+        const credential=response.credential
+        const response=await gmailLoginService(signalRef.current,history,showToast,removeUser,credential)
+        /* const user={
+          access_token:response.access_token,
+          refresh_token:response.refresh_token,
+        }
+        
+        storeUser(user)
+        history('/home') */
     }
    
    useEffect(()=>{
