@@ -38,17 +38,16 @@ const SocialButtons = () => {
     }    
  
     async function loginGmail(response){
-        console.log('entro callback gmail')
         signalRef.current = new AbortController()
         const credential=response.credential
         const result=await gmailLoginService(signalRef.current.signal,history,showToast,removeUser,credential)
-        /* const user={
+        const user={
           access_token:result.access_token,
           refresh_token:result.refresh_token,
         }
         
         storeUser(user)
-        history('/home') */
+        history('/home')
     }
    
    useEffect(()=>{
