@@ -1,6 +1,7 @@
 const makeRequest = async (signal,context,method,data,hasCredentials,bodyFormat="row")=>{
     try{
-        const url='https://foodsavior.onrender.com'
+        /* const url='https://foodsavior.onrender.com' */
+        const url = 'http://127.0.0.1:5000'
         const myHeaders = new Headers();
         if (bodyFormat==='row'){
             myHeaders.append("Content-Type", "application/json");

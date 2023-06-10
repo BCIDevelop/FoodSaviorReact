@@ -63,6 +63,9 @@ const SocialButtons = () => {
       document.getElementById("gmail-button"),
       { theme: "filled_blue", size: "large",type:"icon",shape:"circle" }  // customization attributes
     );
+    return ()=>{
+      signalRef.current.abort()
+    }
    },[]) 
 
   return (
