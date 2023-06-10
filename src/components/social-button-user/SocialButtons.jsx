@@ -5,7 +5,7 @@ import { useEffect,useRef } from 'react'
 import { useNavigate} from 'react-router-dom'
 import {UserContext} from '../../context/UserContext'
 import { AlertContext } from '../../context/AlertContext'
-import { fbLoginService } from '../../globalServices/auth.service'
+import { fbLoginService ,gmailLoginService} from '../../globalServices/auth.service'
 const SocialButtons = () => {
   const {showToast}  = useContext(AlertContext)
   const signalRef = useRef(null)
