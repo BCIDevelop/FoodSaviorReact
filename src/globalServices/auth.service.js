@@ -12,6 +12,6 @@
    }
    else{
        const response=await makeRequest(signal,`auth/fb-login`,'POST',{accessToken},false)
-       return response.results.results
+       return response.results
      }
 }

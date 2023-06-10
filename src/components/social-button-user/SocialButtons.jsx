@@ -29,8 +29,8 @@ const SocialButtons = () => {
         const response=await FBLoginService(signalRef.current,history,showToast,removeUser,access_token)
         console.log(response)
         const user={
-          access_token:response.results.access_token,
-          refresh_token:response.results.refresh_token,
+          access_token:response.access_token,
+          refresh_token:response.refresh_token,
         }
         
         storeUser(user)
