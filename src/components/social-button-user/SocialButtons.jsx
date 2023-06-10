@@ -27,6 +27,7 @@ const SocialButtons = () => {
       async function getFacebook(access_token){
         signalRef.current = new AbortController().signal
         const response=await FBLoginService(signalRef.current,history,showToast,removeUser,access_token)
+        console.log(response)
         const user={
           access_token:response.results.access_token,
           refresh_token:response.results.refresh_token,
